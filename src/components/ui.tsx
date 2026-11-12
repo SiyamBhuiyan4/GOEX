@@ -119,9 +119,22 @@ export function Select({ className, children, ...rest }: SelectHTMLAttributes<HT
   );
 }
 
-export function Card({ className, children }: { className?: string; children: ReactNode }) {
+export function Card({
+  className,
+  children,
+  onClick,
+  ...rest
+}: {
+  className?: string;
+  children: ReactNode;
+  onClick?: () => void;
+} & React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className={cx("rounded-2xl border border-line bg-surface shadow-[var(--shadow-card)] transition-shadow duration-200", className)}>
+    <div
+      onClick={onClick}
+      className={cx("rounded-2xl border border-line bg-surface shadow-[var(--shadow-card)] transition-shadow duration-200", className)}
+      {...rest}
+    >
       {children}
     </div>
   );
@@ -294,11 +307,11 @@ export function Spinner({ className }: { className?: string }) {
   );
 }
 
-export function Logo({ size = 40, className }: { size?: number; className?: string }) {
+export function Logo({ size = 40, className, alt = "GOEX Fast Delivery" }: { size?: number; className?: string; alt?: string }) {
   return (
     <img
       src="/brand/logo-192.png"
-      alt="Morning Rider"
+      alt={alt}
       width={size}
       height={size}
       className={cx("shrink-0 rounded-full bg-white", className)}
@@ -306,14 +319,14 @@ export function Logo({ size = 40, className }: { size?: number; className?: stri
   );
 }
 
-export function Wordmark({ dark }: { dark?: boolean }) {
+export function Wordmark({ dark, className }: { dark?: boolean; className?: string }) {
   return (
-    <div className="leading-none">
-      <div className={cx("text-[17px] font-extrabold italic tracking-tight", dark ? "text-white" : "text-navy-900 dark:text-white")}>
-        MORNING <span className="text-brand">RIDER</span>
+    <div className={cx("leading-none", className)}>
+      <div className={cx("text-[18px] font-black italic tracking-tight", dark ? "text-white" : "text-navy-900 dark:text-white")}>
+        GO<span className="text-brand">EX</span>
       </div>
-      <div className={cx("keep-tracking mt-1 text-[10px] font-semibold tracking-[0.2em]", dark ? "text-white/60" : "text-ink-3")}>
-        COURIER SERVICE
+      <div className={cx("keep-tracking mt-1 text-[9.5px] font-semibold tracking-[0.16em]", dark ? "text-white/70" : "text-ink-3")}>
+        FAST DELIVERY & COURIER
       </div>
     </div>
   );

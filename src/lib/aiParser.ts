@@ -79,7 +79,14 @@ export function detectDeliveryZone(text: string): DeliveryZone {
   if (!text) return "dhaka_city";
   const normalized = convertBanglaDigitsToEnglish(text.normalize("NFC")).toLowerCase();
 
-  // 1. Uttara zone (express 3-hour area)
+  // 1. Savar & Greater Savar express zone (maps to dhaka_city)
+  const savarRegex =
+    /\b(?:savar|ashulia|hemayetpur|baipail|dhamrai|nabinagar|epz|ulail|jahangirnagar)\b|সাভার|আশুলিয়া|আশুলিয়া|হেমায়েতপুর|হেমায়েতপুর|বাইপাইল|ধামরাই|নবীনগর|ইপিজেড|উলাইল|জাহাঙ্গীরনগর/i;
+  if (savarRegex.test(normalized)) {
+    return "dhaka_city";
+  }
+
+  // 2. Uttara zone (express 3-hour area)
   const uttaraRegex =
     /\b(?:uttara|uttora|diabari|diyabari|abdullahpur|azampur|jasimuddin|rajlakshmi|house\s*building)\b|উত্তরা|দিয়াবাড়ি|দিয়াবাড়ী|আব্দুল্লাহপুর|আজমপুর|রাজলক্ষ্মী|জসীমউদ্দীন|সেক্টর\s*(?:[১-৯]|১০|১১|১২|১৩|১৪|১৫|১৬|১৭|১৮)|\bsector\s*(?:[1-9]|1[0-8])\b/i;
   if (uttaraRegex.test(normalized)) {

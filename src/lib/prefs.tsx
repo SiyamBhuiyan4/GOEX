@@ -17,10 +17,13 @@ const subscribe = (l: () => void) => {
   return () => listeners.delete(l);
 };
 
-let theme: Theme = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+let theme: Theme =
+  typeof document !== "undefined" && document.documentElement
+    ? (document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light")
+    : "light";
 let lang: Lang = (() => {
   try {
-    return localStorage.getItem("mr.lang") === "bn" ? "bn" : "en";
+    return typeof localStorage !== "undefined" && localStorage.getItem("mr.lang") === "bn" ? "bn" : "en";
   } catch {
     return "en";
   }
@@ -28,9 +31,11 @@ let lang: Lang = (() => {
 
 export function setTheme(next: Theme) {
   theme = next;
-  document.documentElement.setAttribute("data-theme", next);
+  if (typeof document !== "undefined" && document.documentElement) {
+    document.documentElement.setAttribute("data-theme", next);
+  }
   try {
-    localStorage.setItem("mr.theme", next);
+    if (typeof localStorage !== "undefined") localStorage.setItem("mr.theme", next);
   } catch {
     /* private mode */
   }
@@ -39,9 +44,11 @@ export function setTheme(next: Theme) {
 
 export function setLang(next: Lang) {
   lang = next;
-  document.documentElement.lang = next;
+  if (typeof document !== "undefined" && document.documentElement) {
+    document.documentElement.lang = next;
+  }
   try {
-    localStorage.setItem("mr.lang", next);
+    if (typeof localStorage !== "undefined") localStorage.setItem("mr.lang", next);
   } catch {
     /* private mode */
   }

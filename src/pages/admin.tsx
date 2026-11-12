@@ -1101,10 +1101,10 @@ function InviteModal({ app, onClose }: { app: Doc<"riderApplications"> | null; o
   const at = when ? new Date(when) : null;
   // The invitation goes out in whichever language the admin is using.
   const whenText = at ? longDateTime(at.getTime()) : "";
-  const subject = t("Morning Rider — rider interview invitation");
+  const subject = t("GoEx Fast Delivery — rider interview invitation");
   const message = t(
-    "Dear {name},\n\nThank you for applying to be a Morning Rider delivery rider. We would like to invite you for an interview.\n\nWhen: {when}\nWhere: {place}\n\nPlease bring your NID, driving licence and motorcycle papers.\nIf you cannot come at this time, call or WhatsApp us at {phone}.\n\nMorning Rider — Fast • Safe • On Time",
-    { name: app.name, when: whenText, place: place === CONTACT.address ? t(CONTACT.address) : place, phone: CONTACT.phone },
+    "Dear {name},\n\nThank you for applying to be a GoEx delivery rider. We would like to invite you for an interview.\n\nWhen: {when}\nWhere: {place}\n\nPlease bring your NID, driving licence/bicycle, and relevant papers.\nIf you cannot come at this time, call or WhatsApp us at {phone}.\n\nGoEx Fast Delivery — Fast • Safe • On Time",
+    { name: app.name, when: whenText, place: place === CONTACT.address ? t(CONTACT.address) : place, phone: CONTACT.phoneDisplay },
   );
   const waNumber = "88" + app.phone;
 

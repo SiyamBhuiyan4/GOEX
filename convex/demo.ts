@@ -732,6 +732,29 @@ async function seed(ctx: MutationCtx, adminId: Id<"users"> | undefined, files: D
     });
   }
 
+  /* ---- GoEx hubs (Savar & Dhaka Central) ---- */
+  const existingHubs = await ctx.db.query("hubs").take(1);
+  if (existingHubs.length === 0) {
+    await ctx.db.insert("hubs", {
+      name: "Savar Hub",
+      code: "HUB-SVR-01",
+      address: "Savar Bus Stand / Bazar Road, Savar",
+      city: "Savar",
+      phone: "01348-756651",
+      status: "active",
+      createdAt: now - 30 * DAY,
+    });
+    await ctx.db.insert("hubs", {
+      name: "Dhaka Central Hub",
+      code: "HUB-DAC-01",
+      address: "Tejgaon / Farmgate Central Hub, Dhaka",
+      city: "Dhaka",
+      phone: "01348-756651",
+      status: "active",
+      createdAt: now - 30 * DAY,
+    });
+  }
+
   return {
     merchants: merchantIds.length,
     riders: riderIds.length,

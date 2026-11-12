@@ -8,9 +8,10 @@ interface Hub {
   y: number;
 }
 
-// 8 Divisional Hubs across Bangladesh
+// Divisional and Core Express Hubs across Bangladesh (GoEx Network)
 const HUBS: Hub[] = [
-  { id: "dhaka", name: "Dhaka", x: 245.7, y: 288.3 },
+  { id: "dhaka", name: "Dhaka Central Hub", x: 245.7, y: 288.3 },
+  { id: "savar", name: "Savar Hub", x: 232.0, y: 275.0 },
   { id: "ctg", name: "Chattogram", x: 369.3, y: 428.0 },
   { id: "khu", name: "Khulna", x: 170.4, y: 383.1 },
   { id: "raj", name: "Rajshahi", x: 87.1, y: 234.7 },

@@ -133,6 +133,39 @@ export const createHub = mutation({
 });
 
 /**
+ * Admin: seed default GoEx hubs (Savar Hub & Dhaka Central Hub) if none exist.
+ */
+export const seedDefaultHubs = mutation({
+  args: { token: v.string() },
+  handler: async (ctx, args) => {
+    await requireAdmin(ctx, args.token);
+    const existing = await ctx.db.query("hubs").collect();
+    if (existing.length > 0) return { inserted: 0, message: "Hubs already present" };
+
+    const now = Date.now();
+    await ctx.db.insert("hubs", {
+      name: "Savar Hub",
+      code: "HUB-SVR-01",
+      address: "Savar Bus Stand / Bazar Road, Savar",
+      city: "Savar",
+      phone: "01348-756651",
+      status: "active",
+      createdAt: now,
+    });
+    await ctx.db.insert("hubs", {
+      name: "Dhaka Central Hub",
+      code: "HUB-DAC-01",
+      address: "Tejgaon / Farmgate Central Hub, Dhaka",
+      city: "Dhaka",
+      phone: "01348-756651",
+      status: "active",
+      createdAt: now,
+    });
+    return { inserted: 2, message: "Default hubs created" };
+  },
+});
+
+/**
  * Updates hub details or status.
  */
 export const updateHub = mutation({

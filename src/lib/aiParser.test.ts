@@ -8,6 +8,7 @@ import {
   detectDeliveryZone,
   extractAmountToCollect,
 } from "./aiParser.ts";
+import { zoneFor } from "./format.ts";
 
 describe("aiParser - Helper Functions", () => {
   it("converts Bangla digits to English digits", () => {
@@ -50,7 +51,19 @@ describe("aiParser - Helper Functions", () => {
     assert.equal(detectDeliveryZone("Fatullah post office"), "narayanganj_city");
     assert.equal(detectDeliveryZone("সিদ্ধিরগঞ্জ পুল, নারায়ণগঞ্জ"), "narayanganj_city");
 
-    // Dhaka City (default & specific areas)
+    // Dhaka City & Savar coverage
+    assert.equal(detectDeliveryZone("Savar Sadar, Dhaka"), "dhaka_city");
+    assert.equal(detectDeliveryZone("Ashulia Bazar"), "dhaka_city");
+    assert.equal(detectDeliveryZone("Hemayetpur bus stand"), "dhaka_city");
+    assert.equal(detectDeliveryZone("Baipail, EPZ"), "dhaka_city");
+    assert.equal(detectDeliveryZone("Dhamrai Bazar"), "dhaka_city");
+    assert.equal(detectDeliveryZone("Nabinagar Smriti Soudho"), "dhaka_city");
+    assert.equal(detectDeliveryZone("সাভার বাজার রোড"), "dhaka_city");
+    assert.equal(detectDeliveryZone("আশুলিয়া বেরিবাঁধ"), "dhaka_city");
+    assert.equal(detectDeliveryZone("হেমায়েতপুর"), "dhaka_city");
+    assert.equal(detectDeliveryZone("বাইপাইল মোড়"), "dhaka_city");
+    assert.equal(detectDeliveryZone("ধামরাই"), "dhaka_city");
+    assert.equal(detectDeliveryZone("নবীনগর"), "dhaka_city");
     assert.equal(detectDeliveryZone("Mirpur 10, Dhaka"), "dhaka_city");
     assert.equal(detectDeliveryZone("Dhanmondi 27, Dhaka"), "dhaka_city");
     assert.equal(detectDeliveryZone("Gulshan 2 circle"), "dhaka_city");
@@ -275,5 +288,44 @@ describe("aiParser - predictDeliveryRisk", () => {
 
     assert.equal(result.riskLevel, "low");
     assert.ok(result.reasons.some((r) => r.includes("proven delivery track record")));
+  });
+});
+
+describe("zoneFor - Savar & Regional Zone Resolution", () => {
+  it("resolves Savar, Ashulia, Hemayetpur, Baipail, Dhamrai, Nabinagar cleanly to dhaka_city", () => {
+    assert.equal(zoneFor("Savar Sadar"), "dhaka_city");
+    assert.equal(zoneFor("Savar Bazar"), "dhaka_city");
+    assert.equal(zoneFor("Ashulia"), "dhaka_city");
+    assert.equal(zoneFor("Hemayetpur"), "dhaka_city");
+    assert.equal(zoneFor("Baipail"), "dhaka_city");
+    assert.equal(zoneFor("EPZ (Dhaka EPZ)"), "dhaka_city");
+    assert.equal(zoneFor("Nabinagar"), "dhaka_city");
+    assert.equal(zoneFor("Dhamrai"), "dhaka_city");
+    assert.equal(zoneFor("Jahangirnagar University"), "dhaka_city");
+    assert.equal(zoneFor("Ulail"), "dhaka_city");
+
+    // Bengali spellings
+    assert.equal(zoneFor("সাভার সদর"), "dhaka_city");
+    assert.equal(zoneFor("সাভার বাজার"), "dhaka_city");
+    assert.equal(zoneFor("আশুলিয়া"), "dhaka_city");
+    assert.equal(zoneFor("আশুলিয়া"), "dhaka_city");
+    assert.equal(zoneFor("হেমায়েতপুর"), "dhaka_city");
+    assert.equal(zoneFor("হেমায়েতপুর"), "dhaka_city");
+    assert.equal(zoneFor("বাইপাইল"), "dhaka_city");
+    assert.equal(zoneFor("নবীনগর"), "dhaka_city");
+    assert.equal(zoneFor("ধামরাই"), "dhaka_city");
+    assert.equal(zoneFor("ইপিজেড"), "dhaka_city");
+    assert.equal(zoneFor("জাহাঙ্গীরনগর বিশ্ববিদ্যালয়"), "dhaka_city");
+  });
+
+  it("still resolves other express and satellite zones correctly", () => {
+    assert.equal(zoneFor("Uttara Sector 7"), "uttara");
+    assert.equal(zoneFor("দিয়াবাড়ি"), "uttara");
+    assert.equal(zoneFor("Board Bazar"), "gazipur_city");
+    assert.equal(zoneFor("জয়দেবপুর"), "gazipur_city");
+    assert.equal(zoneFor("Chashara"), "narayanganj_city");
+    assert.equal(zoneFor("ফতুল্লা"), "narayanganj_city");
+    assert.equal(zoneFor("Mirpur 10"), "dhaka_city");
+    assert.equal(zoneFor("Dhanmondi"), "dhaka_city");
   });
 });

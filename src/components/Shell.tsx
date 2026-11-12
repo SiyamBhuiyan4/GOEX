@@ -22,6 +22,10 @@ import {
   PieChart,
   Users,
   TrendingUp,
+  Phone,
+  Mail,
+  ThumbsUp,
+  MapPin,
   type LucideIcon,
 } from "lucide-react";
 import { useQuery } from "convex/react";
@@ -32,6 +36,7 @@ import { useAuthed, useSession } from "../lib/session";
 import { Button, Logo, Wordmark, cx } from "./ui";
 import { Prefs } from "./Prefs";
 import { getLang, t } from "../lib/prefs";
+import { CONTACT } from "../lib/contact";
 
 type NavItem = { href: string; label: string; icon: LucideIcon };
 
@@ -194,12 +199,18 @@ export function Shell({ children }: { children: ReactNode }) {
 
   const sidebar = (
     <div className="sunrise flex h-full flex-col">
-      <Link href="/app" className="flex items-center gap-3 px-5 pb-5 pt-6 transition hover:opacity-90">
+      <Link href="/app" className="flex items-center gap-3 px-5 pb-4 pt-6 transition hover:opacity-90">
         <Logo size={44} className="ring-2 ring-white/20 shadow-lg" />
         <Wordmark dark />
       </Link>
+      <div className="-mt-2 mb-3 px-5">
+        <span className="inline-flex items-center gap-1 rounded-full bg-white/10 px-2.5 py-0.5 text-[10.5px] font-medium text-white/85 ring-1 ring-white/15">
+          <MapPin className="size-3 text-brand" />
+          <span>Dhaka & Savar, Bangladesh</span>
+        </span>
+      </div>
       {me.role === "admin" && (
-        <p className={cx("-mt-2 mb-4 px-5 text-[11px] font-bold text-sun/80", getLang() !== "bn" && "tracking-[0.2em]")}>{t("ADMIN PANEL")}</p>
+        <p className={cx("-mt-1 mb-4 px-5 text-[11px] font-bold text-sun/80", getLang() !== "bn" && "tracking-[0.2em]")}>{t("ADMIN PANEL")}</p>
       )}
       {nav}
       <Prefs onDark className="mx-5 mt-4" />
@@ -225,6 +236,48 @@ export function Shell({ children }: { children: ReactNode }) {
           </button>
         </div>
       </div>
+      <div className="mx-3 mb-3 rounded-xl border border-white/10 bg-white/[0.04] p-2.5 text-white/70">
+        <div className="flex items-center justify-between">
+          <a
+            href={`tel:${CONTACT.phone}`}
+            className="flex items-center gap-1 text-xs font-bold text-sun hover:underline"
+            title={t("Hotline: {phone}", { phone: CONTACT.phoneDisplay })}
+          >
+            <Phone className="size-3" />
+            <span>{CONTACT.phoneDisplay}</span>
+          </a>
+          <div className="flex items-center gap-2">
+            <a
+              href={CONTACT.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/60 transition hover:text-emerald-400"
+              title="WhatsApp"
+            >
+              <MessageCircle className="size-3.5 text-emerald-400" />
+            </a>
+            <a
+              href={CONTACT.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/60 transition hover:text-blue-400"
+              title="Facebook"
+            >
+              <ThumbsUp className="size-3.5 text-blue-400" />
+            </a>
+            <a
+              href={`mailto:${CONTACT.email}`}
+              className="text-white/60 transition hover:text-white"
+              title={`Email: ${CONTACT.email}`}
+            >
+              <Mail className="size-3.5 text-brand" />
+            </a>
+          </div>
+        </div>
+        <p className="mt-1.5 truncate text-[10px] text-white/40">
+          © 2026 GOEX Fast Delivery & Courier Service. All rights reserved.
+        </p>
+      </div>
     </div>
   );
 
@@ -232,13 +285,13 @@ export function Shell({ children }: { children: ReactNode }) {
   const currentPage = currentNav ? t(currentNav.label) : undefined;
 
   return (
-    <div className="min-h-full lg:pl-64">
+    <div className="flex min-h-screen flex-col lg:pl-64">
       <aside className="no-print fixed inset-y-0 left-0 z-30 hidden w-64 lg:block">{sidebar}</aside>
 
       {/* Desktop top bar */}
       <header className="no-print sticky top-0 z-20 hidden items-center justify-between border-b border-line bg-surface/80 px-8 py-3.5 backdrop-blur-md lg:flex">
         <div className="flex items-center gap-2.5 text-sm">
-          <span className="font-bold text-ink">Morning Rider</span>
+          <span className="font-bold text-ink">GOEX</span>
           <span className="text-ink-3">/</span>
           <span className="rounded-full bg-brand-50 px-2.5 py-0.5 text-xs font-bold text-brand-700">
             {roleLabel}
@@ -249,8 +302,40 @@ export function Shell({ children }: { children: ReactNode }) {
               <span className="font-semibold text-ink-2">{currentPage}</span>
             </>
           )}
+          <span className="ml-3 hidden items-center gap-1 rounded-full bg-brand-50 px-2.5 py-0.5 text-xs font-semibold text-brand-700 ring-1 ring-brand-600/20 dark:bg-brand-950/40 dark:text-brand-300 xl:inline-flex">
+            <MapPin className="size-3 text-brand" />
+            <span>Dhaka & Savar, Bangladesh</span>
+          </span>
         </div>
         <div className="flex items-center gap-3">
+          <a
+            href={`tel:${CONTACT.phone}`}
+            className="inline-flex items-center gap-1.5 rounded-xl bg-brand/10 px-3 py-1.5 text-xs font-bold text-brand ring-1 ring-brand/30 transition hover:bg-brand hover:text-white"
+            title={`Hotline: ${CONTACT.phoneDisplay}`}
+          >
+            <Phone className="size-3.5" />
+            <span>{CONTACT.phoneDisplay}</span>
+          </a>
+          <a
+            href={CONTACT.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden items-center gap-1.5 rounded-xl border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-1.5 text-xs font-semibold text-emerald-600 transition hover:bg-emerald-500 hover:text-white dark:text-emerald-400 md:inline-flex"
+            title={`WhatsApp: ${CONTACT.phoneDisplay}`}
+          >
+            <MessageCircle className="size-3.5" />
+            <span>WhatsApp</span>
+          </a>
+          <a
+            href={CONTACT.facebook}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden items-center gap-1.5 rounded-xl border border-blue-500/20 bg-blue-500/10 px-2.5 py-1.5 text-xs font-semibold text-blue-600 transition hover:bg-blue-600 hover:text-white dark:text-blue-400 2xl:inline-flex"
+            title="Official Facebook Page"
+          >
+            <ThumbsUp className="size-3.5" />
+            <span>Facebook</span>
+          </a>
           {me.role === "admin" && (
             <div className="flex items-center gap-2.5">
               <span className="hidden items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700 ring-1 ring-emerald-600/20 dark:bg-emerald-950/40 dark:text-emerald-400 xl:inline-flex">
@@ -280,7 +365,7 @@ export function Shell({ children }: { children: ReactNode }) {
       </header>
 
       {/* Mobile top bar */}
-      <header className="no-print sticky top-0 z-30 flex items-center gap-3 border-b border-line bg-surface/90 px-4 py-3 backdrop-blur lg:hidden">
+      <header className="no-print sticky top-0 z-30 flex items-center gap-2.5 border-b border-line bg-surface/90 px-4 py-3 backdrop-blur lg:hidden">
         <button onClick={() => setOpen(true)} className="rounded-lg p-1.5 hover:bg-navy-50" aria-label={t("Menu")}>
           <Menu className="size-6" />
         </button>
@@ -288,8 +373,18 @@ export function Shell({ children }: { children: ReactNode }) {
           <Logo size={32} />
           <Wordmark />
         </Link>
-        <Prefs className="ml-auto" />
-        <FloatingChatButton className="relative" />
+        <div className="ml-auto flex items-center gap-2">
+          <a
+            href={`tel:${CONTACT.phone}`}
+            className="flex items-center gap-1 rounded-xl bg-brand/10 px-2.5 py-1.5 text-xs font-bold text-brand transition hover:bg-brand/20"
+            title={`Hotline: ${CONTACT.phoneDisplay}`}
+          >
+            <Phone className="size-3.5" />
+            <span className="hidden sm:inline">{CONTACT.phoneDisplay}</span>
+          </a>
+          <Prefs />
+          <FloatingChatButton className="relative" />
+        </div>
       </header>
       {open && (
         <div className="fixed inset-0 z-40 lg:hidden">
@@ -308,7 +403,53 @@ export function Shell({ children }: { children: ReactNode }) {
       )}
 
       <FloatingChatButton className="fixed bottom-6 right-6 z-40 hidden lg:block" />
-      <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">{children}</main>
+      <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-6 sm:px-6 lg:px-8 lg:py-8">{children}</main>
+
+      {/* Shell Footer */}
+      <footer className="no-print mt-auto border-t border-line bg-surface/60 px-4 py-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 text-xs text-ink-3 sm:flex-row">
+          <p>© 2026 GOEX Fast Delivery & Courier Service. All rights reserved.</p>
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+            <span className="inline-flex items-center gap-1 font-medium text-ink-2">
+              <MapPin className="size-3 text-brand" />
+              <span>{CONTACT.address}</span>
+            </span>
+            <span className="text-line">•</span>
+            <a href={`tel:${CONTACT.phone}`} className="inline-flex items-center gap-1 font-semibold text-brand hover:underline">
+              <Phone className="size-3" />
+              <span>{CONTACT.phoneDisplay}</span>
+            </a>
+            <span className="text-line">•</span>
+            <a
+              href={CONTACT.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 font-medium hover:text-emerald-600 dark:hover:text-emerald-400"
+            >
+              <MessageCircle className="size-3 text-emerald-500" />
+              <span>WhatsApp</span>
+            </a>
+            <span className="text-line">•</span>
+            <a
+              href={CONTACT.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 font-medium hover:text-blue-600 dark:hover:text-blue-400"
+            >
+              <ThumbsUp className="size-3 text-blue-500" />
+              <span>Facebook</span>
+            </a>
+            <span className="text-line">•</span>
+            <a
+              href={`mailto:${CONTACT.email}`}
+              className="inline-flex items-center gap-1 font-medium hover:text-brand"
+            >
+              <Mail className="size-3" />
+              <span>{CONTACT.email}</span>
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

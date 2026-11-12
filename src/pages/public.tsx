@@ -4,7 +4,6 @@ import {
   ArrowRight,
   Bike,
   Calculator,
-  CalendarDays,
   CheckCircle2,
   ChevronDown,
   ChevronUp,
@@ -12,18 +11,21 @@ import {
   Clock,
   Copy,
   Lock,
+  Mail,
   MapPin,
   Menu,
   MessageCircle,
+  Milk,
   PackageCheck,
   PackageSearch,
   Phone,
   Search,
   ShieldCheck,
   Snowflake,
-  Sunrise,
+  Sparkles,
   ThumbsUp,
   Truck,
+  Utensils,
   Wallet,
   X,
   Zap,
@@ -40,6 +42,8 @@ import { Prefs } from "../components/Prefs";
 import { t, translateServer } from "../lib/prefs";
 import { RoadBandAnimation } from "../components/RoadBandAnimation";
 import { NetworkMapAnimation } from "../components/NetworkMapAnimation";
+import { GoexServices } from "../components/GoexServices";
+import { QuickServiceModal } from "../components/QuickServiceModal";
 
 /** Only same-site paths may be used as a post-login destination. */
 export function safeNext(raw: string | null) {
@@ -49,7 +53,7 @@ const nextParam = () => new URLSearchParams(location.search).get("next");
 
 /* ------------------------------------------------------------------ nav */
 
-function PublicNav() {
+function PublicNav({ onOpenQuickBooking }: { onOpenQuickBooking?: () => void }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   return (
     <header className="relative z-30 mx-auto flex max-w-6xl items-center justify-between gap-3 px-5 py-5">
@@ -69,12 +73,67 @@ function PublicNav() {
         <a href="/#join" className="rounded-xl px-3 py-2 text-sm font-semibold text-white/75 transition hover:bg-white/10 hover:text-white">
           {t("Join as rider")}
         </a>
+        {onOpenQuickBooking && (
+          <button
+            type="button"
+            onClick={onOpenQuickBooking}
+            className="inline-flex items-center gap-1.5 rounded-xl bg-brand/25 px-3.5 py-1.5 text-xs font-bold text-sun ring-1 ring-brand/40 backdrop-blur-sm transition hover:bg-brand hover:text-white active:scale-95"
+          >
+            <Sparkles className="size-3.5" />
+            <span>{t("Quick Booking")}</span>
+          </button>
+        )}
+        <a
+          href={`tel:${CONTACT.phone}`}
+          className="flex items-center gap-1.5 rounded-xl bg-brand px-3 py-1.5 text-xs font-bold text-white shadow-md shadow-brand/30 transition hover:bg-brand/90 hover:scale-[1.02]"
+          title={`Hotline: ${CONTACT.phoneDisplay}`}
+        >
+          <Phone className="size-3.5" />
+          <span>{CONTACT.phoneDisplay}</span>
+        </a>
+        <a
+          href={CONTACT.whatsapp}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hidden xl:flex items-center gap-1.5 rounded-xl border border-white/20 bg-white/10 px-2.5 py-1.5 text-xs font-semibold text-white transition hover:bg-emerald-600 hover:border-emerald-600"
+          title={`WhatsApp: ${CONTACT.phoneDisplay}`}
+        >
+          <MessageCircle className="size-3.5 text-emerald-400" />
+          <span>WhatsApp</span>
+        </a>
+        <a
+          href={CONTACT.facebook}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hidden 2xl:flex items-center gap-1.5 rounded-xl border border-white/20 bg-white/10 px-2.5 py-1.5 text-xs font-semibold text-white transition hover:bg-blue-600 hover:border-blue-600"
+          title="Official Facebook Page"
+        >
+          <ThumbsUp className="size-3.5 text-blue-400" />
+          <span>Facebook</span>
+        </a>
         <Prefs onDark />
         <Button onClick={() => navigate("/login")}>{t("Merchant login")}</Button>
       </nav>
 
       {/* Mobile controls */}
       <div className="flex items-center gap-2 lg:hidden">
+        <a
+          href={`tel:${CONTACT.phone}`}
+          className="flex items-center gap-1 rounded-xl bg-brand px-2.5 py-1.5 text-xs font-bold text-white shadow-sm transition hover:bg-brand/90"
+          title={`Hotline: ${CONTACT.phoneDisplay}`}
+        >
+          <Phone className="size-3" />
+          <span className="hidden xs:inline sm:inline">{CONTACT.phoneDisplay}</span>
+        </a>
+        {onOpenQuickBooking && (
+          <button
+            type="button"
+            onClick={onOpenQuickBooking}
+            className="rounded-xl bg-brand/25 px-2.5 py-1.5 text-xs font-bold text-sun ring-1 ring-brand/40"
+          >
+            {t("Quick Booking")}
+          </button>
+        )}
         <Prefs onDark />
         <Button size="sm" onClick={() => navigate("/login")}>{t("Merchant login")}</Button>
         <button
@@ -111,12 +170,46 @@ function PublicNav() {
             >
               {t("Join as rider")}
             </a>
+            {onOpenQuickBooking && (
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileOpen(false);
+                  onOpenQuickBooking();
+                }}
+                className="flex items-center gap-2 rounded-xl bg-brand/20 px-4 py-2.5 text-sm font-bold text-sun transition hover:bg-brand hover:text-white text-left"
+              >
+                <Sparkles className="size-4" /> {t("Quick Booking")}
+              </button>
+            )}
             <div className="my-2 border-t border-white/10" />
             <a
               href={`tel:${CONTACT.phone}`}
-              className="flex items-center gap-2.5 rounded-xl bg-brand/20 px-4 py-2.5 text-sm font-bold text-brand transition hover:bg-brand/30"
+              className="flex items-center justify-between rounded-xl bg-brand/20 px-4 py-2.5 text-sm font-bold text-brand transition hover:bg-brand/30"
             >
-              <Phone className="size-4" /> {t("Hotline")}: {CONTACT.phone}
+              <span className="flex items-center gap-2.5">
+                <Phone className="size-4" /> {t("Hotline")}
+              </span>
+              <span>{CONTACT.phoneDisplay}</span>
+            </a>
+            <a
+              href={CONTACT.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-between rounded-xl bg-emerald-600/20 px-4 py-2.5 text-sm font-bold text-emerald-400 transition hover:bg-emerald-600/30"
+            >
+              <span className="flex items-center gap-2.5">
+                <MessageCircle className="size-4" /> WhatsApp
+              </span>
+              <span>{CONTACT.phoneDisplay}</span>
+            </a>
+            <a
+              href={CONTACT.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2.5 rounded-xl bg-blue-600/20 px-4 py-2.5 text-sm font-bold text-blue-400 transition hover:bg-blue-600/30"
+            >
+              <ThumbsUp className="size-4" /> {t("Facebook page")}
             </a>
           </div>
         </div>
@@ -176,18 +269,25 @@ const SERVICES: Category[] = [
 ];
 
 const COVERAGE = [
+  "Savar Sadar",
+  "Hemayetpur",
+  "Ashulia",
+  "Dhamrai",
+  "Aminbazar",
+  "Baipayl",
+  "Nabinagar",
+  "EPZ",
+  "DEPZ",
+  "Jahangirnagar",
   "Uttara",
+  "Mirpur",
   "Gulshan",
   "Banani",
   "Dhanmondi",
-  "Mirpur",
   "Mohammadpur",
-  "Bashundhara",
   "Badda",
   "Tejgaon",
   "Motijheel",
-  "Jatrabari",
-  "Khilgaon",
 ];
 
 function SectionTitle({ kicker, title, text }: { kicker: string; title: string; text?: string }) {
@@ -465,51 +565,226 @@ const DEFAULT_PUBLIC_RATES = {
   returnPercent: 50,
 };
 
+export function PublicFooter() {
+  return (
+    <footer className="border-t border-line bg-surface">
+      <div className="mx-auto max-w-6xl px-5 py-12">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Col 1: Brand & Tagline */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-3">
+              <Logo size={42} />
+              <Wordmark />
+            </div>
+            <p className="text-sm text-ink-2 leading-relaxed">
+              {t("Fast, reliable and daily essential express delivery service across Dhaka and Savar. Safe door-to-door transit you can count on.")}
+            </p>
+            <div className="inline-flex items-center gap-2 rounded-full bg-brand-50 dark:bg-brand-950/40 px-3 py-1 text-xs font-semibold text-brand-700 dark:text-brand-300 ring-1 ring-brand/20">
+              <MapPin className="size-3.5 text-brand" />
+              <span>Dhaka & Savar, Bangladesh</span>
+            </div>
+          </div>
+
+          {/* Col 2: Quick Links */}
+          <div>
+            <h4 className="text-sm font-bold tracking-wider text-ink uppercase">{t("Quick Links")}</h4>
+            <ul className="mt-3 space-y-2 text-sm text-ink-2">
+              <li>
+                <a href="/#services" className="transition hover:text-brand">{t("Services")}</a>
+              </li>
+              <li>
+                <a href="/#pricing" className="transition hover:text-brand">{t("Pricing")}</a>
+              </li>
+              <li>
+                <Link href="/join" className="transition hover:text-brand">{t("Join as rider")}</Link>
+              </li>
+              <li>
+                <Link href="/login" className="transition hover:text-brand">{t("Merchant login")}</Link>
+              </li>
+              <li>
+                <Link href="/rider" className="transition hover:text-brand">{t("Rider login")}</Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Col 3: Coverage */}
+          <div>
+            <h4 className="text-sm font-bold tracking-wider text-ink uppercase">{t("Coverage Zones")}</h4>
+            <p className="mt-3 text-sm text-ink-2 leading-relaxed">
+              {t("Express delivery active across Savar Sadar, Ashulia, Hemayetpur, Dhamrai, Baipayl, Aminbazar, and all major Dhaka metropolitan areas.")}
+            </p>
+            <div className="mt-3 flex flex-wrap gap-1.5">
+              <span className="rounded-lg bg-navy-50 dark:bg-navy-900/60 px-2 py-0.5 text-xs font-medium text-ink-2">Savar</span>
+              <span className="rounded-lg bg-navy-50 dark:bg-navy-900/60 px-2 py-0.5 text-xs font-medium text-ink-2">Hemayetpur</span>
+              <span className="rounded-lg bg-navy-50 dark:bg-navy-900/60 px-2 py-0.5 text-xs font-medium text-ink-2">Ashulia</span>
+              <span className="rounded-lg bg-navy-50 dark:bg-navy-900/60 px-2 py-0.5 text-xs font-medium text-ink-2">Dhamrai</span>
+              <span className="rounded-lg bg-navy-50 dark:bg-navy-900/60 px-2 py-0.5 text-xs font-medium text-ink-2">Dhaka City</span>
+            </div>
+          </div>
+
+          {/* Col 4: Contact & Social */}
+          <div>
+            <h4 className="text-sm font-bold tracking-wider text-ink uppercase">{t("Contact Us")}</h4>
+            <ul className="mt-3 space-y-2.5 text-sm text-ink-2">
+              <li>
+                <a
+                  href={`tel:${CONTACT.phone}`}
+                  className="flex items-center gap-2 font-bold text-brand transition hover:underline"
+                  title={`Hotline: ${CONTACT.phoneDisplay}`}
+                >
+                  <Phone className="size-4 shrink-0" />
+                  <span>01348-756651</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href={CONTACT.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 font-medium hover:text-emerald-600 transition"
+                >
+                  <MessageCircle className="size-4 shrink-0 text-emerald-500" />
+                  <span>WhatsApp: 01348-756651</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`mailto:${CONTACT.email}`}
+                  className="flex items-center gap-2 hover:text-brand transition"
+                >
+                  <Mail className="size-4 shrink-0 text-brand" />
+                  <span>{CONTACT.email}</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href={CONTACT.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 hover:text-blue-600 transition"
+                >
+                  <ThumbsUp className="size-4 shrink-0 text-blue-600" />
+                  <span>Facebook Page</span>
+                </a>
+              </li>
+              <li className="flex items-start gap-2 text-xs text-ink-3 pt-1">
+                <MapPin className="size-4 shrink-0 text-brand mt-0.5" />
+                <span>{CONTACT.address}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-10 border-t border-line pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-ink-3">
+          <p>© 2026 GOEX Fast Delivery & Courier Service. All rights reserved.</p>
+          <div className="flex items-center gap-4 text-xs">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-1 font-medium text-emerald-700 dark:text-emerald-400 ring-1 ring-emerald-500/20">
+              <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span>Dhaka & Savar, Bangladesh</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
 export function Home() {
   const rates = DEFAULT_PUBLIC_RATES;
+  const [quickBookingOpen, setQuickBookingOpen] = useState(false);
+  const [initialService, setInitialService] = useState<string | undefined>(undefined);
+
+  const openQuickOrder = (serviceName?: string) => {
+    setInitialService(serviceName);
+    setQuickBookingOpen(true);
+  };
 
   return (
     <div className="min-h-full bg-page">
       {/* ---------------- hero */}
       <section className="sunrise relative overflow-hidden pb-28">
-        <PublicNav />
+        <PublicNav onOpenQuickBooking={() => openQuickOrder()} />
         <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-5 pt-8 lg:grid-cols-[1.15fr_1fr] lg:pt-14">
           <div className="animate-rise">
             <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-sun ring-1 ring-white/15">
-              <Zap className="size-3.5" /> {t("FAST • SAFE • ON TIME")}
+              <Zap className="size-3.5 text-brand" /> {t("Dhaka & Savar Express Zones")}
             </span>
-            {/* The brand is the headline, the same in both languages. */}
-            <h1 className="keep-tracking mt-5 text-5xl font-extrabold italic leading-[1.02] tracking-tight text-white sm:text-7xl">
-              MORNING <span className="text-brand">RIDER</span>
+            {/* The brand is the headline */}
+            <h1 className="keep-tracking mt-5 text-5xl font-black italic leading-[1.02] tracking-tight text-white sm:text-7xl">
+              GO<span className="text-brand">EX</span> <span className="text-sun">FAST DELIVERY</span>
             </h1>
-            <p className="mt-3 text-2xl font-bold tracking-tight text-sun sm:text-3xl">{t("No more delivery worries!")}</p>
-            <p className="mt-5 max-w-lg text-[17px] leading-relaxed text-white/70">
+            <p className="mt-3 text-xl font-bold tracking-tight text-white/95 sm:text-2xl lg:text-3xl">
+              {t("One stop solution for your daily lifestyle & parcel delivery")}
+            </p>
+            <p className="mt-4 max-w-xl text-[16px] sm:text-[17px] leading-relaxed text-white/80">
               {t(
-                "Morning Rider delivers parcels, food, medicine, frozen items and more across Dhaka, Gazipur and Narayanganj — 7 days a week, 6 AM to 12 AM.",
+                "Superfast delivery across Savar & Dhaka — Corporate & home lunch, 100% farm fresh pure cow milk, bachelor mess food, groceries, and parcels.",
               )}
             </p>
-            <div className="mt-7 max-w-xl">
-              <TrackBox big />
-            </div>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Button size="lg" onClick={() => navigate("/register")}>
+
+            {/* Quick Action CTA Buttons */}
+            <div className="mt-6 flex flex-wrap items-center gap-2.5 sm:gap-3">
+              <Button
+                size="lg"
+                className="bg-brand hover:bg-brand-600 text-white shadow-lg shadow-brand/35 text-sm sm:text-base font-bold"
+                onClick={() => openQuickOrder()}
+              >
+                <Sparkles className="size-4" /> {t("Quick Booking")}
+              </Button>
+
+              <a
+                href={`tel:${CONTACT.phone}`}
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-white/15 px-4 sm:px-5 py-2 text-sm sm:text-[15px] font-bold text-white backdrop-blur-md transition hover:bg-white/25 active:scale-[0.98]"
+              >
+                <Phone className="size-4 text-sun" />
+                <span>{t("Call")} {CONTACT.phoneDisplay || CONTACT.phone}</span>
+              </a>
+
+              <a
+                href={CONTACT.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#25D366] px-4 sm:px-5 py-2 text-sm sm:text-[15px] font-bold text-white shadow-lg shadow-[#25D366]/30 transition hover:bg-[#20ba5a] active:scale-[0.98]"
+              >
+                <MessageCircle className="size-4" />
+                <span>{t("Order on WhatsApp")}</span>
+              </a>
+
+              <a
+                href="/#join"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/25 bg-white/10 px-4 sm:px-5 py-2 text-sm sm:text-[15px] font-semibold text-white transition hover:bg-white/20 active:scale-[0.98]"
+              >
+                <Bike className="size-4 text-brand" />
+                <span>{t("Join as rider")}</span>
+              </a>
+
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white/20 bg-white/5 text-white hover:bg-white/15"
+                onClick={() => navigate("/register")}
+              >
                 {t("Become a merchant")} <ArrowRight className="size-4" />
               </Button>
+            </div>
+
+            <div className="mt-6 max-w-xl">
+              <TrackBox big />
             </div>
           </div>
           <div className="relative mx-auto hidden w-full max-w-md lg:block">
             <div className="absolute -inset-10 rounded-full bg-sun/25 blur-3xl" />
-            <img src="/brand/logo.png" alt="" className="relative w-full rounded-full shadow-2xl ring-8 ring-white/10" />
+            <img src="/brand/logo.png" alt="GOEX Fast Delivery" className="relative w-full rounded-full shadow-2xl ring-8 ring-white/10" />
           </div>
         </div>
 
         {/* quick facts */}
         <div className="relative z-10 mx-auto mt-12 grid max-w-6xl grid-cols-2 gap-3 px-5 lg:grid-cols-4">
           {[
-            { icon: CalendarDays, title: t("7 days a week"), text: t("Delivery every day") },
-            { icon: Sunrise, title: t("From 6 AM"), text: t("Morning delivery") },
-            { icon: Zap, title: t("3-hour delivery"), text: t("Inside Uttara") },
-            { icon: MapPin, title: t("3 cities"), text: t("Dhaka • Gazipur • Narayanganj") },
+            { icon: Zap, title: t("Savar & Dhaka"), text: t("Complete express coverage") },
+            { icon: Milk, title: t("100% Pure Cow Milk"), text: t("Direct dairy farm fresh") },
+            { icon: Utensils, title: t("Home Lunch & Meals"), text: t("Hot delivery to office desk") },
+            { icon: Clock, title: t("24/7 Delivery Operations"), text: CONTACT.phoneDisplay || CONTACT.phone },
           ].map((f) => (
             <div key={f.title} className="glass flex items-center gap-3 rounded-2xl p-4 transition-all duration-200 hover:bg-white/[0.1]">
               <div className="grid size-10 shrink-0 place-items-center rounded-xl bg-brand text-white shadow-sm shadow-brand/30">
@@ -579,20 +854,32 @@ export function Home() {
 
       {/* ---------------- services */}
       <section id="services" className="mx-auto max-w-6xl scroll-mt-6 px-5 py-20">
-        <SectionTitle
-          kicker={t("Our services")}
-          title={t("We deliver all kinds of products")}
-          text={t("Your product, our responsibility — from a single document to your whole shop's orders.")}
+        <GoexServices
+          onOrder={(item) => {
+            openQuickOrder(item.titleKey);
+          }}
         />
-        <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-          {SERVICES.map((c) => (
-            <Card key={c} className="group cursor-pointer p-5 text-center transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:ring-2 hover:ring-brand/40">
-              <div className="mx-auto grid size-14 place-items-center rounded-2xl bg-brand-50 text-3xl transition-transform duration-200 group-hover:scale-110">
-                {CATEGORY[c].emoji}
-              </div>
-              <p className="mt-3 text-sm font-bold leading-snug">{CATEGORY[c].label}</p>
-            </Card>
-          ))}
+
+        <div className="mt-20 border-t border-line pt-14">
+          <SectionTitle
+            kicker={t("Delivery categories")}
+            title={t("We deliver all kinds of products")}
+            text={t("Your product, our responsibility — from a single document to your whole shop's orders.")}
+          />
+          <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+            {SERVICES.map((c) => (
+              <Card
+                key={c}
+                onClick={() => openQuickOrder(CATEGORY[c].label)}
+                className="group cursor-pointer p-5 text-center transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:ring-2 hover:ring-brand/40"
+              >
+                <div className="mx-auto grid size-14 place-items-center rounded-2xl bg-brand-50 text-3xl transition-transform duration-200 group-hover:scale-110">
+                  {CATEGORY[c].emoji}
+                </div>
+                <p className="mt-3 text-sm font-bold leading-snug">{CATEGORY[c].label}</p>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -733,41 +1020,73 @@ export function Home() {
       <section id="join" className="mx-auto max-w-6xl scroll-mt-6 px-5 py-20">
         <div className="grid overflow-hidden rounded-3xl shadow-[var(--shadow-card)] lg:grid-cols-2">
           <div className="sunrise p-8 text-white sm:p-10">
-            <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-bold text-sun ring-1 ring-white/15">{t("Join our team")}</span>
-            <h3 className="mt-4 text-3xl font-extrabold italic tracking-tight">{t("Become a Morning Rider")}</h3>
-            <p className="mt-3 text-white/75">{t("Have your own motorcycle and a valid licence? Join our delivery team in Dhaka, Gazipur and Narayanganj.")}</p>
-            <p className="mt-6 text-sm font-bold text-sun">{t("Benefits")}</p>
-            <ul className="mt-2 space-y-2 text-sm">
-              {[t("Attractive pay"), t("Fuel allowance (by condition)"), t("Daily earning opportunity"), t("On-time payment"), t("Incentives for good performance"), t("Long-term career")].map((x) => (
-                <li key={x} className="flex items-center gap-2">
-                  <CheckCircle2 className="size-4 text-sun" /> {x}
+            <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-bold text-sun ring-1 ring-white/15">
+              {t("GoEx টিম-এ যোগ দিন!")} · {t("Rider Recruitment")}
+            </span>
+            <h3 className="mt-4 text-3xl font-extrabold italic tracking-tight">
+              {t("GoEx টিম-এ যোগ দিন! ঢাকায় ডেলিভারি রাইডার নিয়োগ চলছে! 🛵💼")}
+            </h3>
+            <p className="mt-3 text-white/80 leading-relaxed text-sm sm:text-base">
+              {t("আপনার কি নিজস্ব বাইক বা সাইকেল আছে? ঢাকার রাস্তায় রাইডিং করে প্রতিদিন নিশ্চিত আয় করতে চান? তাহলে আজই যোগ দিন আমাদের GoEx Fast Delivery পরিবারে!")}
+            </p>
+            <p className="mt-6 text-sm font-bold text-sun uppercase tracking-wider">{t("আমাদের বিশেষ সুবিধাসমূহ:")}</p>
+            <ul className="mt-2.5 space-y-2.5 text-sm">
+              {[
+                t("আকর্ষণীয় ফিক্সড বেতন + প্রতি ডেলিভারিতে চমৎকার কমিশন ও ইনসেন্টিভ।"),
+                t("সাভার ও ঢাকার বিভিন্ন জোনে কাজ করার সুবিধা।"),
+                t("ফুল-টাইম বা পার্ট-টাইম কাজ করার ফ্লেক্সিবল সুযোগ।"),
+                t("প্রতিদিনের নিশ্চিত আয় ও সময়মতো পেমেন্ট সুবিধা।"),
+                t("পারফরম্যান্স বোনাস ও সম্মানজনক কাজের পরিবেশ।"),
+              ].map((x) => (
+                <li key={x} className="flex items-start gap-2.5">
+                  <CheckCircle2 className="size-4 shrink-0 text-sun mt-0.5" />
+                  <span>{x}</span>
                 </li>
               ))}
             </ul>
           </div>
-          <div className="bg-surface p-8 sm:p-10">
-            <p className="font-bold">{t("What you need")}</p>
-            <ul className="mt-3 space-y-2.5 text-sm text-ink-2">
-              {[
-                t("Your own motorcycle (in good condition)"),
-                t("Valid driving licence"),
-                t("National ID card (NID)"),
-                t("Smartphone with internet"),
-                t("Know the roads of Dhaka city"),
-                t("Honest, responsible and hard-working"),
-              ].map((x) => (
-                <li key={x} className="flex items-center gap-2.5">
-                  <ShieldCheck className="size-4 shrink-0 text-brand" /> {x}
-                </li>
-              ))}
-            </ul>
-            <p className="mt-6 rounded-2xl bg-page p-3.5 text-xs leading-relaxed text-ink-2">
-              {t("Apply online — our team reviews every application and invites you for an interview. Your rider account is created after you are hired.")}
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
+          <div className="bg-surface p-8 sm:p-10 flex flex-col justify-between">
+            <div>
+              <p className="font-bold text-ink">{t("প্রয়োজনীয় যোগ্যতা ও ডকুমেন্টস:")}</p>
+              <ul className="mt-3 space-y-2.5 text-sm text-ink-2">
+                {[
+                  t("নিজস্ব মোটরবাইক অথবা সাইকেল (ভালো অবস্থায়)"),
+                  t("স্মার্টফোন ও সচল ইন্টারনেট সংযোগ"),
+                  t("জাতীয় পরিচয়পত্র (NID)"),
+                  t("বৈধ ড্রাইভিং লাইসেন্স (মোটরবাইক চালকদের জন্য)"),
+                  t("ঢাকা ও সাভারের এলাকা সম্পর্কে সুস্পষ্ট ধারণা"),
+                  t("সৎ, দায়িত্বশীল ও পরিশ্রমী মানসিকতা"),
+                ].map((x) => (
+                  <li key={x} className="flex items-center gap-2.5">
+                    <ShieldCheck className="size-4 shrink-0 text-brand" /> {x}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-6 rounded-2xl bg-brand-50/70 p-4 border border-brand/20">
+                <p className="text-xs font-bold text-brand uppercase tracking-wider">{t("তাত্ক্ষণিক অনুসন্ধানের জন্য হেল্পলাইন:")}</p>
+                <p className="mt-1 text-xs text-ink-2">
+                  {t("সরাসরি কল বা WhatsApp করুন {phone} নম্বরে অথবা অনলাইনে এখনই আবেদন করুন।", { phone: CONTACT.phoneDisplay })}
+                </p>
+              </div>
+            </div>
+            <div className="mt-6 flex flex-wrap items-center gap-3">
               <Button size="lg" onClick={() => navigate("/join")}>
                 {t("Apply now")} <ArrowRight className="size-4" />
               </Button>
+              <a
+                href={`tel:${CONTACT.phone}`}
+                className="inline-flex items-center gap-2 rounded-2xl bg-surface px-4 py-3 text-sm font-bold text-ink shadow-sm ring-1 ring-line hover:bg-page transition"
+              >
+                <Phone className="size-4 text-brand" /> {CONTACT.phoneDisplay}
+              </a>
+              <a
+                href={CONTACT.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-2xl bg-emerald-600 px-4 py-3 text-sm font-bold text-white shadow-sm hover:bg-emerald-700 transition"
+              >
+                <MessageCircle className="size-4" /> WhatsApp
+              </a>
             </div>
           </div>
         </div>
@@ -780,44 +1099,63 @@ export function Home() {
       <section className="mx-auto max-w-6xl px-5 pb-20">
         <Card className="grid gap-6 p-8 md:grid-cols-[1.2fr_1fr] md:items-center">
           <div>
+            <div className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-brand-50 dark:bg-brand-950/40 px-3 py-1 text-xs font-bold text-brand ring-1 ring-brand/20">
+              <MapPin className="size-3" />
+              <span>Dhaka & Savar, Bangladesh</span>
+            </div>
             <h3 className="text-2xl font-extrabold tracking-tight">{t("Ready to send your parcel?")}</h3>
             <p className="mt-2 text-ink-2">{t("Call or WhatsApp us — we'll pick up your product and deliver it safely.")}</p>
             <p className="mt-4 flex items-start gap-2 text-sm text-ink-2">
               <MapPin className="mt-0.5 size-4 shrink-0 text-brand" /> {t("Office")}: {t(CONTACT.address)}
             </p>
+            <p className="mt-1.5 flex items-center gap-2 text-sm text-ink-2">
+              <Mail className="size-4 shrink-0 text-brand" /> {t("Email")}:{" "}
+              <a href={`mailto:${CONTACT.email}`} className="text-brand font-medium hover:underline">
+                {CONTACT.email}
+              </a>
+            </p>
           </div>
           <div className="grid gap-3">
-            <a href={`tel:${CONTACT.phone}`} className="flex items-center gap-3 rounded-2xl bg-brand p-4 font-bold text-white hover:bg-brand-600">
-              <Phone className="size-5" /> {t("Call")} {CONTACT.phone}
+            <Button
+              size="lg"
+              className="flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-brand to-brand-600 p-4 font-bold text-white shadow-md shadow-brand/25 transition hover:brightness-105 hover:scale-[1.01]"
+              onClick={() => openQuickOrder()}
+            >
+              <Sparkles className="size-5" /> {t("Quick Booking")}
+            </Button>
+            <a
+              href={`tel:${CONTACT.phone}`}
+              className="flex items-center gap-3 rounded-2xl bg-navy-900 dark:bg-surface border border-line p-4 font-bold text-white dark:text-ink shadow-sm transition hover:bg-navy-800 dark:hover:bg-page hover:scale-[1.01]"
+            >
+              <Phone className="size-5 text-sun" /> {t("Call")} {CONTACT.phoneDisplay}
             </a>
-            <a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 rounded-2xl bg-emerald-600 p-4 font-bold text-white hover:bg-emerald-700">
-              <MessageCircle className="size-5" /> WhatsApp {CONTACT.phone}
+            <a
+              href={CONTACT.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 rounded-2xl bg-emerald-600 p-4 font-bold text-white shadow-md shadow-emerald-600/25 transition hover:bg-emerald-700 hover:scale-[1.01]"
+            >
+              <MessageCircle className="size-5" /> WhatsApp {CONTACT.phoneDisplay}
             </a>
-            <a href={CONTACT.facebook} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 rounded-2xl bg-[#0b1b38] p-4 font-bold text-white ring-1 ring-white/10 hover:bg-[#12284f]">
-              <ThumbsUp className="size-5" /> {t("Facebook page")}
+            <a
+              href={CONTACT.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 rounded-2xl bg-[#0b1b38] p-4 font-bold text-white ring-1 ring-white/10 hover:bg-[#12284f] transition hover:scale-[1.01]"
+            >
+              <ThumbsUp className="size-5 text-brand" /> {t("Facebook page")}
             </a>
           </div>
         </Card>
       </section>
 
-      <footer className="border-t border-line bg-surface">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-5 py-8">
-          <div className="flex items-center gap-3">
-            <Logo size={36} />
-            <Wordmark />
-          </div>
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-ink-2">
-            <Link href="/login" className="transition hover:text-brand">{t("Merchant login")}</Link>
-            <Link href="/join" className="transition hover:text-brand">{t("Join as rider")}</Link>
-            <span>
-              {t("Hotline")}: {CONTACT.phone}, {CONTACT.phone2}
-            </span>
-          </div>
-          <p className="w-full text-sm text-ink-3">
-            © {new Date().getFullYear()} Morning Rider Courier Service · {t("Your trust is our inspiration.")}
-          </p>
-        </div>
-      </footer>
+      <PublicFooter />
+
+      <QuickServiceModal
+        open={quickBookingOpen}
+        onClose={() => setQuickBookingOpen(false)}
+        initialService={initialService}
+      />
     </div>
   );
 }
@@ -925,7 +1263,7 @@ function SignIn({ door }: { door: "merchant" | "rider" | "admin" }) {
 
   const copy = {
     merchant: { title: t("Merchant login"), subtitle: t("Sign in to send and track your parcels.") },
-    rider: { title: t("Rider login"), subtitle: t("For Morning Rider delivery staff only.") },
+    rider: { title: t("Rider login"), subtitle: t("For GoEx Fast Delivery staff only.") },
     admin: showSetup
       ? { title: t("Initial Admin Setup"), subtitle: t("Set up your master admin passcode to initialize the panel.") }
       : { title: t("Admin panel"), subtitle: t("Restricted area. Authorized Morning Rider staff only.") },
@@ -935,7 +1273,7 @@ function SignIn({ door }: { door: "merchant" | "rider" | "admin" }) {
     <AuthLayout title={copy.title} subtitle={copy.subtitle}>
       {door === "rider" && (
         <div className="-mt-2 mb-6 flex items-center gap-3 rounded-2xl bg-brand-50 p-3.5 text-sm font-semibold text-brand-700">
-          <Bike className="size-5 shrink-0" /> {t("Riders get their account from the Morning Rider office.")}
+          <Bike className="size-5 shrink-0" /> {t("Riders get their account from the GoEx office.")}
         </div>
       )}
 
@@ -1021,14 +1359,47 @@ function SignIn({ door }: { door: "merchant" | "rider" | "admin" }) {
         </>
       )}
       {door === "rider" && (
-        <>
-          <p className="mt-6 text-center text-sm text-ink-2">
+        <div className="mt-6 space-y-3">
+          <div className="rounded-2xl border border-brand/20 bg-gradient-to-br from-brand-50/70 via-surface to-brand-50/30 p-4 text-xs shadow-sm">
+            <div className="flex items-center justify-between gap-2">
+              <span className="font-bold text-brand">{t("GoEx টিম-এ যোগ দিন! ঢাকায় ডেলিভারি রাইডার নিয়োগ চলছে! 🛵💼")}</span>
+            </div>
+            <p className="mt-2 text-ink-2 leading-relaxed">
+              {t("আকর্ষণীয় ফিক্সড বেতন + প্রতি ডেলিভারিতে চমৎকার কমিশন ও ইনসেন্টিভ। সাভার ও ঢাকার বিভিন্ন জোনে কাজ করার সুবিধা। ফুল-টাইম বা পার্ট-টাইম ফ্লেক্সিবল সুযোগ।")}
+            </p>
+            <p className="mt-1 font-semibold text-ink-3">
+              {t("প্রয়োজনীয়তা: নিজস্ব বাইক বা সাইকেল, স্মার্টফোন এবং NID")}
+            </p>
+            <div className="mt-3 flex flex-wrap items-center gap-2">
+              <a
+                href={`tel:${CONTACT.phone}`}
+                className="inline-flex items-center gap-1.5 rounded-lg bg-surface px-2.5 py-1.5 font-bold text-brand ring-1 ring-line hover:bg-brand-50 transition"
+              >
+                <Phone className="size-3" /> {CONTACT.phoneDisplay}
+              </a>
+              <a
+                href={CONTACT.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-2.5 py-1.5 font-bold text-white hover:bg-emerald-700 transition"
+              >
+                <MessageCircle className="size-3" /> WhatsApp
+              </a>
+              <Link
+                href="/join"
+                className="inline-flex items-center gap-1 rounded-lg bg-brand px-3 py-1.5 font-bold text-white hover:bg-brand-600 transition ml-auto"
+              >
+                {t("Apply now")} <ArrowRight className="size-3" />
+              </Link>
+            </div>
+          </div>
+          <p className="text-center text-sm text-ink-2">
             {t("Want to work with us?")}{" "}
             <Link href="/join" className="font-semibold text-brand hover:underline">
               {t("Apply as a rider")}
             </Link>
           </p>
-        </>
+        </div>
       )}
     </AuthLayout>
   );
@@ -1272,41 +1643,111 @@ export function Join() {
   const toast = useToast();
   const [done, setDone] = useState(false);
   const [busy, setBusy] = useState(false);
-  const [f, setF] = useState({ name: "", phone: "", email: "", area: "", hasBike: "yes", hasLicense: "yes", note: "" });
+  const [f, setF] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    area: "",
+    vehicle: "bike",
+    shift: "full_time",
+    hasLicense: "yes",
+    note: "",
+  });
   const set = (k: keyof typeof f) => (e: { target: { value: string } }) => setF({ ...f, [k]: e.target.value });
 
   if (done) {
     return (
-      <AuthLayout title={t("Application sent")} subtitle={t("Thank you for applying to Morning Rider.")}>
+      <AuthLayout title={t("Application sent")} subtitle={t("Thank you for applying to GoEx Fast Delivery.")}>
         <Card className="p-6">
           <CheckCircle2 className="size-10 text-emerald-500" />
           <p className="mt-4 font-semibold">{t("Our team will review your application.")}</p>
           <p className="mt-1 text-sm text-ink-2">
-            {t("If you are selected, we will invite you for an interview by email, phone or WhatsApp. Your rider account is created after you are hired.")}
+            {t("If you are selected, we will invite you for an interview by phone or WhatsApp ({phone}). Your rider account is created after you are hired.", { phone: CONTACT.phoneDisplay })}
           </p>
-          <Button className="mt-6" onClick={() => navigate("/")}>
-            {t("Back to home")}
-          </Button>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Button onClick={() => navigate("/")}>
+              {t("Back to home")}
+            </Button>
+            <a
+              href={`tel:${CONTACT.phone}`}
+              className="inline-flex items-center gap-1.5 rounded-xl border border-line bg-surface px-4 py-2 text-sm font-bold text-ink hover:bg-page transition"
+            >
+              <Phone className="size-4 text-brand" /> {CONTACT.phoneDisplay}
+            </a>
+            <a
+              href={CONTACT.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-600 px-4 py-2 text-sm font-bold text-white hover:bg-emerald-700 transition"
+            >
+              <MessageCircle className="size-4" /> WhatsApp
+            </a>
+          </div>
         </Card>
       </AuthLayout>
     );
   }
 
   return (
-    <AuthLayout title={t("Become a Morning Rider")} subtitle={t("Fill in this form. If you are selected, we will invite you for an interview.")}>
+    <AuthLayout
+      title={t("GoEx টিম-এ যোগ দিন! ঢাকায় ডেলিভারি রাইডার নিয়োগ চলছে! 🛵💼")}
+      subtitle={t("আকর্ষণীয় ফিক্সড বেতন + প্রতি ডেলিভারিতে চমৎকার কমিশন ও ইনসেন্টিভ। সাভার ও ঢাকার বিভিন্ন জোনে কাজ করার সুবিধা।")}
+    >
+      <div className="mb-6 rounded-2xl border border-brand/20 bg-gradient-to-br from-brand-50/70 via-surface to-amber-50/30 p-4 text-xs shadow-sm">
+        <p className="font-bold text-brand uppercase tracking-wider">{t("GoEx Rider Perks & Benefits")}</p>
+        <ul className="mt-2.5 space-y-1.5 text-ink-2">
+          <li className="flex items-start gap-2">
+            <span className="font-bold text-brand">•</span>
+            <span><strong>{t("ফিক্সড বেতন + কমিশন:")}</strong> {t("আকর্ষণীয় ফিক্সড বেতন + ডেলিভারি কমিশন ও ডেইলি ইনসেন্টিভ।")}</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="font-bold text-brand">•</span>
+            <span><strong>{t("জোন সুবিধা:")}</strong> {t("ঢাকা ও সাভারের বিভিন্ন জোনে কাজ করার সুবিধা।")}</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="font-bold text-brand">•</span>
+            <span><strong>{t("কাজের ধরণ:")}</strong> {t("ফুল-টাইম বা পার্ট-টাইম কাজ করার ফ্লেক্সিবল সুযোগ।")}</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="font-bold text-brand">•</span>
+            <span><strong>{t("প্রয়োজনীয়তা:")}</strong> {t("নিজস্ব মোটরবাইক বা সাইকেল, স্মার্টফোন এবং NID।")}</span>
+          </li>
+        </ul>
+        <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-line/60 pt-2.5">
+          <span className="text-[11px] font-semibold text-ink-3">{t("তাত্ক্ষণিক হেল্পলাইন:")}</span>
+          <a href={`tel:${CONTACT.phone}`} className="inline-flex items-center gap-1 font-bold text-brand hover:underline">
+            <Phone className="size-3" /> {CONTACT.phoneDisplay}
+          </a>
+          <span className="text-ink-3">·</span>
+          <a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 font-bold text-emerald-600 hover:underline">
+            <MessageCircle className="size-3" /> WhatsApp
+          </a>
+        </div>
+      </div>
+
       <form
         onSubmit={async (e) => {
           e.preventDefault();
           setBusy(true);
           try {
+            const vehicleLabel = f.vehicle === "bike" ? "Motorcycle" : f.vehicle === "bicycle" ? "Bicycle" : "No vehicle";
+            const shiftLabel = f.shift === "full_time" ? "Full-time" : "Part-time";
+            const combinedNote = [
+              f.note ? f.note.trim() : null,
+              `Vehicle: ${vehicleLabel}`,
+              `Shift: ${shiftLabel}`,
+            ]
+              .filter(Boolean)
+              .join(" | ");
+
             await apply({
               name: f.name,
               phone: f.phone,
-              email: f.email || undefined,
+              email: f.email.trim() ? f.email.trim() : undefined,
               area: f.area,
-              hasBike: f.hasBike === "yes",
+              hasBike: f.vehicle === "bike" || f.vehicle === "bicycle",
               hasLicense: f.hasLicense === "yes",
-              note: f.note || undefined,
+              note: combinedNote.slice(0, 300),
             });
             setDone(true);
           } catch (err) {
@@ -1321,35 +1762,57 @@ export function Join() {
         <Field label={t("Phone number")}>
           {(id) => <Input id={id} type="tel" placeholder="01XXXXXXXXX" value={f.phone} onChange={set("phone")} required />}
         </Field>
-        <Field label={t("Email")} hint={t("We send the interview invitation here.")}>
-          {(id) => <Input id={id} type="email" value={f.email} onChange={set("email")} required maxLength={120} />}
+        <Field label={t("Email (optional)")} hint={t("Optional — notifications can also be sent via phone / WhatsApp.")}>
+          {(id) => <Input id={id} type="email" value={f.email} onChange={set("email")} maxLength={120} />}
         </Field>
-        <Field label={t("Where do you live?")}>
-          {(id) => <Input id={id} value={f.area} onChange={set("area")} required maxLength={80} placeholder={t("e.g. Mirpur, Uttara")} />}
+        <Field label={t("Preferred Zone / Living Area")} hint={t("Dhaka (Mirpur, Uttara, Dhanmondi, etc.) or Savar")}>
+          {(id) => <Input id={id} value={f.area} onChange={set("area")} required maxLength={80} placeholder={t("e.g. Dhaka or Savar")} />}
         </Field>
-        <Field label={t("Own motorcycle?")}>
+        <Field label={t("Vehicle Type")}>
           {(id) => (
-            <Select id={id} value={f.hasBike} onChange={set("hasBike")}>
-              <option value="yes">{t("Yes")}</option>
-              <option value="no">{t("No")}</option>
+            <Select id={id} value={f.vehicle} onChange={set("vehicle")}>
+              <option value="bike">{t("Motorcycle / বাইক")}</option>
+              <option value="bicycle">{t("Bicycle / সাইকেল")}</option>
+              <option value="none">{t("None / কোনোটি নয়")}</option>
             </Select>
           )}
         </Field>
-        <Field label={t("Driving licence?")}>
+        <Field label={t("Work Shift")}>
+          {(id) => (
+            <Select id={id} value={f.shift} onChange={set("shift")}>
+              <option value="full_time">{t("Full-time / ফুল-টাইম")}</option>
+              <option value="part_time">{t("Part-time / পার্ট-টাইম")}</option>
+            </Select>
+          )}
+        </Field>
+        <Field label={t("Driving licence?")} className="sm:col-span-2">
           {(id) => (
             <Select id={id} value={f.hasLicense} onChange={set("hasLicense")}>
-              <option value="yes">{t("Yes")}</option>
-              <option value="no">{t("No")}</option>
+              <option value="yes">{t("Yes (for motorcycle)")}</option>
+              <option value="no">{t("No / Bicycle Rider")}</option>
             </Select>
           )}
         </Field>
         <Field label={t("Anything else? (optional)")} className="sm:col-span-2">
-          {(id) => <Textarea id={id} value={f.note} onChange={set("note")} maxLength={300} />}
+          {(id) => <Textarea id={id} value={f.note} onChange={set("note")} maxLength={200} placeholder={t("NID status, previous delivery experience, etc.")} />}
         </Field>
         <Button type="submit" size="lg" loading={busy} className="sm:col-span-2">
           {t("Send application")}
         </Button>
       </form>
+
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-4 text-xs text-ink-3">
+        <span>{t("Have questions about rider recruitment?")}</span>
+        <div className="flex items-center gap-3">
+          <a href={`tel:${CONTACT.phone}`} className="font-bold text-brand hover:underline">
+            📞 {CONTACT.phoneDisplay}
+          </a>
+          <span>·</span>
+          <a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer" className="font-bold text-emerald-600 hover:underline">
+            💬 WhatsApp
+          </a>
+        </div>
+      </div>
     </AuthLayout>
   );
 }
@@ -1473,6 +1936,7 @@ export function Track({ code }: { code?: string }) {
           </Card>
         )}
       </div>
+      <PublicFooter />
     </div>
   );
 }

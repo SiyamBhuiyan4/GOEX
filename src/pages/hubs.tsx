@@ -156,6 +156,7 @@ function HubsTab({ token }: { token: string }) {
   const toast = useToast();
   const createHub = useMutation(api.hubs.createHub);
   const updateHub = useMutation(api.hubs.updateHub);
+  const seedDefaultHubs = useMutation(api.hubs.seedDefaultHubs);
 
   // Form states for Create Modal
   const [name, setName] = useState("");
@@ -314,9 +315,31 @@ function HubsTab({ token }: { token: string }) {
             title={t("No hubs found")}
             text={t("Try adjusting your search criteria or register a new sorting warehouse.")}
             action={
-              <Button variant="outline" size="sm" onClick={() => setCreateOpen(true)}>
-                {t("Create New Hub")}
-              </Button>
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                <Button variant="outline" size="sm" onClick={() => setCreateOpen(true)}>
+                  {t("Create New Hub")}
+                </Button>
+                {(!hubs || hubs.length === 0) && (
+                  <Button
+                    variant="primary"
+                    size="sm"
+                    loading={busy}
+                    onClick={async () => {
+                      setBusy(true);
+                      try {
+                        await seedDefaultHubs({ token });
+                        toast.ok(t("Savar Hub and Dhaka Central Hub created successfully!"));
+                      } catch (err: unknown) {
+                        toast.error(err);
+                      } finally {
+                        setBusy(false);
+                      }
+                    }}
+                  >
+                    {t("Initialize Savar & Dhaka Central Hubs")}
+                  </Button>
+                )}
+              </div>
             }
           />
         </Card>
@@ -413,6 +436,38 @@ function HubsTab({ token }: { token: string }) {
         }
       >
         <form id="create-hub-form" onSubmit={handleCreate} className="space-y-3.5">
+          <div className="rounded-xl border border-line bg-page/50 p-3">
+            <span className="text-xs font-semibold text-ink-2">{t("Quick Presets:")}</span>
+            <div className="mt-2 flex flex-wrap gap-2">
+              <button
+                type="button"
+                onClick={() => {
+                  setName("Savar Hub");
+                  setCode("HUB-SVR-01");
+                  setCity("Savar");
+                  setAddress("Savar Bus Stand / Bazar Road, Savar");
+                  setPhone("01348-756651");
+                }}
+                className="rounded-lg bg-surface px-2.5 py-1 text-xs font-bold text-brand shadow-sm transition hover:bg-brand-50"
+              >
+                + {t("Savar Hub")}
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setName("Dhaka Central Hub");
+                  setCode("HUB-DAC-01");
+                  setCity("Dhaka");
+                  setAddress("Tejgaon / Farmgate Central Hub, Dhaka");
+                  setPhone("01348-756651");
+                }}
+                className="rounded-lg bg-surface px-2.5 py-1 text-xs font-bold text-brand shadow-sm transition hover:bg-brand-50"
+              >
+                + {t("Dhaka Central Hub")}
+              </button>
+            </div>
+          </div>
+
           <Field label={t("Hub Name")}>
             {(id) => (
               <Input
@@ -420,7 +475,7 @@ function HubsTab({ token }: { token: string }) {
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="e.g. Uttara Regional Hub"
+                placeholder="e.g. Savar Hub / Dhaka Central Hub"
               />
             )}
           </Field>
@@ -432,7 +487,7 @@ function HubsTab({ token }: { token: string }) {
                 required
                 value={code}
                 onChange={(e) => setCode(e.target.value.toUpperCase())}
-                placeholder="e.g. HUB-UTR-01"
+                placeholder="e.g. HUB-SVR-01 / HUB-DAC-01"
               />
             )}
           </Field>
@@ -444,7 +499,7 @@ function HubsTab({ token }: { token: string }) {
                 required
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
-                placeholder="Dhaka / Gazipur / Chittagong"
+                placeholder="Savar / Dhaka / Gazipur"
               />
             )}
           </Field>

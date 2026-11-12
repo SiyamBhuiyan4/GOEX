@@ -117,6 +117,19 @@ export const CATEGORY: Record<Category, { label: string; emoji: string; careful?
 
 /** Area suggestions for the address form (free text is still allowed). */
 export const AREAS = [
+  // Savar & Greater Savar Hubs (Prominently featured)
+  "Savar Sadar",
+  "Savar Bazar",
+  "Ashulia",
+  "Hemayetpur",
+  "Baipail",
+  "EPZ (Dhaka EPZ)",
+  "Nabinagar",
+  "Dhamrai",
+  "Jahangirnagar University",
+  "Ulail",
+
+  // Dhaka City & Express Areas
   "Uttara", "Uttara Sector 1", "Uttara Sector 3", "Uttara Sector 4", "Uttara Sector 7", "Uttara Sector 9",
   "Uttara Sector 10", "Uttara Sector 11", "Uttara Sector 13", "Uttara Sector 14", "Diabari", "Abdullahpur",
   "Airport", "Khilkhet", "Nikunja", "Bashundhara", "Badda", "Rampura", "Banani", "Gulshan 1", "Gulshan 2",
@@ -132,6 +145,14 @@ export function zoneFor(area: string): (typeof ZONES)[number] {
   // English or Bangla spellings of the area both work.
   // NFC so য়/ড় typed either way (one code point or two) still match.
   const a = area.normalize("NFC").toLowerCase();
+  // Savar and key adjacent express locations route directly to Dhaka City zone
+  if (
+    /savar|ashulia|hemayetpur|baipail|dhamrai|nabinagar|epz|ulail|jahangirnagar|সাভার|আশুলিয়া|আশুলিয়া|হেমায়েতপুর|হেমায়েতপুর|বাইপাইল|ধামরাই|নবীনগর|ইপিজেড|উলাইল|জাহাঙ্গীরনগর/.test(
+      a,
+    )
+  ) {
+    return "dhaka_city";
+  }
   if (/uttara|diabari|abdullahpur|উত্তরা|দিয়াবাড়ি|আব্দুল্লাহপুর/.test(a)) return "uttara";
   if (/gazipur|tongi|joydebpur|board bazar|konabari|kashimpur|গাজীপুর|টঙ্গী|জয়দেবপুর|বোর্ড বাজার|কোনাবাড়ি|কাশিমপুর/.test(a)) return "gazipur_city";
   if (/narayanganj|chashara|fatullah|siddhirganj|নারায়ণগঞ্জ|চাষাড়া|ফতুল্লা|সিদ্ধিরগঞ্জ/.test(a)) return "narayanganj_city";
