@@ -43,7 +43,7 @@ export const DEFAULT_RATES: Rates = {
   narayanganjCity: 110,
   extraPerKg: 15,
   extraPerKgOutside: 20,
-  codPercent: 0,
+  codPercent: 1,
   codPercentOutside: 1,
   returnPercent: 50,
   updatedAt: 0,

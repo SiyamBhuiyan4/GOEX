@@ -1,10 +1,11 @@
+import { useState } from "react";
 import { useQuery } from "convex/react";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Calculator, CheckCircle2 } from "lucide-react";
 import { api } from "../../convex/_generated/api";
 import { ZONE, ZONES, ZONE_TIME, num, tk } from "../lib/format";
 import { navigate } from "../lib/router";
 import { t } from "../lib/prefs";
-import { Button, cx } from "./ui";
+import { Button, Field, Input, Select, cx } from "./ui";
 
 /*
   Delivery prices on the home page. Read live from the same rates the admin
@@ -24,6 +25,62 @@ const BASE: Record<Zone, (r: Rates) => number> = {
 const INSIDE: Record<Zone, boolean> = { uttara: true, dhaka_city: true, gazipur_city: false, narayanganj_city: false };
 
 const pct = (n: number) => `${num(n)}%`;
+
+/* Same formula as the server (convex/lib/parcel.ts computeCharges). */
+function charges(r: Rates, zone: Zone, weightKg: number, cod: number) {
+  const extraKg = Math.max(0, Math.ceil(weightKg - 1));
+  const delivery = BASE[zone](r) + extraKg * (INSIDE[zone] ? r.extraPerKg : r.extraPerKgOutside);
+  const codFee = Math.round((cod * (INSIDE[zone] ? r.codPercent : r.codPercentOutside)) / 100);
+  return { delivery, codFee, total: delivery + codFee, receive: cod - delivery - codFee };
+}
+
+function PriceCalculator({ r }: { r: Rates | undefined }) {
+  const [zone, setZone] = useState<Zone>("dhaka_city");
+  const [weight, setWeight] = useState("1");
+  const [cod, setCod] = useState("");
+  const w = Math.max(0.1, Number(weight) || 1);
+  const c = Math.max(0, Number(cod) || 0);
+  const res = r ? charges(r, zone, w, c) : undefined;
+  const money = (n: number | undefined) => (n === undefined ? "…" : n < 0 ? `− ${tk(-n)}` : tk(n));
+
+  return (
+    <div className="mt-10 grid overflow-hidden rounded-3xl ring-1 ring-line lg:grid-cols-[1.2fr_1fr]">
+      <div className="bg-page p-6 sm:p-8">
+        <p className="flex items-center gap-2 text-lg font-bold">
+          <Calculator className="size-5 text-brand" /> {t("Price calculator")}
+        </p>
+        <p className="mt-1 text-sm text-ink-2">{t("Pick the area, weight and the amount to collect from the customer.")}</p>
+        <div className="mt-6 grid gap-4 sm:grid-cols-3">
+          <Field label={t("Delivery area")}>
+            {(id) => (
+              <Select id={id} value={zone} onChange={(e) => setZone(e.target.value as Zone)}>
+                {ZONES.map((z) => (
+                  <option key={z} value={z}>
+                    {ZONE[z]}
+                  </option>
+                ))}
+              </Select>
+            )}
+          </Field>
+          <Field label={t("Weight (kg)")}>
+            {(id) => <Input id={id} type="number" inputMode="decimal" min={0.1} step={0.5} value={weight} onChange={(e) => setWeight(e.target.value)} />}
+          </Field>
+          <Field label={t("Cash to collect (৳)")}>
+            {(id) => <Input id={id} type="number" inputMode="numeric" min={0} placeholder="0" value={cod} onChange={(e) => setCod(e.target.value)} />}
+          </Field>
+        </div>
+      </div>
+      <dl className="sunrise space-y-3 p-6 text-sm text-white sm:p-8">
+        <div className="flex justify-between"><dt className="text-white/70">{t("Delivery charge")}</dt><dd className="font-semibold">{money(res?.delivery)}</dd></div>
+        <div className="flex justify-between"><dt className="text-white/70">{t("COD charge")} {r ? `(${pct(INSIDE[zone] ? r.codPercent : r.codPercentOutside)})` : ""}</dt><dd className="font-semibold">{money(res?.codFee)}</dd></div>
+        <div className="flex justify-between border-t border-white/15 pt-3"><dt className="font-bold">{t("Total charge")}</dt><dd className="text-xl font-extrabold">{money(res?.total)}</dd></div>
+        {c > 0 && (
+          <div className="flex justify-between"><dt className="text-white/70">{t("You will receive")}</dt><dd className="font-bold text-[#c084fc]">{money(res?.receive)}</dd></div>
+        )}
+      </dl>
+    </div>
+  );
+}
 
 export function PricingSection() {
   const r = useQuery(api.settings.publicRates);
@@ -72,6 +129,8 @@ export function PricingSection() {
             );
           })}
         </div>
+
+        <PriceCalculator r={r} />
 
         <div className="mt-8 flex flex-col items-center justify-between gap-4 rounded-2xl bg-page p-5 ring-1 ring-line sm:flex-row">
           <p className="text-sm text-ink-2">

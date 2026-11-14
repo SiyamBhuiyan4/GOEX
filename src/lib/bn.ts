@@ -1775,4 +1775,8 @@ export const BN: Record<string, string> = {
   "of the delivery charge.": "ডেলিভারি চার্জের।",
   "Exact charges are shown before you confirm each parcel.": "প্রতিটি পার্সেল কনফার্ম করার আগে সঠিক চার্জ দেখানো হয়।",
   "Start sending": "পাঠানো শুরু করুন",
+  "Price calculator": "দাম হিসাব করুন",
+  "Pick the area, weight and the amount to collect from the customer.": "এলাকা, ওজন আর গ্রাহকের কাছ থেকে কত টাকা তুলতে হবে তা দিন।",
+  "Delivery area": "ডেলিভারি এলাকা",
+  "Total charge": "মোট চার্জ",
 };
