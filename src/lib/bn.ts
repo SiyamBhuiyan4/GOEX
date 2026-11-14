@@ -1720,4 +1720,10 @@ export const BN: Record<string, string> = {
   "Coverage map": "সেবা এলাকার ম্যাপ",
   "Highlighted areas are where we deliver. Tap an area to see its name.": "রঙ করা এলাকাগুলোতে আমরা ডেলিভারি করি। নাম দেখতে এলাকায় ট্যাপ করুন।",
   "Call or WhatsApp us at 01348-756651, or press Book delivery on any service and fill in the form. Businesses can also book parcels from the merchant panel.": "01348-756651 নম্বরে কল বা WhatsApp করুন, অথবা যেকোনো সার্ভিসে \"ডেলিভারি বুক করুন\" চেপে ফর্ম পূরণ করুন। ব্যবসায়ীরা মার্চেন্ট প্যানেল থেকেও পার্সেল বুক করতে পারেন।",
+  "Fast delivery for everything you send": "আপনার পাঠানো সবকিছুর জন্য দ্রুত ডেলিভারি",
+  "Open a free merchant account to book, track and manage every delivery — pickup from your shop, hotel, home or office, delivered across Savar & Dhaka.": "ফ্রি মার্চেন্ট অ্যাকাউন্ট খুলে প্রতিটি ডেলিভারি বুক, ট্র্যাক ও ম্যানেজ করুন — আপনার দোকান, হোটেল, বাসা বা অফিস থেকে পিকআপ, সাভার ও ঢাকা জুড়ে ডেলিভারি।",
+  "Create your parcel or order from your merchant account.": "আপনার মার্চেন্ট অ্যাকাউন্ট থেকে পার্সেল বা অর্ডার তৈরি করুন।",
+  "Open a free merchant account and book deliveries from your panel — one by one or in bulk with a CSV. For pure farm cow milk, order directly from this page, or call or WhatsApp us at 01348-756651.": "ফ্রি মার্চেন্ট অ্যাকাউন্ট খুলে প্যানেল থেকে ডেলিভারি বুক করুন — একটি একটি করে বা CSV দিয়ে একসাথে। খাঁটি গরুর দুধ সরাসরি এই পেজ থেকে অর্ডার করুন, অথবা 01348-756651 নম্বরে কল বা WhatsApp করুন।",
+  "Order pure farm cow milk": "খাঁটি গরুর দুধ অর্ডার করুন",
+  "We deliver across the whole of:": "আমরা ডেলিভারি করি পুরো:",
 };

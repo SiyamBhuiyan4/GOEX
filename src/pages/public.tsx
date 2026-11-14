@@ -39,7 +39,7 @@ import { Button, Card, Field, Input, Logo, PasswordInput, Select, StatusBadge, T
 import { IS_ADMIN_PORTAL } from "../lib/portal";
 import { Prefs } from "../components/Prefs";
 import { t, translateServer } from "../lib/prefs";
-import { QuickServiceModal } from "../components/QuickServiceModal";
+import { MilkOrderModal } from "../components/MilkOrderModal";
 import { CoverageMap } from "../components/CoverageMap";
 
 /** Only same-site paths may be used as a post-login destination. */
@@ -196,7 +196,7 @@ const DELIVERY_SERVICES = [
 ];
 
 const STEPS = [
-  { icon: PackageCheck, title: "Book", text: "Call, WhatsApp or use the booking form." },
+  { icon: PackageCheck, title: "Book", text: "Create your parcel or order from your merchant account." },
   { icon: Bike, title: "Pickup", text: "Our rider collects from the shop, hotel, home or office you name." },
   { icon: Truck, title: "Delivery", text: "Delivered fast and safe to your address." },
 ];
@@ -211,7 +211,7 @@ const MILK_POINTS = [
 const FAQS = [
   {
     q: "How do I place an order?",
-    a: "Call or WhatsApp us at 01348-756651, or press Book delivery on any service and fill in the form. Businesses can also book parcels from the merchant panel.",
+    a: "Open a free merchant account and book deliveries from your panel — one by one or in bulk with a CSV. For pure farm cow milk, order directly from this page, or call or WhatsApp us at 01348-756651.",
   },
   {
     q: "Which areas do you cover?",
@@ -339,11 +339,6 @@ export function PublicFooter() {
 
 export function Home() {
   const [orderOpen, setOrderOpen] = useState(false);
-  const [orderService, setOrderService] = useState<string | undefined>(undefined);
-  const order = (service?: string) => {
-    setOrderService(service);
-    setOrderOpen(true);
-  };
 
   return (
     <div className="min-h-full bg-page">
@@ -390,59 +385,57 @@ export function Home() {
         </div>
       </section>
 
-      {/* ---------------- delivery services */}
+      {/* ---------------- delivery services (booked by merchants after login) */}
       <section id="services" className="mx-auto max-w-6xl scroll-mt-6 px-5 py-20">
-        <SectionTitle
-          kicker={t("Delivery services")}
-          title={t("All your daily needs, under one roof")}
-          text={t("We pick up from wherever you say — shop, hotel, home or office — and deliver it fast across Savar & Dhaka.")}
-        />
-        <div className="mt-12 grid gap-5 md:grid-cols-6">
-          {DELIVERY_SERVICES.map((s, i) => (
-            <Card
-              key={s.id}
-              className={cx(
-                "flex flex-col p-6 transition hover:-translate-y-0.5 hover:shadow-md",
-                i < 2 ? "md:col-span-3" : "md:col-span-2",
-              )}
-            >
-              <span className="grid size-12 place-items-center rounded-2xl bg-brand-50 text-brand">
-                <s.icon className="size-6" />
-              </span>
-              <h3 className="mt-5 text-lg font-extrabold tracking-tight">{t(s.title)}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink-2">{t(s.text)}</p>
-              <ul className="mt-4 space-y-2 text-sm">
-                {s.points.map((pt) => (
-                  <li key={pt} className="flex items-center gap-2">
-                    <CheckCircle2 className="size-4 shrink-0 text-brand" /> {t(pt)}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-auto pt-6">
-                <Button variant="outline" className="w-full" onClick={() => order(s.id)}>
-                  {t("Book delivery")} <ArrowRight className="size-4" />
-                </Button>
-              </div>
-            </Card>
-          ))}
-        </div>
+        <div className="grid gap-12 lg:grid-cols-[1fr_1.15fr] lg:items-start">
+          <div>
+            <p className="text-xs font-bold tracking-[0.18em] text-brand uppercase">{t("Delivery services")}</p>
+            <h2 className="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">{t("Fast delivery for everything you send")}</h2>
+            <p className="mt-4 leading-relaxed text-ink-2">
+              {t("Open a free merchant account to book, track and manage every delivery — pickup from your shop, hotel, home or office, delivered across Savar & Dhaka.")}
+            </p>
+            <ol className="mt-8 space-y-4">
+              {STEPS.map((st, i) => (
+                <li key={st.title} className="flex items-start gap-3">
+                  <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-brand text-sm font-extrabold text-white">{num(i + 1)}</span>
+                  <span>
+                    <span className="block font-bold">{t(st.title)}</span>
+                    <span className="block text-sm text-ink-2">{t(st.text)}</span>
+                  </span>
+                </li>
+              ))}
+            </ol>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Button size="lg" onClick={() => navigate("/register")}>
+                {t("Become a merchant")} <ArrowRight className="size-4" />
+              </Button>
+              <Button size="lg" variant="outline" onClick={() => navigate("/login")}>
+                {t("Merchant login")}
+              </Button>
+            </div>
+          </div>
 
-        {/* how a delivery works */}
-        <ol className="mt-10 grid gap-4 rounded-3xl bg-surface p-6 ring-1 ring-line sm:grid-cols-3">
-          {STEPS.map((st, i) => (
-            <li key={st.title} className="flex items-start gap-3">
-              <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-brand text-white">
-                <st.icon className="size-5" />
-              </span>
-              <span>
-                <span className="block font-bold">
-                  {num(i + 1)}. {t(st.title)}
+          <ul className="divide-y divide-line overflow-hidden rounded-3xl bg-surface ring-1 ring-line">
+            {DELIVERY_SERVICES.map((s) => (
+              <li key={s.id} className="flex items-start gap-4 p-5">
+                <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand">
+                  <s.icon className="size-5" />
                 </span>
-                <span className="mt-0.5 block text-sm text-ink-2">{t(st.text)}</span>
-              </span>
-            </li>
-          ))}
-        </ol>
+                <div className="min-w-0">
+                  <p className="font-bold">{t(s.title)}</p>
+                  <p className="mt-0.5 text-sm leading-relaxed text-ink-2">{t(s.text)}</p>
+                  <p className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs font-semibold text-brand-700">
+                    {s.points.map((pt) => (
+                      <span key={pt} className="inline-flex items-center gap-1">
+                        <CheckCircle2 className="size-3.5" /> {t(pt)}
+                      </span>
+                    ))}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
       {/* ---------------- our own product: milk */}
@@ -454,7 +447,7 @@ export function Home() {
             <p className="mt-4 max-w-xl leading-relaxed text-white/75">
               {t("100% pure, fresh cow milk collected directly from trusted farms and delivered to your home.")}
             </p>
-            <Button size="lg" className="mt-8" onClick={() => order("milk")}>
+            <Button size="lg" className="mt-8" onClick={() => setOrderOpen(true)}>
               {t("Order milk")} <ArrowRight className="size-4" />
             </Button>
           </div>
@@ -535,7 +528,7 @@ export function Home() {
 
       <PublicFooter />
 
-      <QuickServiceModal open={orderOpen} onClose={() => setOrderOpen(false)} initialService={orderService} />
+      <MilkOrderModal open={orderOpen} onClose={() => setOrderOpen(false)} />
     </div>
   );
 }
