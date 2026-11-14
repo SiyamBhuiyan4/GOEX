@@ -7,6 +7,8 @@ import {
   Milk,
   PhoneCall,
   ShoppingBag,
+  Snowflake,
+  Soup,
   Sparkles,
   Truck,
   Utensils,
@@ -35,49 +37,58 @@ export interface QuickServiceItem {
 
 export const SERVICES: QuickServiceItem[] = [
   {
-    id: "milk",
-    name: "100% Pure Cow Milk (খাঁটি গরুর দুধ)",
-    shortName: "Pure Cow Milk",
-    icon: Milk,
-    badge: "100% Organic & Fresh",
-    desc: "Daily morning doorstep delivery in Savar & Dhaka. Pure and unadulterated from dairy farm.",
-    colorTone: "bg-sky-50 text-sky-700 dark:bg-sky-950/40 dark:text-sky-300",
-  },
-  {
     id: "lunch",
     name: "Home-to-Office Lunch (বাসা টু অফিস লাঞ্চ)",
     shortName: "Office Lunch",
     icon: Utensils,
-    badge: "Hot & On-Time",
-    desc: "Home-cooked warm tiffin picked up from your home and delivered straight to your office desk.",
-    colorTone: "bg-amber-50 text-amber-700 dark:bg-amber-950/40 dark:text-amber-300",
+    badge: "Hot & on time",
+    desc: "We collect your home-cooked lunch on your schedule and deliver it hot to your office desk.",
+    colorTone: "bg-brand-50 text-brand-700 dark:bg-brand-500/15 dark:text-brand-100",
   },
   {
     id: "meal",
-    name: "Bachelor Mess / Hotel Meal (মেস মিল ও লোকাল খাবার)",
-    shortName: "Mess & Hotel Meal",
-    icon: Utensils,
-    badge: "Daily / Monthly Plan",
-    desc: "Hygienic, budget-friendly meal packages (rice, beef, fish, vegetables) for bachelors and mess.",
-    colorTone: "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300",
+    name: "Bachelor & Mess Meals (ব্যাচেলর ও মেস মিল)",
+    shortName: "Mess Meals",
+    icon: Soup,
+    badge: "Budget friendly",
+    desc: "Fresh food from the best local rice hotels at affordable prices, delivered to your room.",
+    colorTone: "bg-brand-50 text-brand-700 dark:bg-brand-500/15 dark:text-brand-100",
+  },
+  {
+    id: "milk",
+    name: "Pure Farm Cow Milk (খাঁটি গরুর দুধ)",
+    shortName: "Cow Milk",
+    icon: Milk,
+    badge: "100% pure & fresh",
+    desc: "Pure cow milk collected straight from trusted farms and delivered to your home every day.",
+    colorTone: "bg-brand-50 text-brand-700 dark:bg-brand-500/15 dark:text-brand-100",
   },
   {
     id: "grocery",
-    name: "Grocery & Daily Market (মুদি বাজার)",
-    shortName: "Daily Grocery",
+    name: "Grocery from Your Shop (মুদি বাজার)",
+    shortName: "Grocery",
     icon: ShoppingBag,
-    badge: "Daily Bazaar",
-    desc: "Fresh vegetables, raw meat/fish, and daily cooking essentials shopped from local trusted bazaars.",
-    colorTone: "bg-purple-50 text-purple-700 dark:bg-purple-950/40 dark:text-purple-300",
+    badge: "Your chosen shop",
+    desc: "Tell us your shop — rice, dal, oil and all daily essentials bought there and brought to your door.",
+    colorTone: "bg-brand-50 text-brand-700 dark:bg-brand-500/15 dark:text-brand-100",
   },
   {
     id: "parcel",
-    name: "Express Parcel Delivery (সাভার ও ঢাকা পার্সেল)",
+    name: "Express Parcel Delivery (এক্সপ্রেস পার্সেল)",
     shortName: "Express Parcel",
     icon: Truck,
-    badge: "2-6 Hours Express",
-    desc: "Fast point-to-point parcel and courier delivery across Savar and all Dhaka zones.",
-    colorTone: "bg-brand-50 text-brand dark:bg-brand-500/15 dark:text-brand",
+    badge: "Same-day express",
+    desc: "Any parcel delivered superfast across Savar & Dhaka, with parcel tracking.",
+    colorTone: "bg-brand-50 text-brand-700 dark:bg-brand-500/15 dark:text-brand-100",
+  },
+  {
+    id: "perishable",
+    name: "Fish, Meat, Frozen & Cake Express (মাছ, মাংস, ফ্রোজেন ও কেক)",
+    shortName: "Perishable Express",
+    icon: Snowflake,
+    badge: "Same-city express",
+    desc: "Fish, meat, frozen food and cakes delivered extra fast within the same city, kept cold and safe.",
+    colorTone: "bg-brand-50 text-brand-700 dark:bg-brand-500/15 dark:text-brand-100",
   },
 ];
 
@@ -123,10 +134,6 @@ export function QuickServiceModal({
       }
     }
   }, [open, initialService, defaultArea]);
-
-  const selectedItem = useMemo(() => {
-    return SERVICES.find((s) => s.name === service) || SERVICES[0];
-  }, [service]);
 
   const whatsappMessageText = useMemo(() => {
     const lines: string[] = [
@@ -284,26 +291,6 @@ export function QuickServiceModal({
           </div>
         </div>
 
-        {/* Service Dropdown Selector (matches ui.tsx Select) */}
-        <Field
-          label={t("Service Selection")}
-          hint={t("Selected: {service}", { service: selectedItem.shortName })}
-        >
-          {(id) => (
-            <Select
-              id={id}
-              value={service}
-              onChange={(e) => setService(e.target.value)}
-            >
-              {SERVICES.map((s) => (
-                <option key={s.id} value={s.name}>
-                  {s.name}
-                </option>
-              ))}
-            </Select>
-          )}
-        </Field>
-
         {/* Inputs: Customer Name & Phone Number */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <Field label={t("Customer Name")}>
@@ -318,7 +305,7 @@ export function QuickServiceModal({
             )}
           </Field>
 
-          <Field label={t("Phone number")} hint={t("01XXXXXXXXX")}>
+          <Field label={t("Phone number")}>
             {(id) => (
               <Input
                 id={id}

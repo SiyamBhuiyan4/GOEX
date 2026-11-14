@@ -337,14 +337,11 @@ export function Logo({ size = 40, className, alt = "GOEX Fast Delivery" }: { siz
 export function Wordmark({ dark, className }: { dark?: boolean; className?: string }) {
   return (
     <div className={cx("leading-none select-none", className)}>
-      <div className={cx("flex items-center gap-1.5 text-[19px] font-black italic tracking-tight", dark ? "text-white" : "text-navy-950 dark:text-white")}>
-        <span>GO</span>
-        <span className="rounded-lg bg-gradient-to-r from-brand to-brand-600 px-1.5 py-0.5 text-[14px] font-black not-italic text-white shadow-sm shadow-brand/30">
-          EX
-        </span>
+      <div className={cx("text-[22px] font-black tracking-tight", dark ? "text-white" : "text-[#0a0a0a] dark:text-white")}>
+        Go<span className={dark ? "text-[#c084fc]" : "text-[#4b0f6e] dark:text-[#c084fc]"}>Ex</span>
       </div>
-      <div className={cx("keep-tracking mt-1 text-[9px] font-extrabold tracking-[0.22em]", dark ? "text-white/70" : "text-brand-700 dark:text-white/60")}>
-        FAST DELIVERY &amp; COURIER
+      <div className={cx("keep-tracking mt-1 text-[9.5px] font-bold tracking-[0.2em]", dark ? "text-white/70" : "text-[#4b0f6e] dark:text-white/60")}>
+        FAST DELIVERY
       </div>
     </div>
   );
