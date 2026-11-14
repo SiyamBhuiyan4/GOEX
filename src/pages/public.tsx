@@ -1,4 +1,4 @@
-import { useEffect, useState, type FormEvent, type ReactNode } from "react";
+import { useEffect, useState, type CSSProperties, type FormEvent, type ReactNode } from "react";
 import { useMutation, useQuery } from "convex/react";
 import {
   ArrowRight,
@@ -82,16 +82,7 @@ function PublicNav() {
       </nav>
 
       <div className="flex items-center gap-2">
-        <a
-          href={`tel:${CONTACT.phone}`}
-          className="hidden items-center gap-1.5 rounded-xl bg-white/10 px-3 py-2 text-sm font-bold text-white ring-1 ring-white/15 transition hover:bg-white/20 md:flex"
-        >
-          <Phone className="size-4 text-sun" /> {CONTACT.phoneDisplay}
-        </a>
         <Prefs onDark />
-        <Button size="sm" className="hidden sm:inline-flex" onClick={() => navigate("/login")}>
-          {t("Merchant login")}
-        </Button>
         <button
           type="button"
           onClick={() => setMobileOpen((o) => !o)}
@@ -119,13 +110,6 @@ function PublicNav() {
             <a href={`tel:${CONTACT.phone}`} className="flex items-center gap-2.5 rounded-xl px-4 py-2.5 text-sm font-bold text-white hover:bg-white/10">
               <Phone className="size-4 text-sun" /> {CONTACT.phoneDisplay}
             </a>
-            <button
-              type="button"
-              onClick={() => navigate("/login")}
-              className="rounded-xl px-4 py-2.5 text-left text-sm font-bold text-white hover:bg-white/10 sm:hidden"
-            >
-              {t("Merchant login")}
-            </button>
           </div>
         </div>
       )}
@@ -385,24 +369,10 @@ export function Home() {
                 "GoEx Fast Delivery — your trusted and fast delivery partner. Office lunch, mess meals, pure cow milk, groceries and express parcels, all under one roof.",
               )}
             </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <Button size="lg" onClick={() => order()}>
-                {t("Order now")} <ArrowRight className="size-4" />
+            <div className="mt-7">
+              <Button size="lg" onClick={() => navigate("/login")}>
+                {t("Merchant login")} <ArrowRight className="size-4" />
               </Button>
-              <a
-                href={`tel:${CONTACT.phone}`}
-                className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-white/10 px-5 font-bold text-white ring-1 ring-white/20 transition hover:bg-white/20"
-              >
-                <Phone className="size-4 text-sun" /> {CONTACT.phoneDisplay}
-              </a>
-              <a
-                href={CONTACT.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-[#25D366] px-5 font-bold text-white transition hover:bg-[#20ba5a]"
-              >
-                <MessageCircle className="size-4" /> WhatsApp
-              </a>
             </div>
             <div className="mt-8 max-w-xl">
               <TrackBox />
@@ -410,9 +380,13 @@ export function Home() {
           </div>
 
           <ul className="grid grid-cols-2 gap-3">
-            {HIGHLIGHTS.map((h) => (
-              <li key={h.label} className="glass flex items-center gap-3 rounded-2xl p-4">
-                <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-brand text-white">
+            {HIGHLIGHTS.map((h, i) => (
+              <li
+                key={h.label}
+                className="hl-tile glass flex items-center gap-3 rounded-2xl p-4"
+                style={{ "--d": `${(i * 0.12 + (i % 2) * 0.35).toFixed(2)}s` } as CSSProperties}
+              >
+                <span className="hl-icon grid size-10 shrink-0 place-items-center rounded-xl bg-brand text-white">
                   <h.icon className="size-5" />
                 </span>
                 <span className="text-sm font-bold leading-snug text-white">{t(h.label)}</span>
