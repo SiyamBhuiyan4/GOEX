@@ -11,7 +11,8 @@ export function navigate(to: string, opts: { replace?: boolean } = {}) {
   if (to === location.pathname + location.search) return;
   if (opts.replace) history.replaceState(null, "", to);
   else history.pushState(null, "", to);
-  window.scrollTo(0, 0);
+  // New page starts at the top immediately (html has smooth scrolling for in-page links).
+  window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   listeners.forEach((l) => l());
 }
 

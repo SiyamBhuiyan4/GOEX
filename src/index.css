@@ -113,6 +113,11 @@ body,
   height: 100%;
 }
 
+/* Menu links (#services, #faq …) glide to their section instead of jumping. */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   @apply bg-page font-sans text-ink antialiased;
   font-feature-settings: "tnum" 1;
@@ -337,6 +342,9 @@ select {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
   .ride,
   .ride svg,
   .road-lines,
