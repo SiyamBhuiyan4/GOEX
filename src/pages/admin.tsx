@@ -68,7 +68,7 @@ export function AdminDashboard() {
   return (
     <>
       {/* Executive Welcome Card */}
-      <div className="relative mb-6 overflow-hidden rounded-3xl bg-gradient-to-r from-navy-950 via-navy-900 to-[#12284f] p-6 text-white shadow-xl sm:p-8">
+      <div className="relative mb-6 overflow-hidden rounded-3xl bg-gradient-to-r from-navy-950 via-navy-900 to-[#2c1650] p-6 text-white shadow-xl sm:p-8">
         <div className="pointer-events-none absolute -right-12 -top-12 size-56 rounded-full bg-brand/15 blur-3xl" />
         <div className="relative flex flex-wrap items-center justify-between gap-4">
           <div>
@@ -77,7 +77,7 @@ export function AdminDashboard() {
               <span className="text-sun">{me.name.split(" ")[0]}</span>
             </h1>
             <p className="mt-1 text-sm text-white/70">
-              {t("Here's what's moving at Morning Rider today.")}
+              {t("Here's what's moving at GOEX today.")}
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
@@ -492,7 +492,7 @@ export function Merchants() {
 
   return (
     <>
-      <PageHeader title={t("Merchants")} subtitle={t("Businesses that send parcels with Morning Rider.")} actions={<Button icon={Plus} onClick={() => setCreating(true)}>{t("Add merchant")}</Button>} />
+      <PageHeader title={t("Merchants")} subtitle={t("Businesses that send parcels with GOEX.")} actions={<Button icon={Plus} onClick={() => setCreating(true)}>{t("Add merchant")}</Button>} />
       <PasswordRequests />
       <VerificationQueue />
       <SearchBox value={search} onChange={setSearch} placeholder={t("Search merchants: business, owner, phone or email…")} />
@@ -1235,7 +1235,7 @@ export function Payouts() {
 
   return (
     <>
-      <PageHeader title={t("Merchant payouts")} subtitle={t("Pay merchants their collected COD minus Morning Rider charges.")} />
+      <PageHeader title={t("Merchant payouts")} subtitle={t("Pay merchants their collected COD minus GOEX charges.")} />
       <PayoutRequests onPay={setPaying} />
       <Card className="overflow-hidden">
         <div className="border-b border-line px-5 py-4 font-bold">{t("Unpaid balances")}</div>

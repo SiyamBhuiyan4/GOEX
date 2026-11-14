@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 770 770">
+  <rect width="770" height="770" rx="385" fill="#ffffff"/>
+  <text x="104" y="437" font-family="Montserrat, Arial Black, Arial, sans-serif" font-weight="800" font-size="150" fill="#0a0a0a" letter-spacing="-3">Go</text>
+  <g stroke="#4b0f6e" stroke-linecap="round" fill="none">
+    <path d="M352 318 H398" stroke-width="6"/>
+    <path d="M358 340 H404" stroke-width="7"/>
+    <path d="M364 362 H402" stroke-width="7"/>
+    <path d="M372 384 H398" stroke-width="5"/>
+  </g>
+  <circle cx="452" cy="288" r="17" fill="#4b0f6e"/>
+  <g stroke="#4b0f6e" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M440 314 L408 380" stroke-width="24"/>
+    <path d="M434 324 L462 342 L482 322" stroke-width="13"/>
+    <path d="M430 330 L410 336 L396 350" stroke-width="12"/>
+    <path d="M408 380 L444 394 L434 434" stroke-width="16"/>
+    <path d="M408 380 L386 410 L352 420" stroke-width="16"/>
+  </g>
+  <text x="478" y="437" font-family="Montserrat, Arial Black, Arial, sans-serif" font-weight="800" font-size="150" fill="#4b0f6e" letter-spacing="-3">Ex</text>
+  <text x="385" y="492" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-weight="600" font-size="36" letter-spacing="7" fill="#4b0f6e">FAST DELIVERY</text>
+</svg>

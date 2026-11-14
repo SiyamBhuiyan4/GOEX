@@ -259,8 +259,8 @@ export function OfficeChatButton({ className }: { className?: string }) {
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
-        aria-label={t("Message Morning Rider")}
-        title={t("Message Morning Rider")}
+        aria-label={t("Message GOEX")}
+        title={t("Message GOEX")}
         className="relative grid size-10 place-items-center rounded-full bg-gradient-to-tr from-brand-600 to-brand text-white shadow-lg shadow-brand/40 transition hover:scale-105 active:scale-95 hover:shadow-brand/60 cursor-pointer lg:size-12"
       >
         {open ? <X className="size-5 transition-transform duration-200" /> : <MessageCircle className="size-5" />}
@@ -279,7 +279,7 @@ export function OfficeChatButton({ className }: { className?: string }) {
           <div className="sunrise flex items-center gap-3 px-4 py-3.5 text-white">
             <Logo size={36} className="ring-2 ring-white/20" />
             <div className="min-w-0 flex-1">
-              <p className="font-bold">{t("Morning Rider office")}</p>
+              <p className="font-bold">{t("GOEX office")}</p>
               <p className="text-xs text-white/70">{t("We usually reply within a few hours")}</p>
             </div>
             <button type="button" onClick={() => setOpen(false)} className="rounded-lg p-1.5 text-white/70 hover:bg-white/10 cursor-pointer" aria-label={t("Close")}>
@@ -303,7 +303,7 @@ export function OfficeChatButton({ className }: { className?: string }) {
               maxWords={data.maxWords}
               onSend={(body) => send({ token, body })}
               disabledReason={
-                data.left <= 0 ? t("You've sent {n} messages. You can write again when Morning Rider replies.", { n: data.limit }) : undefined
+                data.left <= 0 ? t("You've sent {n} messages. You can write again when GOEX replies.", { n: data.limit }) : undefined
               }
               footer={t("{left} of {limit} messages left until we reply", { left: data.left, limit: data.limit })}
             />

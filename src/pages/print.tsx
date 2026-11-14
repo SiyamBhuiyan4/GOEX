@@ -53,12 +53,12 @@ export function PrintLabels({ ids }: { ids: Id<"parcels">[] }) {
             <div key={p._id} className="break-inside-avoid rounded-xl border-2 border-navy-900 p-3 text-[11px] leading-snug text-black">
               <div className="flex items-center justify-between border-b border-dashed border-black/40 pb-2">
                 <div className="flex items-center gap-2">
-                  <img src="/brand/logo-192.png" alt="" className="size-9 rounded-full" />
+                  <img src="/brand/logo.svg" alt="GOEX" className="size-9 rounded-xl" />
                   <div>
-                    <p className="text-[13px] font-extrabold italic">
-                      MORNING <span className="text-brand">RIDER</span>
+                    <p className="text-[13px] font-black italic">
+                      GO<span className="text-brand">EX</span>
                     </p>
-                    <p className="keep-tracking text-[9px] tracking-widest">COURIER SERVICE</p>
+                    <p className="keep-tracking text-[8px] font-bold tracking-widest text-black/70">FAST DELIVERY</p>
                   </div>
                 </div>
                 <div className="text-right">
@@ -116,12 +116,12 @@ export function PrintPayout({ id }: { id: Id<"payouts"> }) {
         <div className="mx-auto max-w-[210mm] p-8 text-sm text-black print:p-0">
           <div className="flex items-start justify-between border-b-4 border-brand pb-5">
             <div className="flex items-center gap-3">
-              <img src="/brand/logo-192.png" alt="" className="size-16 rounded-full" />
+              <img src="/brand/logo.svg" alt="GOEX" className="size-16 rounded-2xl" />
               <div>
-                <p className="text-2xl font-extrabold italic text-navy-900">
-                  MORNING <span className="text-brand">RIDER</span>
+                <p className="text-2xl font-black italic text-navy-900">
+                  GO<span className="text-brand">EX</span>
                 </p>
-                <p className="keep-tracking text-xs tracking-widest">COURIER SERVICE · FAST • SAFE • ON TIME</p>
+                <p className="keep-tracking text-xs font-bold tracking-widest text-navy-800">FAST DELIVERY &amp; COURIER · FAST • SAFE • ON TIME</p>
               </div>
             </div>
             <div className="text-right">
@@ -168,10 +168,10 @@ export function PrintPayout({ id }: { id: Id<"payouts"> }) {
           </table>
           <div className="mt-5 ml-auto w-72 space-y-1">
             <div className="flex justify-between"><span>{t("Total collected")}</span><span>{tk(data.payout.collected)}</span></div>
-            <div className="flex justify-between"><span>{t("Morning Rider charges")}</span><span>− {tk(data.payout.charges)}</span></div>
+            <div className="flex justify-between"><span>{t("GOEX charges")}</span><span>− {tk(data.payout.charges)}</span></div>
             <div className="flex justify-between border-t-2 border-black pt-1 text-lg font-extrabold"><span>{t("Paid")}</span><span>{tk(data.payout.amount)}</span></div>
           </div>
-          <p className="mt-12 text-center text-xs text-black/60">{t("Thank you for shipping with Morning Rider.")}</p>
+          <p className="mt-12 text-center text-xs text-black/60">{t("Thank you for shipping with GOEX Fast Delivery.")}</p>
         </div>
       )}
     </div>

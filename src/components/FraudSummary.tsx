@@ -35,7 +35,7 @@ const LEVEL: Record<Level, { color: string; text: string; ring: string; soft: st
   },
 };
 
-/** A customer's delivery record across Morning Rider, by phone number, with a risk meter. */
+/** A customer's delivery record across GOEX, by phone number, with a risk meter. */
 export function FraudSummary({ phone, compact }: { phone: string; compact?: boolean }) {
   const { token } = useAuthed();
   const r = useQuery(api.parcels.fraudCheck, { token, phone });

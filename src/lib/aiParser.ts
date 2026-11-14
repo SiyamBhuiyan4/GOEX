@@ -1,5 +1,5 @@
 /**
- * Smart AI automation & NLP parser for Morning Rider logistics.
+ * Smart AI automation & NLP parser for GOEX logistics.
  * Pure TypeScript functions with zero external dependencies.
  */
 
@@ -69,7 +69,7 @@ export function normalizeBdPhone(raw: string): string | null {
 
 /**
  * Determines delivery zone based on address and location keywords.
- * Morning Rider operates 4 distinct service zones:
+ * GOEX operates 4 distinct service zones:
  * - `uttara`: 3-hour express delivery (Uttara sectors, Diabari, Abdullahpur, etc.)
  * - `gazipur_city`: Same-day Gazipur City (Tongi, Joydebpur, Board Bazar, Konabari, etc.)
  * - `narayanganj_city`: Same-day Narayanganj City (Chashara, Fatullah, Siddhirganj, etc.)

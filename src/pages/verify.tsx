@@ -42,7 +42,7 @@ export function VerifyBusiness() {
           icon={BadgeCheck}
           tone="green"
           title={t("Your business is verified")}
-          text={t("You're all set — you can now send parcels with Morning Rider.")}
+          text={t("You're all set — you can now send parcels with GOEX.")}
           action={<Button icon={Plus} onClick={() => navigate("/app/parcels/new")}>{t("Create your first parcel")}</Button>}
         />
       )}
@@ -192,7 +192,7 @@ function VerifyForm() {
       </Card>
 
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <p className="text-xs text-ink-3">{t("Photos (JPG, PNG, WebP) or PDF, up to 5 MB each. Only Morning Rider staff can see them.")}</p>
+        <p className="text-xs text-ink-3">{t("Photos (JPG, PNG, WebP) or PDF, up to 5 MB each. Only GOEX staff can see them.")}</p>
         <Button type="submit" size="lg" icon={Upload} loading={busy} disabled={!nidOk || !nidFront || !nidBack} className="w-full sm:w-auto">
           {t("Submit for verification")}
         </Button>

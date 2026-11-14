@@ -132,7 +132,7 @@ export function FraudCheck() {
   const [phone, setPhone] = useState("");
   return (
     <>
-      <PageHeader title={t("Fraud check")} subtitle={t("See a customer's delivery record across Morning Rider before you ship.")} />
+      <PageHeader title={t("Fraud check")} subtitle={t("See a customer's delivery record across GOEX before you ship.")} />
       <Card className="max-w-3xl p-6">
         <form
           onSubmit={(e) => {

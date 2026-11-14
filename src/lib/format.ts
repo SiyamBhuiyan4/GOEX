@@ -82,7 +82,7 @@ export const ZONE: Record<Zone, string> = {
   },
 };
 
-/** How fast each zone is delivered — from Morning Rider's own posters. */
+/** How fast each zone is delivered — from GOEX's own posters. */
 export const ZONE_TIME: Record<(typeof ZONES)[number], string> = {
   get uttara() {
     return t("Within 3 hours");

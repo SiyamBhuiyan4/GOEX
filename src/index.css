@@ -8,7 +8,7 @@
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 /*
-  Morning Rider palette, taken from the logo:
+  GOEX palette, taken from the logo:
     navy  — the rider, ring and wordmark
     orange — "RIDER" and the speed lines
     sun   — the rising sun behind the city
@@ -16,33 +16,33 @@
 @theme {
   --font-sans: "Plus Jakarta Sans Variable", "Hind Siliguri", ui-sans-serif, system-ui, sans-serif;
 
-  --color-navy-950: #060f22;
-  --color-navy-900: #0b1b38;
-  --color-navy-800: #12284f;
-  --color-navy-700: #1b3766;
-  --color-navy-600: #2a4c85;
+  --color-navy-950: #140a24;
+  --color-navy-900: #1f0f36;
+  --color-navy-800: #2c1650;
+  --color-navy-700: #3f2370;
+  --color-navy-600: #5a3596;
   --color-navy-100: #e3e9f4;
   --color-navy-50: #f1f4fa;
 
-  --color-brand: #f57a10;
-  --color-brand-600: #e0690a;
-  --color-brand-700: #bb5407;
-  --color-brand-100: #ffe6cf;
-  --color-brand-50: #fff5eb;
+  --color-brand: #6b21a8;
+  --color-brand-600: #5b1a92;
+  --color-brand-700: #4a1478;
+  --color-brand-100: #efe4fb;
+  --color-brand-50: #f8f3fe;
 
-  --color-sun: #f8b030;
-  --color-sun-100: #fdefd0;
+  --color-sun: #a855f7;
+  --color-sun-100: #f3e8ff;
 
   --color-page: #f5f6fa;
   --color-surface: #ffffff;
   --color-line: #e5e8ef;
-  --color-ink: #0b1b38;
+  --color-ink: #1f0f36;
   --color-ink-2: #4a5674;
   --color-ink-3: #8590a8;
 
   --shadow-card: 0 1px 2px rgb(11 27 56 / 0.04), 0 4px 16px -6px rgb(11 27 56 / 0.08);
   --shadow-pop: 0 12px 40px -12px rgb(11 27 56 / 0.35);
-  --shadow-glow: 0 0 40px -8px rgb(245 122 16 / 0.4);
+  --shadow-glow: 0 0 40px -8px rgb(107 33 168 / 0.4);
 }
 
 /*
@@ -64,10 +64,10 @@
   --color-navy-100: #22355a;
   --color-navy-50: #142240;
 
-  --color-brand-50: rgb(245 122 16 / 0.13);
-  --color-brand-100: rgb(245 122 16 / 0.22);
-  --color-brand-700: #ffa552;
-  --color-sun-100: rgb(248 176 48 / 0.15);
+  --color-brand-50: rgb(107 33 168 / 0.13);
+  --color-brand-100: rgb(107 33 168 / 0.22);
+  --color-brand-700: #c084fc;
+  --color-sun-100: rgb(168 85 247 / 0.15);
 
   --color-slate-100: #1b2742;
   --color-slate-700: #c3cbe0;
@@ -119,7 +119,7 @@ body {
 }
 
 ::selection {
-  background-color: rgb(245 122 16 / 0.28);
+  background-color: rgb(107 33 168 / 0.28);
   color: inherit;
 }
 
@@ -163,16 +163,16 @@ select {
 /* The sunrise glow used on the public pages and the sidebar header. */
 .sunrise {
   background:
-    radial-gradient(120% 80% at 85% -10%, rgb(248 176 48 / 0.35), transparent 55%),
-    radial-gradient(90% 70% at 10% 110%, rgb(245 122 16 / 0.22), transparent 60%),
-    linear-gradient(160deg, #0b1b38, #060f22);
+    radial-gradient(120% 80% at 85% -10%, rgb(168 85 247 / 0.35), transparent 55%),
+    radial-gradient(90% 70% at 10% 110%, rgb(107 33 168 / 0.22), transparent 60%),
+    linear-gradient(160deg, #1f0f36, #140a24);
 }
 
 .speed-lines {
   background-image: repeating-linear-gradient(
     90deg,
     transparent 0 18px,
-    rgb(245 122 16 / 0.55) 18px 40px,
+    rgb(107 33 168 / 0.55) 18px 40px,
     transparent 40px 52px
   );
   height: 3px;
@@ -256,7 +256,7 @@ select {
   0% {
     opacity: 0;
     transform: translateY(-10px);
-    background: rgb(245 122 16 / 0.18);
+    background: rgb(107 33 168 / 0.18);
   }
   40% {
     opacity: 1;

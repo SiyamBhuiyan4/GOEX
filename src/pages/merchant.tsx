@@ -130,7 +130,7 @@ export function MerchantPayments() {
 }
 
 /**
- * Ask Morning Rider to pay out the balance. One open request at a time; it
+ * Ask GOEX to pay out the balance. One open request at a time; it
  * closes by itself when the admin pays, or shows the admin's reason if
  * rejected.
  */
@@ -175,7 +175,7 @@ function PayoutRequestCard({ balance }: { balance: number | undefined }) {
           <div className="flex flex-wrap items-center gap-3">
             <Badge tone="amber">{t("Waiting")}</Badge>
             <p className="flex-1 text-sm text-ink-2">
-              {t("You requested {amount} on {date}. Morning Rider will send it once it is processed.", { amount: tk(open.amount), date: dateTime(open.createdAt) })}
+              {t("You requested {amount} on {date}. GOEX will send it once it is processed.", { amount: tk(open.amount), date: dateTime(open.createdAt) })}
             </p>
             <Button
               size="sm"
@@ -203,7 +203,7 @@ function PayoutRequestCard({ balance }: { balance: number | undefined }) {
               value={note}
               onChange={(e) => setNote(e.target.value)}
               maxLength={300}
-              placeholder={t("Note for Morning Rider (optional)")}
+              placeholder={t("Note for GOEX (optional)")}
               className="min-w-60 flex-1"
             />
             <Button type="submit" icon={HandCoins} disabled={!me.payoutMethod || pendingKeys.has("payreq:new")}>
@@ -332,7 +332,7 @@ export function BulkUpload() {
     const blob = new Blob([TEMPLATE_HEADER + "\n" + TEMPLATE_ROW + "\n"], { type: "text/csv" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
-    a.download = "morning-rider-bulk-template.csv";
+    a.download = "goex-bulk-template.csv";
     a.click();
     URL.revokeObjectURL(a.href);
   }

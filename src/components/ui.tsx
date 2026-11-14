@@ -308,25 +308,43 @@ export function Spinner({ className }: { className?: string }) {
 }
 
 export function Logo({ size = 40, className, alt = "GOEX Fast Delivery" }: { size?: number; className?: string; alt?: string }) {
+  const [hasErr, setHasErr] = useState(false);
+  if (hasErr) {
+    return (
+      <div
+        style={{ width: size, height: size }}
+        className={cx(
+          "grid shrink-0 place-items-center rounded-2xl bg-gradient-to-tr from-brand-700 via-brand to-sun text-white font-black shadow-md shadow-brand/20 select-none",
+          className
+        )}
+      >
+        <span className="text-[40%] font-black tracking-tighter italic">GOEX</span>
+      </div>
+    );
+  }
   return (
     <img
-      src="/brand/logo-192.png"
+      src="/brand/logo.svg"
+      onError={() => setHasErr(true)}
       alt={alt}
       width={size}
       height={size}
-      className={cx("shrink-0 rounded-full bg-white", className)}
+      className={cx("shrink-0 rounded-2xl object-cover shadow-sm", className)}
     />
   );
 }
 
 export function Wordmark({ dark, className }: { dark?: boolean; className?: string }) {
   return (
-    <div className={cx("leading-none", className)}>
-      <div className={cx("text-[18px] font-black italic tracking-tight", dark ? "text-white" : "text-navy-900 dark:text-white")}>
-        GO<span className="text-brand">EX</span>
+    <div className={cx("leading-none select-none", className)}>
+      <div className={cx("flex items-center gap-1.5 text-[19px] font-black italic tracking-tight", dark ? "text-white" : "text-navy-950 dark:text-white")}>
+        <span>GO</span>
+        <span className="rounded-lg bg-gradient-to-r from-brand to-brand-600 px-1.5 py-0.5 text-[14px] font-black not-italic text-white shadow-sm shadow-brand/30">
+          EX
+        </span>
       </div>
-      <div className={cx("keep-tracking mt-1 text-[9.5px] font-semibold tracking-[0.16em]", dark ? "text-white/70" : "text-ink-3")}>
-        FAST DELIVERY & COURIER
+      <div className={cx("keep-tracking mt-1 text-[9px] font-extrabold tracking-[0.22em]", dark ? "text-white/70" : "text-brand-700 dark:text-white/60")}>
+        FAST DELIVERY &amp; COURIER
       </div>
     </div>
   );

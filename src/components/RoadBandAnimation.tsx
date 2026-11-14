@@ -104,8 +104,8 @@ export const RoadBandAnimation = memo(function RoadBandAnimation() {
     >
       {/* Interactive Floating Hint Badge */}
       <div className="absolute top-3 inset-x-0 z-30 flex justify-center pointer-events-none">
-        <div className="flex items-center gap-2 rounded-full bg-black/65 backdrop-blur-md px-4 py-1 border border-[#f8b030]/40 shadow-lg text-xs font-bold text-[#f8b030] transition group-hover:border-[#f8b030] group-hover:scale-105">
-          <span className="size-2 rounded-full bg-[#f8b030] animate-ping" />
+        <div className="flex items-center gap-2 rounded-full bg-black/65 backdrop-blur-md px-4 py-1 border border-[#a855f7]/40 shadow-lg text-xs font-bold text-[#a855f7] transition group-hover:border-[#a855f7] group-hover:scale-105">
+          <span className="size-2 rounded-full bg-[#a855f7] animate-ping" />
           <span>🔊 {t("Tap anywhere to honk horn")}</span>
         </div>
       </div>
@@ -137,7 +137,7 @@ export const RoadBandAnimation = memo(function RoadBandAnimation() {
         {/* Celestial Bodies: Sun and Moon orbiting */}
         <div className="celestial-orbit absolute inset-x-0 bottom-20 h-40 pointer-events-none">
           {/* Glowing Sun */}
-          <div className="sun-body absolute size-14 rounded-full bg-gradient-to-tr from-[#f57a10] to-[#f8b030] shadow-[0_0_45px_18px_rgba(248,176,48,0.65)]" />
+          <div className="sun-body absolute size-14 rounded-full bg-gradient-to-tr from-[#6b21a8] to-[#a855f7] shadow-[0_0_45px_18px_rgba(248,176,48,0.65)]" />
 
           {/* Glowing Crescent Moon */}
           <div className="moon-body absolute size-11 rounded-full shadow-[0_0_28px_10px_rgba(224,231,255,0.55)]">
@@ -163,7 +163,7 @@ export const RoadBandAnimation = memo(function RoadBandAnimation() {
             {/* Van Body Paint Gradient */}
             <linearGradient id="realVanPaint" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stopColor="#ff851a" />
-              <stop offset="60%" stopColor="#f57a10" />
+              <stop offset="60%" stopColor="#6b21a8" />
               <stop offset="100%" stopColor="#d96504" />
             </linearGradient>
 
@@ -208,9 +208,9 @@ export const RoadBandAnimation = memo(function RoadBandAnimation() {
           {/* Asphalt Surface */}
           <rect x="0" y="215" width="1440" height="85" fill="#181d27" />
 
-          {/* Road Shoulder / Barrier with Morning Rider Brand Colors */}
-          <rect x="0" y="215" width="1440" height="6" fill="#f57a10" />
-          <rect x="0" y="221" width="1440" height="3" fill="#f8b030" />
+          {/* Road Shoulder / Barrier with GOEX Brand Colors */}
+          <rect x="0" y="215" width="1440" height="6" fill="#6b21a8" />
+          <rect x="0" y="221" width="1440" height="3" fill="#a855f7" />
 
           {/* Road White Shoulder Line */}
           <line x1="0" y1="230" x2="1440" y2="230" stroke="#f1f5f9" strokeWidth="2.5" opacity="0.9" />
@@ -260,7 +260,7 @@ export const RoadBandAnimation = memo(function RoadBandAnimation() {
             {/* Front Mudflap */}
             <rect x="206" y="118" width="5" height="12" rx="2" fill="#1e293b" />
 
-            {/* ---------------- Van Main Box (Morning Rider Livery) ---------------- */}
+            {/* ---------------- Van Main Box (GOEX Livery) ---------------- */}
             {/* Box Body */}
             <rect
               x="18"
@@ -276,7 +276,7 @@ export const RoadBandAnimation = memo(function RoadBandAnimation() {
             {/* Roof Aerodynamic Front Deflector */}
             <path
               d="M185 10 L235 48 H214 V10 Z"
-              fill="#ea580c"
+              fill="#6b21a8"
               stroke="#b45309"
               strokeWidth="1.5"
             />
@@ -287,7 +287,7 @@ export const RoadBandAnimation = memo(function RoadBandAnimation() {
             <line x1="168" y1="12" x2="168" y2="114" stroke="#d96504" strokeWidth="1.5" />
 
             {/* Navy Bottom Protection Band */}
-            <rect x="18" y="96" width="196" height="18" rx="2" fill="#0b1b38" />
+            <rect x="18" y="96" width="196" height="18" rx="2" fill="#1f0f36" />
             {/* Reflective Yellow Safety Stripe */}
             <rect x="18" y="93" width="196" height="3" fill="#fef08a" />
 
@@ -298,11 +298,11 @@ export const RoadBandAnimation = memo(function RoadBandAnimation() {
             <rect x="16" y="96" width="6" height="6" rx="1" fill="#1e293b" />
             {/* Rear Taillight Cluster */}
             <rect x="18" y="70" width="3" height="20" rx="1.5" fill="#ef4444" />
-            <rect x="18" y="77" width="3" height="6" fill="#f8b030" />
+            <rect x="18" y="77" width="3" height="6" fill="#a855f7" />
 
             {/* ---------------- Van Branding (Crisp & High-End) ---------------- */}
             <g transform="translate(32, 28)">
-              {/* Morning Rider Official Kite Emblem */}
+              {/* GOEX Official Kite Emblem */}
               <g transform="scale(0.048) translate(-303, -831)">
                 <path
                   d="M640.36,856.8v170.38c0,4.02-5.75,4.71-6.69.8-9.97-41.71-30.1-79.47-57.65-110.5-1.2-1.35-1.15-3.38.12-4.66l58.42-58.42c2.14-2.14,5.8-.62,5.8,2.4Z"
@@ -310,7 +310,7 @@ export const RoadBandAnimation = memo(function RoadBandAnimation() {
                 />
                 <path
                   d="M617.45,837.29l-58.43,58.42c-1.27,1.27-3.31,1.32-4.66.12-31.03-27.55-68.79-47.69-110.5-57.65-3.91-.93-3.23-6.69.8-6.69h170.39c3.03,0,4.54,3.66,2.4,5.8Z"
-                  fill="#f8b030"
+                  fill="#a855f7"
                 />
                 <path
                   d="M537.08,917.65l-147.3,147.3c-2.14,2.14-5.8.62-5.8-2.4v-203.78c0-1.89,1.55-3.44,3.44-3.41,57.22.83,109.43,22.32,149.52,57.34,1.48,1.29,1.54,3.58.15,4.96Z"
@@ -318,7 +318,7 @@ export const RoadBandAnimation = memo(function RoadBandAnimation() {
                 />
                 <path
                   d="M613.1,1087.86h-203.8c-3.03,0-4.54-3.66-2.4-5.8l147.3-147.3c1.39-1.39,3.67-1.33,4.96.15,35.02,40.09,56.52,92.29,57.35,149.52.03,1.89-1.52,3.44-3.41,3.44Z"
-                  fill="#f8b030"
+                  fill="#a855f7"
                 />
                 <path
                   d="M383.97,1091.26v73.85c0,3.03-3.66,4.54-5.8,2.4l-28.36-28.36-45.49-45.49c-2.14-2.14-.62-5.8,2.4-5.8h73.85c1.88,0,3.4,1.52,3.4,3.4Z"
@@ -337,7 +337,7 @@ export const RoadBandAnimation = memo(function RoadBandAnimation() {
                 fill="#ffffff"
                 letterSpacing="-0.5"
               >
-                MORNING <tspan fill="#f8b030">RIDER</tspan>
+                GO<tspan fill="#a855f7">EX</tspan>
               </text>
               <text
                 x="35"
@@ -345,20 +345,20 @@ export const RoadBandAnimation = memo(function RoadBandAnimation() {
                 fontFamily="Plus Jakarta Sans, system-ui, sans-serif"
                 fontSize="8.5"
                 fontWeight="800"
-                fill="#fed7aa"
+                fill="#e9d5ff"
                 letterSpacing="1"
               >
                 EXPRESS COURIER SERVICE
               </text>
               {/* Delivery Helpline Badge */}
-              <rect x="35" y="42" width="112" height="13" rx="3" fill="#0b1b38" />
+              <rect x="35" y="42" width="112" height="13" rx="3" fill="#1f0f36" />
               <text
                 x="40"
                 y="52"
                 fontFamily="Plus Jakarta Sans, system-ui, sans-serif"
                 fontSize="7.5"
                 fontWeight="700"
-                fill="#f8b030"
+                fill="#a855f7"
               >
                 ● 24/7 ON-TIME DELIVERY
               </text>
@@ -387,12 +387,12 @@ export const RoadBandAnimation = memo(function RoadBandAnimation() {
             {/* Realistic Driver Silhouette Inside Cab */}
             <g transform="translate(230, 58)">
               {/* Delivery Cap */}
-              <path d="M4 10 C4 5 16 5 18 10 Z" fill="#f57a10" />
-              <rect x="14" y="9" width="7" height="2" rx="1" fill="#f8b030" />
+              <path d="M4 10 C4 5 16 5 18 10 Z" fill="#6b21a8" />
+              <rect x="14" y="9" width="7" height="2" rx="1" fill="#a855f7" />
               {/* Head */}
               <circle cx="11" cy="12" r="6" fill="#1e293b" />
               {/* Shoulders & Jacket */}
-              <path d="M0 24 C0 18 20 18 22 24 Z" fill="#0b1b38" />
+              <path d="M0 24 C0 18 20 18 22 24 Z" fill="#1f0f36" />
               {/* Steering Wheel */}
               <ellipse cx="26" cy="22" rx="4" ry="7" fill="none" stroke="#0f172a" strokeWidth="2.5" />
             </g>
@@ -425,10 +425,10 @@ export const RoadBandAnimation = memo(function RoadBandAnimation() {
             {isHonking && (
               <g transform="translate(294, 94)" className="van-horn-burst">
                 <path d="M 6 -14 A 20 20 0 0 1 6 14" stroke="#fef08a" strokeWidth="3" fill="none" opacity="0.95" strokeLinecap="round" />
-                <path d="M 16 -24 A 34 34 0 0 1 16 24" stroke="#f8b030" strokeWidth="3.5" fill="none" opacity="0.9" strokeLinecap="round" />
-                <path d="M 28 -36 A 50 50 0 0 1 28 36" stroke="#f57a10" strokeWidth="4" fill="none" opacity="0.85" strokeLinecap="round" />
+                <path d="M 16 -24 A 34 34 0 0 1 16 24" stroke="#a855f7" strokeWidth="3.5" fill="none" opacity="0.9" strokeLinecap="round" />
+                <path d="M 28 -36 A 50 50 0 0 1 28 36" stroke="#6b21a8" strokeWidth="4" fill="none" opacity="0.85" strokeLinecap="round" />
                 <text x="36" y="-12" fontSize="12" fontWeight="900" fill="#fef08a" fontFamily="sans-serif">HONK!</text>
-                <text x="44" y="18" fontSize="14" fontWeight="900" fill="#f8b030" fontFamily="sans-serif">HONK!</text>
+                <text x="44" y="18" fontSize="14" fontWeight="900" fill="#a855f7" fontFamily="sans-serif">HONK!</text>
               </g>
             )}
 
@@ -470,10 +470,10 @@ export const RoadBandAnimation = memo(function RoadBandAnimation() {
                 <line x1="-2" y1="-1" x2="-16" y2="-5" stroke="#38bdf8" strokeWidth="1.5" />
 
                 {/* High-visibility Rim Valve & Gold Trim Mark */}
-                <circle cx="14" cy="-14" r="2.5" fill="#f8b030" />
+                <circle cx="14" cy="-14" r="2.5" fill="#a855f7" />
                 {/* Center Hub & Lug Nuts */}
                 <circle cx="0" cy="0" r="7" fill="#0f172a" stroke="#f8fafc" strokeWidth="1.5" />
-                <circle cx="0" cy="0" r="3.5" fill="#f57a10" />
+                <circle cx="0" cy="0" r="3.5" fill="#6b21a8" />
               </g>
             </g>
 
@@ -514,10 +514,10 @@ export const RoadBandAnimation = memo(function RoadBandAnimation() {
                 <line x1="-2" y1="-1" x2="-16" y2="-5" stroke="#38bdf8" strokeWidth="1.5" />
 
                 {/* High-visibility Rim Valve & Gold Trim Mark */}
-                <circle cx="14" cy="-14" r="2.5" fill="#f8b030" />
+                <circle cx="14" cy="-14" r="2.5" fill="#a855f7" />
                 {/* Center Hub & Lug Nuts */}
                 <circle cx="0" cy="0" r="7" fill="#0f172a" stroke="#f8fafc" strokeWidth="1.5" />
-                <circle cx="0" cy="0" r="3.5" fill="#f57a10" />
+                <circle cx="0" cy="0" r="3.5" fill="#6b21a8" />
               </g>
             </g>
           </g>
@@ -566,20 +566,20 @@ export const RoadBandAnimation = memo(function RoadBandAnimation() {
               {/* BACK (LEFT) LEG - Anchored at Hip (0, 0), Alternating Gait */}
               <g className={`runner-leg-left ${isPanicking ? "turbo-left-leg" : ""}`}>
                 {/* Left Thigh Muscle */}
-                <path d="M-4 0 C-8 8 -6 18 -1 24 C2 26 7 24 5 18 C4 10 2 2 -4 0 Z" fill="#0b1b38" />
+                <path d="M-4 0 C-8 8 -6 18 -1 24 C2 26 7 24 5 18 C4 10 2 2 -4 0 Z" fill="#1f0f36" />
                 {/* Left Shin & Calf Muscle */}
                 <path d="M-1 24 C-4 32 -3 40 0 46 L3 46 C5 40 4 32 3 24 Z" fill="#0f172a" />
                 {/* Left Running Sneaker (Facing Forward Right!) */}
                 <polygon points="-4,46 16,46 17,49 -5,49" fill="#ffffff" />
                 <rect x="-5" y="49" width="22" height="1.5" fill="#0f172a" rx="0.5" />
-                <path d="M-3 46 L-1 42 L10 42 L15 46 Z" fill="#f57a10" />
+                <path d="M-3 46 L-1 42 L10 42 L15 46 Z" fill="#6b21a8" />
                 <line x1="3" y1="43" x2="8" y2="45" stroke="#ffffff" strokeWidth="1" />
               </g>
 
               {/* FRONT (RIGHT) LEG - Anchored at Hip (0, 0), Delayed Phase */}
               <g className={`runner-leg-right ${isPanicking ? "turbo-right-leg" : ""}`}>
                 {/* Right Thigh Muscle */}
-                <path d="M-2 0 C-6 8 -4 18 2 24 C5 26 9 24 8 18 C6 10 4 2 -2 0 Z" fill="#0b1b38" />
+                <path d="M-2 0 C-6 8 -4 18 2 24 C5 26 9 24 8 18 C6 10 4 2 -2 0 Z" fill="#1f0f36" />
                 {/* Reflective Athletic Piping on Thigh */}
                 <path d="M-4 6 C-5 14 -3 20 1 24" stroke="#f1f5f9" strokeWidth="1.2" strokeLinecap="round" fill="none" opacity="0.85" />
                 {/* Right Shin & Calf Muscle */}
@@ -587,39 +587,39 @@ export const RoadBandAnimation = memo(function RoadBandAnimation() {
                 {/* Right Running Sneaker (Facing Forward Right!) */}
                 <polygon points="-1,46 19,46 20,49 -2,49" fill="#ffffff" />
                 <rect x="-2" y="49" width="22" height="1.5" fill="#0f172a" rx="0.5" />
-                <path d="M0 46 L2 42 L13 42 L18 46 Z" fill="#f57a10" />
+                <path d="M0 46 L2 42 L13 42 L18 46 Z" fill="#6b21a8" />
                 <line x1="6" y1="43" x2="11" y2="45" stroke="#ffffff" strokeWidth="1" />
               </g>
 
               {/* ---------------- UPPER BODY & TORSO (FORWARD LEAN) ---------------- */}
               {/* Pelvis & Running Shorts */}
-              <path d="M-8 0 C-9 -4 8 -4 11 0 L7 10 H-6 Z" fill="#0b1b38" stroke="#060e1d" strokeWidth="1" />
+              <path d="M-8 0 C-9 -4 8 -4 11 0 L7 10 H-6 Z" fill="#1f0f36" stroke="#060e1d" strokeWidth="1" />
               <line x1="8" y1="0" x2="6" y2="10" stroke="#f1f5f9" strokeWidth="1.2" />
 
               {/* Muscular Athletic Torso (Leaning Forward ~15° Towards Right) */}
               <path
                 d="M-6 0 C-7 -10 -2 -22 10 -28 L19 -24 C14 -8 6 4 -6 0 Z"
-                fill="#f57a10"
-                stroke="#ea580c"
+                fill="#6b21a8"
+                stroke="#6b21a8"
                 strokeWidth="1.2"
               />
               {/* Breathable Dark Navy Side Mesh Panel */}
-              <path d="M-3 -2 C-4 -8 0 -16 8 -22 L6 -18 C1 -10 -2 -4 -3 -2 Z" fill="#0b1b38" opacity="0.85" />
+              <path d="M-3 -2 C-4 -8 0 -16 8 -22 L6 -18 C1 -10 -2 -4 -3 -2 Z" fill="#1f0f36" opacity="0.85" />
               {/* Reflective White Chest Piping */}
               <line x1="2" y1="-14" x2="16" y2="-12" stroke="#ffffff" strokeWidth="1.8" strokeLinecap="round" />
-              {/* Morning Rider Emblem on Chest */}
+              {/* GOEX Emblem on Chest */}
               <circle cx="12" cy="-18" r="3.5" fill="#ffffff" />
-              <polygon points="12,-20 14,-17 12,-16 10,-17" fill="#f57a10" />
+              <polygon points="12,-20 14,-17 12,-16 10,-17" fill="#6b21a8" />
 
               {/* Muscular Left Arm Supporting Delivery Box */}
-              <path d="M3 -22 C-1 -30 2 -40 8 -48" stroke="#ea580c" strokeWidth="5" strokeLinecap="round" fill="none" />
-              <path d="M8 -48 L10 -52" stroke="#fed7aa" strokeWidth="4.5" strokeLinecap="round" fill="none" />
-              <circle cx="10" cy="-52" r="2.5" fill="#fed7aa" />
+              <path d="M3 -22 C-1 -30 2 -40 8 -48" stroke="#6b21a8" strokeWidth="5" strokeLinecap="round" fill="none" />
+              <path d="M8 -48 L10 -52" stroke="#e9d5ff" strokeWidth="4.5" strokeLinecap="round" fill="none" />
+              <circle cx="10" cy="-52" r="2.5" fill="#e9d5ff" />
 
               {/* Muscular Right Arm Supporting Delivery Box */}
-              <path d="M14 -22 C12 -30 16 -40 20 -48" stroke="#ea580c" strokeWidth="5" strokeLinecap="round" fill="none" />
-              <path d="M20 -48 L22 -52" stroke="#fed7aa" strokeWidth="4.5" strokeLinecap="round" fill="none" />
-              <circle cx="22" cy="-52" r="2.5" fill="#fed7aa" />
+              <path d="M14 -22 C12 -30 16 -40 20 -48" stroke="#6b21a8" strokeWidth="5" strokeLinecap="round" fill="none" />
+              <path d="M20 -48 L22 -52" stroke="#e9d5ff" strokeWidth="4.5" strokeLinecap="round" fill="none" />
+              <circle cx="22" cy="-52" r="2.5" fill="#e9d5ff" />
 
               {/* ---------------- 3D COURIER CARDBOARD CARTON ON HEAD / HANDS ---------------- */}
               <g transform="translate(15, -66)">
@@ -630,9 +630,9 @@ export const RoadBandAnimation = memo(function RoadBandAnimation() {
                 {/* 3D Right Depth Face */}
                 <polygon points="18,-12 24,-18 24,8 18,14" fill="#b45309" stroke="#92400e" strokeWidth="1" />
 
-                {/* Morning Rider Branded Orange Packing Tape */}
-                <rect x="-18" y="-2" width="36" height="6" fill="#f57a10" />
-                <rect x="-2" y="-12" width="6" height="26" fill="#ea580c" />
+                {/* GOEX Branded Orange Packing Tape */}
+                <rect x="-18" y="-2" width="36" height="6" fill="#6b21a8" />
+                <rect x="-2" y="-12" width="6" height="26" fill="#6b21a8" />
 
                 {/* Shipping Label with Barcode */}
                 <rect x="-14" y="4" width="15" height="7" rx="1" fill="#ffffff" />
@@ -646,16 +646,16 @@ export const RoadBandAnimation = memo(function RoadBandAnimation() {
               {/* ---------------- REALISTIC HEAD LOOKING FORWARD (RIGHT) ---------------- */}
               <g transform="translate(12, -32)">
                 {/* Neck */}
-                <path d="M-2 4 L2 10 L8 8 L4 2 Z" fill="#fed7aa" />
+                <path d="M-2 4 L2 10 L8 8 L4 2 Z" fill="#e9d5ff" />
                 {/* Human Head Silhouette Facing Right */}
-                <path d="M-4 2 C-8 0 -8 -10 -3 -14 C4 -18 10 -14 12 -8 C12 -2 8 4 0 4 Z" fill="#fed7aa" stroke="#ea580c" strokeWidth="1" />
+                <path d="M-4 2 C-8 0 -8 -10 -3 -14 C4 -18 10 -14 12 -8 C12 -2 8 4 0 4 Z" fill="#e9d5ff" stroke="#6b21a8" strokeWidth="1" />
                 {/* Short Athletic Hair */}
                 <path d="M-5 -6 C-9 -12 2 -18 9 -12 C6 -8 -1 -8 -5 -6 Z" fill="#0f172a" />
 
-                {/* Morning Rider Delivery Cap with Forward Visor */}
-                <path d="M-4 -8 C-2 -16 10 -16 12 -8 Z" fill="#0b1b38" stroke="#1e293b" strokeWidth="0.8" />
+                {/* GOEX Delivery Cap with Forward Visor */}
+                <path d="M-4 -8 C-2 -16 10 -16 12 -8 Z" fill="#1f0f36" stroke="#1e293b" strokeWidth="0.8" />
                 {/* Cap Visor Pointing Forward Right */}
-                <polygon points="8,-9 18,-7 17,-4 7,-6" fill="#f57a10" stroke="#b45309" strokeWidth="0.8" />
+                <polygon points="8,-9 18,-7 17,-4 7,-6" fill="#6b21a8" stroke="#b45309" strokeWidth="0.8" />
 
                 {/* Forward Looking Human Eye */}
                 <path d="M6 -7.5 L11 -7" stroke="#0f172a" strokeWidth="1.4" strokeLinecap="round" />
@@ -663,11 +663,11 @@ export const RoadBandAnimation = memo(function RoadBandAnimation() {
                 <circle cx="9.8" cy="-5" r="1.1" fill="#0f172a" />
 
                 {/* Nose Profile Pointing Forward Right */}
-                <path d="M10 -6 L13 -3 L10 -1.5" stroke="#ea580c" strokeWidth="1" strokeLinecap="round" fill="none" />
+                <path d="M10 -6 L13 -3 L10 -1.5" stroke="#6b21a8" strokeWidth="1" strokeLinecap="round" fill="none" />
                 {/* Exhaling Mouth Facing Right */}
                 <path d="M8 0 Q10.5 0 9 1.5 Z" fill="#881337" stroke="#0f172a" strokeWidth="0.6" />
                 {/* Chin & Jawline */}
-                <path d="M10 2 L5 3 L-1 1" stroke="#ea580c" strokeWidth="0.8" fill="none" />
+                <path d="M10 2 L5 3 L-1 1" stroke="#6b21a8" strokeWidth="0.8" fill="none" />
 
                 {/* Aerodynamic Sweat Droplet Flying Backward */}
                 <path
@@ -683,7 +683,7 @@ export const RoadBandAnimation = memo(function RoadBandAnimation() {
           {/* =========================================================================
               VEHICLE 2: MORNING RIDER OFFICIAL LOGO SCOOTER / BIKE RIDER
               Position: x=880, y=90
-              Replaces the previous generic motorbike with the iconic Morning Rider logo
+              Replaces the previous generic motorbike with the iconic GOEX logo
               scooter rider with branded parcel box, sleek curves, and day/night headlight!
               ========================================================================= */}
           <g transform="translate(880, 90)" className="bike-container">
@@ -704,9 +704,9 @@ export const RoadBandAnimation = memo(function RoadBandAnimation() {
               <line x1="-38" y1="92" x2="-10" y2="92" />
             </g>
 
-            {/* ---------------- 1. Morning Rider Official Delivery Cargo Box ---------------- */}
+            {/* ---------------- 1. GOEX Official Delivery Cargo Box ---------------- */}
             <g transform="translate(18, 44)">
-              {/* Outer Cargo Box (Matching Morning Rider Logo) */}
+              {/* Outer Cargo Box (Matching GOEX Logo) */}
               <rect
                 x="0"
                 y="0"
@@ -720,7 +720,7 @@ export const RoadBandAnimation = memo(function RoadBandAnimation() {
               {/* Box Top Flap Line */}
               <line x1="0" y1="12" x2="58" y2="12" stroke="#ffffff" strokeWidth="1.5" />
 
-              {/* Official Morning Rider 3D Delivery Parcel Icon (From Brand Logo) */}
+              {/* Official GOEX 3D Delivery Parcel Icon (From Brand Logo) */}
               <g transform="translate(18, 16)">
                 {/* 3D Parcel Box Faces */}
                 <polygon points="12,14 26,14 26,27 12,27" fill="#ffffff" />
@@ -893,7 +893,7 @@ export const RoadBandAnimation = memo(function RoadBandAnimation() {
                 <line x1="0" y1="0" x2="10" y2="13" stroke="#ffffff" strokeWidth="3.5" strokeLinecap="round" />
                 <line x1="0" y1="0" x2="-10" y2="13" stroke="#ffffff" strokeWidth="3.5" strokeLinecap="round" />
                 <line x1="0" y1="0" x2="-16" y2="-5" stroke="#ffffff" strokeWidth="3.5" strokeLinecap="round" />
-                <circle cx="0" cy="0" r="2.5" fill="#f8b030" />
+                <circle cx="0" cy="0" r="2.5" fill="#a855f7" />
               </g>
             </g>
 
@@ -922,7 +922,7 @@ export const RoadBandAnimation = memo(function RoadBandAnimation() {
                 <line x1="0" y1="0" x2="10" y2="13" stroke="#ffffff" strokeWidth="3.5" strokeLinecap="round" />
                 <line x1="0" y1="0" x2="-10" y2="13" stroke="#ffffff" strokeWidth="3.5" strokeLinecap="round" />
                 <line x1="0" y1="0" x2="-16" y2="-5" stroke="#ffffff" strokeWidth="3.5" strokeLinecap="round" />
-                <circle cx="0" cy="0" r="2.5" fill="#f8b030" />
+                <circle cx="0" cy="0" r="2.5" fill="#a855f7" />
               </g>
             </g>
           </g>
@@ -930,7 +930,7 @@ export const RoadBandAnimation = memo(function RoadBandAnimation() {
 
         {/* Dynamic Day/Night Cycle Status Indicator */}
         <div className="absolute bottom-3 left-4 z-20 flex items-center gap-2 rounded-full bg-black/60 backdrop-blur-md px-3 py-1 border border-white/10 text-[11px] text-white">
-          <span className="size-2 rounded-full bg-[#f8b030] animate-pulse" />
+          <span className="size-2 rounded-full bg-[#a855f7] animate-pulse" />
           <span className="font-semibold tracking-wide text-white/90">
             {t("Day & Night Non-Stop Express Dispatch (6 AM – 12 AM)")}
           </span>
@@ -941,13 +941,13 @@ export const RoadBandAnimation = memo(function RoadBandAnimation() {
       <style>{`
         /* 1. Sunrise / Dawn (0s -> 6s, 20s -> 24s) */
         .sky-sunrise {
-          background: linear-gradient(180deg, #0b1b38 0%, #1e3a6d 40%, #ea580c 75%, #f8b030 100%);
+          background: linear-gradient(180deg, #1f0f36 0%, #1e3a6d 40%, #6b21a8 75%, #a855f7 100%);
           animation: fadeSunrise 24s infinite ease-in-out;
         }
 
         /* 2. Bright Day (5s -> 13s) */
         .sky-day {
-          background: linear-gradient(180deg, #0284c7 0%, #38bdf8 50%, #93c5fd 80%, #fed7aa 100%);
+          background: linear-gradient(180deg, #0284c7 0%, #38bdf8 50%, #93c5fd 80%, #e9d5ff 100%);
           animation: fadeDay 24s infinite ease-in-out;
         }
 
@@ -959,7 +959,7 @@ export const RoadBandAnimation = memo(function RoadBandAnimation() {
 
         /* 4. Deep Night (17s -> 23s) */
         .sky-night {
-          background: linear-gradient(180deg, #020617 0%, #060f22 45%, #0b1b38 85%, #151d30 100%);
+          background: linear-gradient(180deg, #020617 0%, #140a24 45%, #1f0f36 85%, #151d30 100%);
           animation: fadeNight 24s infinite ease-in-out;
         }
 

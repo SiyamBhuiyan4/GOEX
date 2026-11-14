@@ -575,7 +575,7 @@ export function SmartScannerModal({
                       <span className="absolute bottom-0 right-0 size-5 border-b-4 border-r-4 border-brand rounded-br-lg" />
 
                       {/* Animated Laser Scanning Line */}
-                      <div className="absolute inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-brand to-transparent shadow-[0_0_12px_#f57a10] animate-scan-beam" />
+                      <div className="absolute inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-brand to-transparent shadow-[0_0_12px_#6b21a8] animate-scan-beam" />
                     </div>
                   </div>
 
@@ -1000,7 +1000,7 @@ export function SmartScannerModal({
         {/* Modal Footer */}
         <div className="border-t border-line bg-page px-5 py-3 flex items-center justify-between text-xs text-ink-3">
           <span className="hidden sm:inline">
-            {t("Morning Rider Barcode Dispatch Engine")}
+            {t("GOEX Barcode Dispatch Engine")}
           </span>
           <Button size="sm" variant="ghost" onClick={onClose} className="ml-auto">
             {t("Done / Close")}

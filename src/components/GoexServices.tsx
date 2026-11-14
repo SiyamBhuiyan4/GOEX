@@ -50,12 +50,12 @@ export const GOEX_SERVICES_LIST: GoexServiceItem[] = [
       "Reliable Daily Subscription",
     ],
     theme: {
-      accentBorder: "hover:border-amber-400/80 hover:shadow-amber-500/10",
-      badgeBg: "bg-amber-100 dark:bg-amber-500/20",
-      badgeText: "text-amber-800 dark:text-amber-300",
-      iconBg: "bg-amber-500/10 dark:bg-amber-500/20",
-      iconText: "text-amber-600 dark:text-amber-400",
-      glowBg: "from-amber-500/5 via-transparent to-transparent",
+      accentBorder: "hover:border-violet-400/80 hover:shadow-violet-500/10",
+      badgeBg: "bg-violet-100 dark:bg-violet-500/20",
+      badgeText: "text-violet-800 dark:text-violet-300",
+      iconBg: "bg-violet-500/10 dark:bg-violet-500/20",
+      iconText: "text-violet-600 dark:text-violet-400",
+      glowBg: "from-violet-500/5 via-transparent to-transparent",
     },
     whatsappText:
       "Hello GoEx! I would like to order / subscribe to Home-to-Office Lunch Delivery (বাসা টু অফিস লাঞ্চ).",
@@ -74,12 +74,12 @@ export const GOEX_SERVICES_LIST: GoexServiceItem[] = [
       "Ethically Sourced Dairy Farm",
     ],
     theme: {
-      accentBorder: "hover:border-sky-400/80 hover:shadow-sky-500/10",
-      badgeBg: "bg-sky-100 dark:bg-sky-500/20",
-      badgeText: "text-sky-800 dark:text-sky-300",
-      iconBg: "bg-sky-500/10 dark:bg-sky-500/20",
-      iconText: "text-sky-600 dark:text-sky-400",
-      glowBg: "from-sky-500/5 via-transparent to-transparent",
+      accentBorder: "hover:border-violet-400/80 hover:shadow-violet-500/10",
+      badgeBg: "bg-violet-100 dark:bg-violet-500/20",
+      badgeText: "text-violet-800 dark:text-violet-300",
+      iconBg: "bg-violet-500/10 dark:bg-violet-500/20",
+      iconText: "text-violet-600 dark:text-violet-400",
+      glowBg: "from-violet-500/5 via-transparent to-transparent",
     },
     whatsappText:
       "Hello GoEx! I would like to order 100% Pure Farm Cow Milk (খামার থেকে খাঁটি গরুর দুধ).",
@@ -98,12 +98,12 @@ export const GOEX_SERVICES_LIST: GoexServiceItem[] = [
       "Budget-Friendly Mess Rates",
     ],
     theme: {
-      accentBorder: "hover:border-rose-400/80 hover:shadow-rose-500/10",
-      badgeBg: "bg-rose-100 dark:bg-rose-500/20",
-      badgeText: "text-rose-800 dark:text-rose-300",
-      iconBg: "bg-rose-500/10 dark:bg-rose-500/20",
-      iconText: "text-rose-600 dark:text-rose-400",
-      glowBg: "from-rose-500/5 via-transparent to-transparent",
+      accentBorder: "hover:border-fuchsia-400/80 hover:shadow-fuchsia-500/10",
+      badgeBg: "bg-fuchsia-100 dark:bg-fuchsia-500/20",
+      badgeText: "text-fuchsia-800 dark:text-fuchsia-300",
+      iconBg: "bg-fuchsia-500/10 dark:bg-fuchsia-500/20",
+      iconText: "text-fuchsia-600 dark:text-fuchsia-400",
+      glowBg: "from-fuchsia-500/5 via-transparent to-transparent",
     },
     whatsappText:
       "Hello GoEx! I want to order Affordable Local Hotel Food & Bachelor Mess Meals (লোকাল হোটেল ও মেস মিল).",
@@ -122,12 +122,12 @@ export const GOEX_SERVICES_LIST: GoexServiceItem[] = [
       "Fast Doorstep Delivery",
     ],
     theme: {
-      accentBorder: "hover:border-emerald-400/80 hover:shadow-emerald-500/10",
-      badgeBg: "bg-emerald-100 dark:bg-emerald-500/20",
-      badgeText: "text-emerald-800 dark:text-emerald-300",
-      iconBg: "bg-emerald-500/10 dark:bg-emerald-500/20",
-      iconText: "text-emerald-600 dark:text-emerald-400",
-      glowBg: "from-emerald-500/5 via-transparent to-transparent",
+      accentBorder: "hover:border-violet-400/80 hover:shadow-violet-500/10",
+      badgeBg: "bg-violet-100 dark:bg-violet-500/20",
+      badgeText: "text-violet-800 dark:text-violet-300",
+      iconBg: "bg-violet-500/10 dark:bg-violet-500/20",
+      iconText: "text-violet-600 dark:text-violet-400",
+      glowBg: "from-violet-500/5 via-transparent to-transparent",
     },
     whatsappText:
       "Hello GoEx! I need Grocery & Daily Essentials delivery (মুদি বাজার).",
@@ -249,7 +249,7 @@ export function GoexServices({
               href={whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2 text-xs font-bold text-white shadow-xs transition hover:bg-emerald-700"
+              className="inline-flex items-center gap-2 rounded-xl bg-violet-600 px-4 py-2 text-xs font-bold text-white shadow-xs transition hover:bg-violet-700"
             >
               <MessageCircle className="size-3.5" />
               <span>{t("WhatsApp")}:</span>
@@ -408,7 +408,7 @@ export function GoexServices({
                 href={whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-bold text-white shadow-sm shadow-emerald-600/30 transition hover:bg-emerald-700 active:scale-[0.98]"
+                className="inline-flex items-center gap-2 rounded-xl bg-violet-600 px-4 py-2.5 text-sm font-bold text-white shadow-sm shadow-violet-600/30 transition hover:bg-violet-700 active:scale-[0.98]"
               >
                 <MessageCircle className="size-4" />
                 <span>{t("WhatsApp: 01348-756651")}</span>

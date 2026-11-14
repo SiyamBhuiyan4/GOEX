@@ -10,4 +10,6 @@ export const CONTACT = {
   address: "Dhaka & Savar, Bangladesh",
   coverage: "Dhaka & Savar Express Zones",
   hours: "24/7 Delivery Operations",
+  logo: "/brand/logo.svg",
+  facebookLogoUrl: "https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=61596285661061",
 };

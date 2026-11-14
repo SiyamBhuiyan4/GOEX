@@ -57,7 +57,7 @@ function PublicNav({ onOpenQuickBooking }: { onOpenQuickBooking?: () => void }) 
   const [mobileOpen, setMobileOpen] = useState(false);
   return (
     <header className="relative z-30 mx-auto flex max-w-6xl items-center justify-between gap-3 px-5 py-5">
-      <Link href="/" className="flex items-center gap-3">
+      <Link href="/" className="flex shrink-0 items-center gap-3">
         <Logo size={46} className="ring-2 ring-white/25 shadow-lg" />
         <span className="hidden sm:block">
           <Wordmark dark />
@@ -129,7 +129,7 @@ function PublicNav({ onOpenQuickBooking }: { onOpenQuickBooking?: () => void }) 
           <button
             type="button"
             onClick={onOpenQuickBooking}
-            className="rounded-xl bg-brand/25 px-2.5 py-1.5 text-xs font-bold text-sun ring-1 ring-brand/40"
+            className="hidden rounded-xl bg-brand/25 px-2.5 py-1.5 text-xs font-bold text-sun ring-1 ring-brand/40 sm:block"
           >
             {t("Quick Booking")}
           </button>
@@ -235,7 +235,7 @@ function TrackBox({ big }: { big?: boolean }) {
           <input
             value={code}
             onChange={(e) => setCode(e.target.value)}
-            placeholder={t("Enter tracking ID, e.g. MR7K2Q9XPA")}
+            placeholder={t("Enter tracking ID, e.g. GX7K2Q9XPA")}
             className="h-11 w-full min-w-0 bg-transparent text-[15px] font-medium text-ink outline-none placeholder:text-ink-3"
             maxLength={20}
           />
@@ -491,7 +491,7 @@ function FaqSection() {
   const [open, setOpen] = useState<number | null>(0);
   const faqs = [
     {
-      q: t("How fast does Morning Rider deliver?"),
+      q: t("How fast does GOEX deliver?"),
       a: t("Within Uttara, we deliver within 3 hours for orders booked between 6 AM and 12 noon. Across Dhaka City, Gazipur City and Narayanganj City, same-day delivery is available 7 days a week, starting at 6 AM."),
     },
     {
@@ -500,7 +500,7 @@ function FaqSection() {
     },
     {
       q: t("Can I send frozen meat, fish, cakes or perishable food?"),
-      a: t("Yes! Morning Rider offers specialized cold-chain delivery within 6 hours across Dhaka and Gazipur. We keep frozen items and delicate bakery products safe, flat, and at the right temperature."),
+      a: t("Yes! GOEX offers specialized cold-chain delivery within 6 hours across Dhaka and Savar. We keep frozen items and delicate bakery products safe, flat, and at the right temperature."),
     },
     {
       q: t("Is there any upfront fee or registration charge?"),
@@ -522,7 +522,7 @@ function FaqSection() {
         <SectionTitle
           kicker={t("Got questions?")}
           title={t("Frequently Asked Questions")}
-          text={t("Everything you need to know about shipping with Morning Rider.")}
+          text={t("Everything you need to know about shipping with GOEX Fast Delivery.")}
         />
         <div className="mt-10 space-y-3">
           {faqs.map((f, i) => (
@@ -711,7 +711,7 @@ export function Home() {
             </span>
             {/* The brand is the headline */}
             <h1 className="keep-tracking mt-5 text-5xl font-black italic leading-[1.02] tracking-tight text-white sm:text-7xl">
-              GO<span className="text-brand">EX</span> <span className="text-sun">FAST DELIVERY</span>
+              GO<span className="text-[#c084fc]">EX</span> <span className="text-white/95">FAST DELIVERY</span>
             </h1>
             <p className="mt-3 text-xl font-bold tracking-tight text-white/95 sm:text-2xl lg:text-3xl">
               {t("One stop solution for your daily lifestyle & parcel delivery")}
@@ -774,7 +774,7 @@ export function Home() {
           </div>
           <div className="relative mx-auto hidden w-full max-w-md lg:block">
             <div className="absolute -inset-10 rounded-full bg-sun/25 blur-3xl" />
-            <img src="/brand/logo.png" alt="GOEX Fast Delivery" className="relative w-full rounded-full shadow-2xl ring-8 ring-white/10" />
+            <img src="/brand/logo.svg" alt="GOEX Fast Delivery" className="relative w-full rounded-3xl shadow-2xl ring-8 ring-white/10" />
           </div>
         </div>
 
@@ -814,13 +814,13 @@ export function Home() {
             icon: Snowflake,
             badge: t("Cold chain"),
             title: t("Frozen items in 6 hours"),
-            text: t("Meat, fish, ice cream and ready food carried cold, across Dhaka, Gazipur and Narayanganj city corporations."),
+            text: t("Meat, fish, ice cream and ready food carried cold, across Savar & Dhaka."),
             accent: "bg-sky-500 text-white",
           },
           {
             icon: Truck,
             badge: t("Same day"),
-            title: t("Dhaka, Gazipur & Narayanganj"),
+            title: t("Savar & Dhaka"),
             text: t("Regular parcels delivered the same day inside the city corporations."),
             accent: "bg-navy-900 text-white",
           },
@@ -846,7 +846,7 @@ export function Home() {
             <span>{t("Live Delivery Flow")}</span>
           </div>
           <p className="text-xs text-white/50 hidden sm:block">
-            {t("Day & Night Non-Stop Express Dispatch • Dhaka, Gazipur & Narayanganj")}
+            {t("Day & Night Non-Stop Express Dispatch • Savar & Dhaka")}
           </p>
         </div>
         <RoadBandAnimation />
@@ -885,7 +885,7 @@ export function Home() {
 
       {/* ---------------- frozen spotlight */}
       <section className="mx-auto max-w-6xl px-5">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-sky-600 to-[#0b1b38] p-8 text-white sm:p-10">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-sky-600 to-[#1f0f36] p-8 text-white sm:p-10">
           <Snowflake className="absolute -right-6 -top-6 size-48 text-white/10" />
           <div className="relative grid gap-8 lg:grid-cols-[1.2fr_1fr] lg:items-center">
             <div>
@@ -982,7 +982,7 @@ export function Home() {
             ].map((s, i) => (
               <div key={s.title} className="relative rounded-2xl border border-line p-6">
                 <span className="absolute right-5 top-5 text-4xl font-extrabold text-navy-50 dark:text-white/5">{num(i + 1)}</span>
-                <div className="grid size-11 place-items-center rounded-xl bg-[#0b1b38] text-sun">
+                <div className="grid size-11 place-items-center rounded-xl bg-[#1f0f36] text-sun">
                   <s.icon className="size-5" />
                 </div>
                 <p className="mt-4 font-bold">{s.title}</p>
@@ -995,7 +995,7 @@ export function Home() {
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div>
                 <p className="text-xs font-bold tracking-[0.18em] text-brand uppercase">{t("Delivery areas")}</p>
-                <h3 className="mt-1 text-2xl font-extrabold tracking-tight">{t("Dhaka, Gazipur and Narayanganj city corporations")}</h3>
+                <h3 className="mt-1 text-2xl font-extrabold tracking-tight">{t("Savar & Dhaka, all zones")}</h3>
               </div>
             </div>
 
@@ -1141,7 +1141,7 @@ export function Home() {
               href={CONTACT.facebook}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 rounded-2xl bg-[#0b1b38] p-4 font-bold text-white ring-1 ring-white/10 hover:bg-[#12284f] transition hover:scale-[1.01]"
+              className="flex items-center gap-3 rounded-2xl bg-[#1f0f36] p-4 font-bold text-white ring-1 ring-white/10 hover:bg-[#2c1650] transition hover:scale-[1.01]"
             >
               <ThumbsUp className="size-5 text-brand" /> {t("Facebook page")}
             </a>
@@ -1166,12 +1166,12 @@ function AuthLayout({ title, subtitle, children }: { title: string; subtitle: st
   return (
     <div className="grid min-h-full lg:grid-cols-2">
       <div className="sunrise relative hidden flex-col justify-between overflow-hidden p-10 lg:flex">
-        <Link href="/" className="flex items-center gap-3">
+        <Link href="/" className="flex shrink-0 items-center gap-3">
           <Logo size={46} className="ring-2 ring-white/25" />
           <Wordmark dark />
         </Link>
         <div className="relative">
-          <img src="/brand/logo.png" alt="" className="mx-auto w-80 rounded-full shadow-2xl ring-8 ring-white/10" />
+          <img src="/brand/logo.svg" alt="GOEX Fast Delivery" className="mx-auto w-80 rounded-3xl shadow-2xl ring-8 ring-white/10" />
         </div>
         <p className="text-lg font-semibold italic text-white/80">
           {t("Fast")} <span className="text-brand">•</span> {t("Safe")} <span className="text-brand">•</span> {t("On time")}
@@ -1266,7 +1266,7 @@ function SignIn({ door }: { door: "merchant" | "rider" | "admin" }) {
     rider: { title: t("Rider login"), subtitle: t("For GoEx Fast Delivery staff only.") },
     admin: showSetup
       ? { title: t("Initial Admin Setup"), subtitle: t("Set up your master admin passcode to initialize the panel.") }
-      : { title: t("Admin panel"), subtitle: t("Restricted area. Authorized Morning Rider staff only.") },
+      : { title: t("Admin panel"), subtitle: t("Restricted area. Authorized GOEX staff only.") },
   }[door];
 
   return (
@@ -1464,7 +1464,7 @@ export function ForgotPassword() {
   }
 
   return (
-    <AuthLayout title={t("Forgot password")} subtitle={t("Find your merchant account and ask Morning Rider for a new password.")}>
+    <AuthLayout title={t("Forgot password")} subtitle={t("Find your merchant account and ask GOEX for a new password.")}>
       <form onSubmit={search} className="space-y-4">
         <Field label={t("Phone number or email")} hint={t("The one you signed up with.")}>
           {(id) => (
@@ -1504,21 +1504,21 @@ export function ForgotPassword() {
 
           {sent === "sent" ? (
             <p className="mt-4 rounded-xl bg-emerald-50 px-3.5 py-3 text-sm font-semibold text-emerald-700">
-              {t("Request sent! Morning Rider will set a new password and email it to you.")}
+              {t("Request sent! GOEX will set a new password and email it to you.")}
             </p>
           ) : sent === "already" || found.alreadyRequested ? (
             <p className="mt-4 rounded-xl bg-amber-50 px-3.5 py-3 text-sm font-semibold text-amber-800">
-              {t("You've already asked. Morning Rider will email your new password soon. You can ask again after the office handles it.")}
+              {t("You've already asked. GOEX will email your new password soon. You can ask again after the office handles it.")}
             </p>
           ) : (
             <>
               <p className="mt-3 text-sm text-ink-2">
                 {found.email
-                  ? t("Morning Rider will set a new password and email it to this address.")
-                  : t("This account has no email. Morning Rider will call you with the new password.")}
+                  ? t("GOEX will set a new password and email it to this address.")
+                  : t("This account has no email. GOEX will call you with the new password.")}
               </p>
               <Button size="lg" className="mt-4 w-full" loading={busy} onClick={send}>
-                {t("Send request to Morning Rider")}
+                {t("Send request to GOEX")}
               </Button>
             </>
           )}
@@ -1572,7 +1572,7 @@ export function Register() {
 
   const mismatch = f.confirm.length > 0 && f.password !== f.confirm;
   return (
-    <AuthLayout title={t("Become a merchant")} subtitle={t("Send parcels across Dhaka, Gazipur and Narayanganj with Morning Rider.")}>
+    <AuthLayout title={t("Become a merchant")} subtitle={t("Send parcels across Savar & Dhaka with GOEX.")}>
       <form onSubmit={submit} className="grid gap-4 sm:grid-cols-2">
         <Field label={t("Your name")}>{(id) => <Input id={id} value={f.name} onChange={set("name")} required maxLength={80} />}</Field>
         <Field label={t("Business / page name")}>
