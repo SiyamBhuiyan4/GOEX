@@ -32,6 +32,7 @@ import { Link, useLocation } from "../lib/router";
 import { useAuthed, useSession } from "../lib/session";
 import { Logo, Wordmark, cx } from "./ui";
 import { Prefs } from "./Prefs";
+import { PageBoundary } from "./PageBoundary";
 import { t } from "../lib/prefs";
 import { CONTACT } from "../lib/contact";
 
@@ -263,7 +264,9 @@ export function Shell({ children }: { children: ReactNode }) {
       )}
 
       <FloatingChatButton className="fixed bottom-6 right-6 z-40 hidden lg:block" />
-      <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-6 sm:px-6 lg:px-8 lg:py-8">{children}</main>
+      <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+        <PageBoundary resetKey={path}>{children}</PageBoundary>
+      </main>
     </div>
   );
 }

@@ -1763,4 +1763,7 @@ export const BN: Record<string, string> = {
   "If you are selected, we will contact you for an interview by phone or WhatsApp. Your rider account is created after you are hired.": "নির্বাচিত হলে আমরা ফোন বা WhatsApp-এ ইন্টারভিউয়ের জন্য যোগাযোগ করব। নিয়োগের পর আপনার রাইডার অ্যাকাউন্ট তৈরি হবে।",
   "Paste order text": "অর্ডারের লেখা পেস্ট করুন",
   "Paste an order": "অর্ডার পেস্ট করুন",
+  "This section is not available yet": "এই সেকশনটি এখনো চালু হয়নি",
+  "You are still signed in. Choose another section from the menu.": "আপনি এখনো সাইন-ইন আছেন। মেনু থেকে অন্য সেকশন বেছে নিন।",
+  "Try again": "আবার চেষ্টা করুন",
 };
