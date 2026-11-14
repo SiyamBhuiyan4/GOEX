@@ -308,30 +308,17 @@ export function Spinner({ className }: { className?: string }) {
   );
 }
 
-export function Logo({ size = 40, className, alt = "GOEX Fast Delivery" }: { size?: number; className?: string; alt?: string }) {
-  const [hasErr, setHasErr] = useState(false);
-  if (hasErr) {
-    return (
-      <div
-        style={{ width: size, height: size }}
-        className={cx(
-          "grid shrink-0 place-items-center rounded-2xl bg-gradient-to-tr from-brand-700 via-brand to-sun text-white font-black shadow-md shadow-brand/20 select-none",
-          className
-        )}
-      >
-        <span className="text-[40%] font-black tracking-tighter italic">GOEX</span>
-      </div>
-    );
-  }
+/** Square GoEx logo (the full lockup centred on a white tile), drawn inline so it never shows as a broken image. */
+export function Logo({ size = 40, className }: { size?: number; className?: string }) {
   return (
-    <img
-      src="/brand/logo.svg"
-      onError={() => setHasErr(true)}
-      alt={alt}
-      width={size}
-      height={size}
-      className={cx("shrink-0 rounded-2xl bg-white object-contain shadow-sm", className)}
-    />
+    <span
+      style={{ width: size, height: size }}
+      className={cx("grid shrink-0 place-items-center overflow-hidden rounded-2xl bg-white shadow-sm", className)}
+    >
+      <span style={{ width: size * 0.88 }} className="block [&>svg]:!h-auto [&>svg]:!w-full">
+        <LogoArt height={size} />
+      </span>
+    </span>
   );
 }
 
@@ -344,15 +331,3 @@ export function BrandLogo({ height = 40, className }: { height?: number; classNa
   );
 }
 
-export function Wordmark({ dark, className }: { dark?: boolean; className?: string }) {
-  return (
-    <div className={cx("leading-none select-none", className)}>
-      <div className={cx("text-[22px] font-black tracking-tight", dark ? "text-white" : "text-[#0a0a0a] dark:text-white")}>
-        Go<span className={dark ? "text-[#c084fc]" : "text-[#4b0f6e] dark:text-[#c084fc]"}>Ex</span>
-      </div>
-      <div className={cx("keep-tracking mt-1 text-[9.5px] font-bold tracking-[0.2em]", dark ? "text-white/70" : "text-[#4b0f6e] dark:text-white/60")}>
-        FAST DELIVERY
-      </div>
-    </div>
-  );
-}

@@ -1,3 +1,4 @@
+import { LogoArt } from "../components/LogoArt";
 import { useEffect, useRef } from "react";
 import { useQuery } from "convex/react";
 import JsBarcode from "jsbarcode";
@@ -52,15 +53,7 @@ export function PrintLabels({ ids }: { ids: Id<"parcels">[] }) {
           {rows.map((p) => (
             <div key={p._id} className="break-inside-avoid rounded-xl border-2 border-navy-900 p-3 text-[11px] leading-snug text-black">
               <div className="flex items-center justify-between border-b border-dashed border-black/40 pb-2">
-                <div className="flex items-center gap-2">
-                  <img src="/brand/logo.svg" alt="GOEX" className="size-9 rounded-xl" />
-                  <div>
-                    <p className="text-[13px] font-black italic">
-                      GO<span className="text-brand">EX</span>
-                    </p>
-                    <p className="keep-tracking text-[8px] font-bold tracking-widest text-black/70">FAST DELIVERY</p>
-                  </div>
-                </div>
+                <LogoArt height={34} />
                 <div className="text-right">
                   <p className="text-[9px]">{t("COD")}</p>
                   <p className="text-lg font-extrabold">{tk(p.codAmount)}</p>
@@ -115,15 +108,7 @@ export function PrintPayout({ id }: { id: Id<"payouts"> }) {
       ) : (
         <div className="mx-auto max-w-[210mm] p-8 text-sm text-black print:p-0">
           <div className="flex items-start justify-between border-b-4 border-brand pb-5">
-            <div className="flex items-center gap-3">
-              <img src="/brand/logo.svg" alt="GOEX" className="size-16 rounded-2xl" />
-              <div>
-                <p className="text-2xl font-black italic text-navy-900">
-                  GO<span className="text-brand">EX</span>
-                </p>
-                <p className="keep-tracking text-xs font-bold tracking-widest text-navy-800">FAST DELIVERY &amp; COURIER · FAST • SAFE • ON TIME</p>
-              </div>
-            </div>
+            <LogoArt height={64} />
             <div className="text-right">
               <p className="text-xl font-bold">{t("PAYMENT INVOICE")}</p>
               <p className="font-mono text-xs">#{data.payout._id.slice(-8).toUpperCase()}</p>
