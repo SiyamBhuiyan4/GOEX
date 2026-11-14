@@ -60,7 +60,7 @@ class SessionErrorBoundary extends Component<{ children: ReactNode }, { hasError
             <p style={{ opacity: 0.7, marginTop: 6 }}>You are still signed in.</p>
             <button
               onClick={() => location.reload()}
-              style={{ marginTop: 16, padding: "10px 20px", borderRadius: 12, background: "#6b21a8", color: "#fff", fontWeight: 600, cursor: "pointer" }}
+              style={{ marginTop: 16, padding: "10px 20px", borderRadius: 8, background: "#5b1d86", color: "#fff", fontWeight: 600, cursor: "pointer" }}
             >
               Reload
             </button>

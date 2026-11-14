@@ -1325,7 +1325,7 @@ function ManifestsTab({ token }: { token: string }) {
                     variant="primary"
                     icon={Send}
                     onClick={() => handleDispatch(m._id, m.manifestNumber)}
-                    className="text-xs shadow-sm shadow-brand/20"
+                    className="text-xs"
                   >
                     {t("Dispatch Manifest")}
                   </Button>

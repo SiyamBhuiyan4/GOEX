@@ -272,7 +272,7 @@ export function RidersOnRoad({ dayStart }: { dayStart: number }) {
                   <div className="road-lines absolute inset-x-0 top-1/2 -translate-y-1/2 opacity-60" style={busy ? undefined : { animation: "none" }} />
                   {busy > 0 ? (
                     <span
-                      className="ride absolute top-1/2 z-10 grid size-7 -translate-y-1/2 place-items-center rounded-full bg-brand text-white shadow-md ring-2 shadow-brand/40 ring-white/70 dark:ring-navy-950/70"
+                      className="ride absolute top-1/2 z-10 grid size-7 -translate-y-1/2 place-items-center rounded-full bg-brand text-white shadow-md ring-2 ring-white/70 dark:ring-navy-950/70"
                       style={{ animationDuration: `${7 + (i % 4) * 1.5}s`, animationDelay: `${-i * 1.3}s` }}
                     >
                       <Bike className="size-4" strokeWidth={2.5} />

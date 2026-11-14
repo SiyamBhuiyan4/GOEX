@@ -22,11 +22,11 @@ type GeoData = {
 };
 
 const PALETTE = {
-  light: { bg: "#f5f6fa", land: "#e8eaf3", landLine: "#c3c9dc", hover: "#dcd3ef", divLine: "#7f88a6", border: "#1f0f36", label: "#59627f", cov: "#6b21a8" },
-  dark: { bg: "#060d1c", land: "#14213a", landLine: "#2b3b61", hover: "#241a40", divLine: "#5d71a0", border: "#e9eef8", label: "#a8b3cb", cov: "#d8b4fe" },
+  light: { bg: "#f7f4ee", land: "#ece6dc", landLine: "#d3cabd", hover: "#e3d8ea", divLine: "#9a8f80", border: "#2a2228", label: "#6b6359", cov: "#5b1d86" },
+  dark: { bg: "#141210", land: "#221e1a", landLine: "#3a342d", hover: "#2e2433", divLine: "#7f766a", border: "#f1ece4", label: "#b8afa3", cov: "#cdb0e2" },
 };
 const PAD = 14;
-const COVERED = "#a855f7";
+const COVERED = "#7b3fa8";
 
 const polys = (g: Geom) => (g.type === "Polygon" ? [g.coordinates] : g.coordinates);
 const ringArea = (r: number[][]) => Math.abs(r.reduce((s, p, i) => (i < r.length - 1 ? s + p[0] * r[i + 1][1] - r[i + 1][0] * p[1] : s), 0)) / 2;
@@ -103,7 +103,7 @@ export function CoverageMap() {
       for (const d of geo.districts) {
         const on = covered.has(d.name);
         const base = on
-          ? { fillColor: COVERED, fillOpacity: 0.4, color: "#6b21a8", weight: 1.8 }
+          ? { fillColor: COVERED, fillOpacity: 0.4, color: "#5b1d86", weight: 1.6 }
           : { fillColor: pal.land, fillOpacity: 1, color: pal.landLine, weight: 0.8 };
         const layer = shape(d.geometry, { pane: "districts", style: base });
         layer.bindTooltip(on ? `<b>${esc(pn(d.name))}</b><br>${esc(t("We deliver here"))}` : `<b>${esc(pn(d.name))}</b>`, { sticky: true, className: "goex-tip" });
@@ -119,7 +119,7 @@ export function CoverageMap() {
       shape({ type: "MultiPolygon", coordinates: geo.divisions.flatMap((d) => polys(d.geometry)) }, { pane: "divisions", interactive: false, style: { color: pal.divLine, weight: 1.5, fill: false } }).addTo(m);
       const holes = polys(geo.country).map((p) => p[0].map(([x, y]) => [y, x]));
       L.polygon([[[-85, -180], [-85, 180], [85, 180], [85, -180]], ...holes] as never, { pane: "mask", stroke: false, fillColor: pal.bg, fillOpacity: 1, interactive: false }).addTo(m);
-      shape(geo.country, { pane: "border", interactive: false, style: { color: "#6b21a8", weight: 9, opacity: 0.16, fill: false, lineJoin: "round" } }).addTo(m);
+      shape(geo.country, { pane: "border", interactive: false, style: { color: "#5b1d86", weight: 6, opacity: 0.1, fill: false, lineJoin: "round" } }).addTo(m);
       shape(geo.country, { pane: "border", interactive: false, style: { color: pal.border, weight: 2.6, fill: false, lineJoin: "round" } }).addTo(m);
 
       // Labels: divisions when zoomed out, districts when zoomed in; covered districts always.
@@ -195,7 +195,7 @@ export function CoverageMap() {
               onClick={() => setActive(k)}
               className={cx(
                 "rounded-full px-4 py-2 text-sm font-bold transition",
-                active === k ? "bg-brand text-white shadow-md shadow-brand/25" : "bg-surface text-ink-2 ring-1 ring-line hover:text-brand",
+                active === k ? "bg-brand text-white" : "bg-surface text-ink-2 ring-1 ring-line hover:text-brand",
               )}
             >
               {k === "all" ? t("All Bangladesh") : `${pn(k)} ${t("District")}`}
@@ -225,7 +225,7 @@ export function CoverageMap() {
 
         <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-ink-2">
           <li className="flex items-center gap-2">
-            <span className="size-3.5 rounded-sm bg-[#a855f7]/60 ring-1 ring-brand" /> {t("We deliver here")}
+            <span className="size-3.5 rounded-sm bg-[#7b3fa8]/50 ring-1 ring-brand" /> {t("We deliver here")}
           </li>
           <li className="flex items-center gap-2">
             <span className="size-3.5 rounded-sm bg-[#e8eaf3] ring-1 ring-line dark:bg-[#14213a]" /> {t("Not covered yet")}
@@ -238,7 +238,7 @@ export function CoverageMap() {
         ref={el}
         role="region"
         aria-label={t("Coverage map")}
-        className="goex-map relative z-0 order-1 mx-auto h-[460px] w-full max-w-[520px] overflow-hidden rounded-3xl bg-[var(--map-bg,#f5f6fa)] ring-1 ring-line sm:h-[560px] lg:order-2 lg:h-[620px]"
+        className="goex-map relative z-0 order-1 mx-auto h-[460px] w-full max-w-[520px] overflow-hidden rounded-3xl bg-[var(--map-bg,#f7f4ee)] ring-1 ring-line sm:h-[560px] lg:order-2 lg:h-[620px]"
       />
     </div>
   );

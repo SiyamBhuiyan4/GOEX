@@ -94,7 +94,7 @@ function PublicNav() {
       </div>
 
       {mobileOpen && (
-        <div className="animate-rise absolute inset-x-4 top-20 z-40 rounded-3xl border border-white/15 bg-navy-950/95 p-4 shadow-2xl backdrop-blur-xl lg:hidden">
+        <div className="animate-rise absolute inset-x-4 top-20 z-40 rounded-3xl border border-white/15 bg-navy-950/95 p-4 shadow-2xl lg:hidden">
           <div className="flex flex-col gap-1">
             {NAV.map((n) => (
               <a
@@ -353,8 +353,8 @@ export function Home() {
             <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold text-sun ring-1 ring-white/15">
               <MapPin className="size-3.5" /> {t("Savar & Dhaka")}
             </span>
-            <h1 className="mt-5 text-4xl font-black leading-[1.08] tracking-tight text-white sm:text-6xl">
-              {t("Your need,")} <span className="text-[#c084fc]">{t("our responsibility.")}</span>
+            <h1 className="mt-5 text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-[3.4rem]">
+              {t("Your need,")} <span className="text-sun">{t("our responsibility.")}</span>
             </h1>
             <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-white/80 sm:text-[17px]">
               {t(
@@ -375,10 +375,10 @@ export function Home() {
             {HIGHLIGHTS.map((h, i) => (
               <li
                 key={h.label}
-                className="hl-tile glass flex items-center gap-3 rounded-2xl p-4"
-                style={{ "--d": `${(i * 0.12 + (i % 2) * 0.35).toFixed(2)}s` } as CSSProperties}
+                className="hl-tile glass flex items-center gap-3 rounded-xl p-4"
+                style={{ "--d": `${(i * 0.05).toFixed(2)}s` } as CSSProperties}
               >
-                <span className="hl-icon grid size-10 shrink-0 place-items-center rounded-xl bg-brand text-white">
+                <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-white/[0.06] text-sun ring-1 ring-white/10">
                   <h.icon className="size-5" />
                 </span>
                 <span className="text-sm font-bold leading-snug text-white">{t(h.label)}</span>
@@ -445,7 +445,7 @@ export function Home() {
       <PricingSection />
 
       {/* ---------------- our own product: milk */}
-      <section id="milk" className="scroll-mt-6 bg-[#1f0f36] py-20 text-white">
+      <section id="milk" className="scroll-mt-6 sunrise py-20 text-white">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 lg:grid-cols-[1.2fr_1fr]">
           <div>
             <p className="text-xs font-bold tracking-[0.18em] text-sun uppercase">{t("Our own product")}</p>
@@ -459,8 +459,8 @@ export function Home() {
           </div>
           <ul className="grid gap-3 sm:grid-cols-2">
             {MILK_POINTS.map((m) => (
-              <li key={m.text} className="flex items-center gap-3 rounded-2xl bg-white/[0.06] p-4 ring-1 ring-white/10">
-                <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-brand text-white">
+              <li key={m.text} className="flex items-center gap-3 rounded-xl bg-white/[0.04] p-4 ring-1 ring-white/10">
+                <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-white/[0.06] text-sun ring-1 ring-white/10">
                   <m.icon className="size-5" />
                 </span>
                 <span className="text-sm font-semibold">{t(m.text)}</span>
@@ -545,7 +545,7 @@ function AuthLayout({ title, subtitle, children }: { title: string; subtitle: st
           <BrandLogo height={130} tone="light" />
         </Link>
         <p className="text-xl font-extrabold tracking-tight text-white">
-          {t("Your need,")} <span className="text-[#c084fc]">{t("our responsibility.")}</span>
+          {t("Your need,")} <span className="text-sun">{t("our responsibility.")}</span>
         </p>
       </div>
       <div className="relative flex items-center justify-center px-6 pb-10 pt-20">

@@ -28,7 +28,7 @@ export function TrendChart({ data }: { data: Point[] }) {
             <span className="font-bold text-ink">{num(totalCreated)}</span>
           </span>
           <span className="flex items-center gap-2">
-            <span className="size-2.5 rounded-full bg-brand shadow-sm shadow-brand/30" />
+            <span className="size-2.5 rounded-full bg-brand" />
             <span className="text-ink-3">{t("Delivered")}:</span>
             <span className="font-bold text-brand">{num(totalDelivered)}</span>
           </span>
@@ -78,7 +78,7 @@ export function TrendChart({ data }: { data: Point[] }) {
                   title={`${d.created} booked`}
                 />
                 <div
-                  className="animate-grow w-full max-w-3.5 rounded-t-[5px] bg-gradient-to-t from-brand-700 to-brand transition-[height,opacity] duration-700 group-hover:brightness-110 shadow-xs shadow-brand/20"
+                  className="animate-grow w-full max-w-3.5 rounded-t-[5px] bg-brand transition-[height,opacity] duration-700 group-hover:brightness-110"
                   style={{ animationDelay: `${Math.min(i * 30, 800) + 20}ms`, height: `${(d.delivered / max) * 100}%`, minHeight: d.delivered ? 4 : 0 }}
                   title={`${d.delivered} delivered`}
                 />

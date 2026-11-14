@@ -77,7 +77,7 @@ export function RiderTasks() {
                       <MapPin className="mt-0.5 size-4 shrink-0 text-brand" /> {s.pickupAddress}
                     </p>
                   </div>
-                  <a href={`tel:${s.merchantPhone}`} className="grid size-11 shrink-0 place-items-center rounded-full bg-emerald-500 text-white shadow-sm shadow-emerald-500/30 transition hover:bg-emerald-600 hover:scale-105" aria-label={t("Call merchant")}>
+                  <a href={`tel:${s.merchantPhone}`} className="grid size-11 shrink-0 place-items-center rounded-full bg-emerald-500 text-white shadow-sm shadow-emerald-500/30 transition hover:bg-emerald-600" aria-label={t("Call merchant")}>
                     <Phone className="size-5" />
                   </a>
                 </div>
@@ -145,7 +145,7 @@ export function RiderTasks() {
                     )}
                     {p.note && <p className="mt-1 rounded-lg bg-sun-100 px-2 py-1 text-xs font-medium text-amber-900">{t("Note")}: {p.note}</p>}
                   </div>
-                  <a href={`tel:${p.recipientPhone}`} className="grid size-11 shrink-0 place-items-center rounded-full bg-emerald-500 text-white shadow-sm shadow-emerald-500/30 transition hover:bg-emerald-600 hover:scale-105" aria-label={t("Call customer")}>
+                  <a href={`tel:${p.recipientPhone}`} className="grid size-11 shrink-0 place-items-center rounded-full bg-emerald-500 text-white shadow-sm shadow-emerald-500/30 transition hover:bg-emerald-600" aria-label={t("Call customer")}>
                     <Phone className="size-5" />
                   </a>
                 </div>

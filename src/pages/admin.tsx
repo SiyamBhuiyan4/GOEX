@@ -180,7 +180,7 @@ export function AdminDashboard() {
                 onClick={() => navigate(`/app/parcels?status=${s}`)}
                 className="group flex w-full items-center gap-3 rounded-xl px-3 py-2 text-left transition-colors duration-150 hover:bg-page cursor-pointer"
               >
-                <span className={`grid size-8 shrink-0 place-items-center rounded-lg transition-transform group-hover:scale-105 ${STATUS[s as keyof typeof STATUS].tone}`}>
+                <span className={`grid size-8 shrink-0 place-items-center rounded-lg transition-transform group- ${STATUS[s as keyof typeof STATUS].tone}`}>
                   <Icon className="size-4" />
                 </span>
                 <span className="min-w-0 flex-1">
@@ -225,7 +225,7 @@ function AlertChip({
     <button
       onClick={onClick}
       className={cx(
-        "flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold ring-1 transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md active:translate-y-0",
+        "flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold ring-1 transition-all duration-150 hover:shadow-md active:translate-y-0",
         tone === "brand" ? "bg-brand-50 text-brand-700 ring-brand/40 hover:bg-brand-100" : "bg-sun-100 text-amber-900 ring-sun/50 hover:bg-sun/30",
       )}
     >
@@ -489,7 +489,7 @@ export function Merchants() {
                 }}
                 className="flex cursor-pointer flex-wrap items-center gap-4 p-4 outline-none transition hover:bg-page focus-visible:bg-page"
               >
-                <div className="grid size-11 place-items-center rounded-2xl bg-gradient-to-br from-navy-100 to-navy-50 font-bold text-navy-900 shadow-xs dark:from-navy-900 dark:to-navy-800 dark:text-white">
+                <div className="grid size-11 place-items-center rounded-2xl bg-navy-50 font-bold text-navy-900 shadow-xs dark:bg-navy-900 dark:text-white">
                   {(m.businessName ?? m.name).slice(0, 1).toUpperCase()}
                 </div>
                 <div className="min-w-48 flex-1">

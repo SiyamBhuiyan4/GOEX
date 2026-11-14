@@ -93,7 +93,7 @@ export function Messages({ role }: { role: "merchant" | "rider" }) {
                     current === th.userId && "border-l-2 border-l-brand bg-brand-50/60 pl-[14px]",
                   )}
                 >
-                  <span className="relative grid size-10 shrink-0 place-items-center rounded-full bg-gradient-to-br from-brand-100 to-brand-50 font-bold text-brand">
+                  <span className="relative grid size-10 shrink-0 place-items-center rounded-full bg-brand-50 font-bold text-brand">
                     {th.name.slice(0, 1).toUpperCase()}
                     {th.unread > 0 && <span className="absolute -top-0.5 -right-0.5 size-3 rounded-full bg-red-500 ring-2 ring-surface" />}
                   </span>

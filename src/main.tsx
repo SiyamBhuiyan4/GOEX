@@ -150,7 +150,7 @@ class ErrorBoundary extends Component<{ children: ReactNode }, { error: unknown 
               <button
                 type="button"
                 onClick={this.handleResetSession}
-                className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl bg-brand px-5 py-2 text-sm font-semibold text-white shadow-sm shadow-brand/30 transition hover:bg-brand-600 active:scale-[0.98]"
+                className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl bg-brand px-5 py-2 text-sm font-semibold text-white transition hover:bg-brand-600 active:scale-[0.98]"
               >
                 <LogOut className="size-4 shrink-0" />
                 {t("Reset Session & Go to Login")}

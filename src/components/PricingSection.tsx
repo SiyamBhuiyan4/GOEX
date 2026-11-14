@@ -75,7 +75,7 @@ function PriceCalculator({ r }: { r: Rates | undefined }) {
         <div className="flex justify-between"><dt className="text-white/70">{t("COD charge")} {r ? `(${pct(INSIDE[zone] ? r.codPercent : r.codPercentOutside)})` : ""}</dt><dd className="font-semibold">{money(res?.codFee)}</dd></div>
         <div className="flex justify-between border-t border-white/15 pt-3"><dt className="font-bold">{t("Total charge")}</dt><dd className="text-xl font-extrabold">{money(res?.total)}</dd></div>
         {c > 0 && (
-          <div className="flex justify-between"><dt className="text-white/70">{t("You will receive")}</dt><dd className="font-bold text-[#c084fc]">{money(res?.receive)}</dd></div>
+          <div className="flex justify-between"><dt className="text-white/70">{t("You will receive")}</dt><dd className="font-bold text-sun">{money(res?.receive)}</dd></div>
         )}
       </dl>
     </div>
@@ -105,7 +105,7 @@ export function PricingSection() {
               <div
                 key={z}
                 className={cx(
-                  "flex flex-col rounded-3xl p-6 ring-1 transition hover:-translate-y-0.5 hover:shadow-[var(--shadow-card)]",
+                  "flex flex-col rounded-3xl p-6 ring-1 transition hover:shadow-[var(--shadow-card)]",
                   best ? "bg-brand-50 ring-brand/40 dark:bg-brand/10" : "bg-page ring-line",
                 )}
               >

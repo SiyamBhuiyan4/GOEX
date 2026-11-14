@@ -200,7 +200,7 @@ export function ParcelForm({
       <form onSubmit={submit} className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_minmax(280px,340px)]">
         <div className="space-y-6">
           {/* AI Quick Paste Header Banner */}
-          <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-brand/20 bg-gradient-to-r from-brand-50/70 via-surface to-brand-50/30 p-4 shadow-xs dark:border-brand-500/20 dark:from-brand-950/20 dark:via-surface dark:to-surface">
+          <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-brand/20 bg-brand-50/60 p-4 shadow-xs dark:border-brand-500/20 dark:from-brand-950/20 dark:via-surface dark:to-surface">
             <div className="flex items-center gap-3">
               <div className="grid size-10 shrink-0 place-items-center rounded-xl bg-brand text-white shadow-xs">
                 <Sparkles className="size-5" />

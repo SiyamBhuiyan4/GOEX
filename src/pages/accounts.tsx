@@ -220,7 +220,7 @@ export function Accounts() {
             <Button
               icon={Plus}
               onClick={() => setAddModalOpen(true)}
-              className="shadow-lg shadow-brand/30"
+              className=""
             >
               {t("Add Expense Voucher")}
             </Button>

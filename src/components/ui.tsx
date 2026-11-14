@@ -37,15 +37,15 @@ export function Button({
     <button
       disabled={disabled || loading}
       className={cx(
-        "inline-flex items-center justify-center gap-2 rounded-xl text-center leading-tight font-semibold transition-all duration-150 active:scale-[0.97] disabled:pointer-events-none disabled:opacity-50",
+        "inline-flex items-center justify-center gap-2 rounded-lg text-center leading-tight font-semibold transition-colors duration-150 disabled:pointer-events-none disabled:opacity-50",
         size === "sm" && "min-h-8 px-3 py-1 text-[13px]",
         size === "md" && "min-h-10 px-4 py-1.5 text-sm",
         size === "lg" && "min-h-12 px-6 py-2 text-[15px]",
-        variant === "primary" && "bg-brand text-white shadow-sm shadow-brand/30 hover:bg-brand-600 hover:shadow-md hover:shadow-brand/25",
+        variant === "primary" && "bg-brand text-white hover:bg-brand-600",
         variant === "dark" && "bg-navy-900 text-white hover:bg-navy-800 dark:bg-navy-600 dark:hover:bg-navy-800",
-        variant === "outline" && "border border-line bg-surface text-ink hover:border-navy-100 hover:bg-navy-50 hover:shadow-sm",
+        variant === "outline" && "border border-line bg-surface text-ink hover:bg-navy-50",
         variant === "ghost" && "text-ink-2 hover:bg-navy-50 hover:text-ink",
-        variant === "danger" && "bg-red-600 text-white shadow-sm shadow-red-600/20 hover:bg-red-700 hover:shadow-md hover:shadow-red-600/25",
+        variant === "danger" && "bg-red-700 text-white hover:bg-red-800",
         className,
       )}
       {...rest}
@@ -80,7 +80,7 @@ export function Field({
 }
 
 const control =
-  "w-full rounded-xl border border-line bg-surface px-3.5 text-sm text-ink placeholder:text-ink-3 outline-none transition focus:border-brand focus:ring-4 focus:ring-brand/15 disabled:bg-page";
+  "w-full rounded-xl border border-line bg-surface px-3.5 text-sm text-ink placeholder:text-ink-3 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/12 disabled:bg-page";
 
 export function Input({ className, ...rest }: InputHTMLAttributes<HTMLInputElement>) {
   return <input className={cx(control, "h-11", className)} {...rest} />;

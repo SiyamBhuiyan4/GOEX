@@ -87,7 +87,7 @@ export function ChatMessages({
                 className={cx(
                   "max-w-[84%] rounded-2xl px-3.5 py-2 text-sm leading-relaxed shadow-sm transition-all",
                   mine
-                    ? "rounded-br-sm bg-gradient-to-br from-brand to-brand-600 text-white shadow-brand/20"
+                    ? "rounded-br-sm bg-brand text-white"
                     : "rounded-bl-sm bg-surface text-ink ring-1 ring-line shadow-xs",
                 )}
               >
@@ -215,7 +215,7 @@ export function ChatComposer({
           onClick={() => void send()}
           disabled={!text.trim() || over || busy}
           aria-label={t("Send")}
-          className="grid size-11 shrink-0 place-items-center rounded-full bg-brand text-white shadow-md shadow-brand/30 transition hover:bg-brand-600 hover:scale-105 active:scale-95 disabled:opacity-40 cursor-pointer"
+          className="grid size-11 shrink-0 place-items-center rounded-full bg-brand text-white transition hover:bg-brand-600 active:scale-95 disabled:opacity-40 cursor-pointer"
         >
           <Send className="size-4" />
         </button>
@@ -261,7 +261,7 @@ export function OfficeChatButton({ className }: { className?: string }) {
         onClick={() => setOpen((o) => !o)}
         aria-label={t("Message GOEX")}
         title={t("Message GOEX")}
-        className="relative grid size-10 place-items-center rounded-full bg-gradient-to-tr from-brand-600 to-brand text-white shadow-lg shadow-brand/40 transition hover:scale-105 active:scale-95 hover:shadow-brand/60 cursor-pointer lg:size-12"
+        className="relative grid size-10 place-items-center rounded-full bg-brand text-white transition active:scale-95 cursor-pointer lg:size-12"
       >
         {open ? <X className="size-5 transition-transform duration-200" /> : <MessageCircle className="size-5" />}
         {unread > 0 && !open && (
@@ -349,7 +349,7 @@ export function AdminChatButton({ className }: { className?: string }) {
         }}
         aria-label={t("Quick Messages")}
         title={t("Quick Messages")}
-        className="relative grid size-10 place-items-center rounded-full bg-gradient-to-tr from-brand-600 to-brand text-white shadow-lg shadow-brand/40 transition hover:scale-105 active:scale-95 hover:shadow-brand/60 cursor-pointer lg:size-12"
+        className="relative grid size-10 place-items-center rounded-full bg-brand text-white transition active:scale-95 cursor-pointer lg:size-12"
       >
         {open ? <X className="size-5 transition-transform duration-200" /> : <MessageCircle className="size-5" />}
         {totalUnread > 0 && !open && (
@@ -584,7 +584,7 @@ function AdminChatListView({
                 onClick={() => onSelectUser(th.userId)}
                 className="flex w-full items-start gap-3 px-3.5 py-2.5 text-left transition hover:bg-page cursor-pointer"
               >
-                <div className="relative grid size-9 shrink-0 place-items-center rounded-full bg-gradient-to-br from-brand-100 to-brand-50 text-xs font-bold text-brand">
+                <div className="relative grid size-9 shrink-0 place-items-center rounded-full bg-brand-50 text-xs font-bold text-brand">
                   {th.name.slice(0, 1).toUpperCase()}
                   {th.unread > 0 && (
                     <span className="absolute -top-0.5 -right-0.5 size-2.5 rounded-full bg-red-500 ring-2 ring-surface" />

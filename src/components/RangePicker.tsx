@@ -104,7 +104,7 @@ export function RangePills({
               onClick={() => onChange(presetRange(p.key))}
               className={cx(
                 "h-8 rounded-xl px-3 text-[12.5px] font-bold transition",
-                active ? "bg-brand text-white shadow-md shadow-brand/30" : "text-ink-3 hover:bg-page hover:text-ink",
+                active ? "bg-brand text-white" : "text-ink-3 hover:bg-page hover:text-ink",
               )}
             >
               {t(p.label)}
@@ -117,7 +117,7 @@ export function RangePills({
           onClick={() => setOpen(true)}
           className={cx(
             "flex h-8 items-center gap-1.5 rounded-xl px-3 text-[12.5px] font-bold transition",
-            value.preset === "custom" ? "bg-brand text-white shadow-md shadow-brand/30" : "text-ink-3 hover:bg-page hover:text-ink",
+            value.preset === "custom" ? "bg-brand text-white" : "text-ink-3 hover:bg-page hover:text-ink",
           )}
         >
           <CalendarRange className="size-3.5" />
@@ -277,7 +277,7 @@ function RangeCalendar({
                           "grid size-9 place-items-center rounded-full text-[13px] font-semibold transition",
                           disabled && "pointer-events-none text-ink-3/30",
                           !disabled && !(isStart || isEnd) && "text-ink-2 hover:bg-page",
-                          (isStart || isEnd) && "bg-brand text-white shadow-md shadow-brand/30",
+                          (isStart || isEnd) && "bg-brand text-white",
                           !disabled && ts === today && !(isStart || isEnd) && "ring-1 ring-brand/60 ring-inset",
                         )}
                       >

@@ -175,7 +175,7 @@ export function Shell({ children }: { children: ReactNode }) {
                   aria-current={on ? "page" : undefined}
                   className={cx(
                     "group flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-semibold transition-colors duration-150",
-                    on ? "bg-brand text-white shadow-md shadow-brand/30" : "text-white/70 hover:bg-white/10 hover:text-white",
+                    on ? "bg-brand text-white" : "text-white/70 hover:bg-white/10 hover:text-white",
                   )}
                 >
                   <it.icon className={cx("size-[18px]", on ? "text-white" : "text-white/50 group-hover:text-sun")} />
