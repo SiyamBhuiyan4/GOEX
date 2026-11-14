@@ -53,7 +53,6 @@ const nextParam = () => new URLSearchParams(location.search).get("next");
 
 const NAV = [
   { href: "/#services", label: "Services" },
-  { href: "/#milk", label: "Cow milk" },
   { href: "/#coverage", label: "Coverage" },
   { href: "/#join", label: "Careers" },
   { href: "/#faq", label: "FAQ" },
