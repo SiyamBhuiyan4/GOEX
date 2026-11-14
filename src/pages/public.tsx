@@ -1,6 +1,7 @@
 import { useEffect, useState, type CSSProperties, type FormEvent, type ReactNode } from "react";
 import { useMutation, useQuery } from "convex/react";
 import {
+  ArrowLeft,
   ArrowRight,
   Bike,
   CheckCircle2,
@@ -546,11 +547,14 @@ function AuthLayout({ title, subtitle, children }: { title: string; subtitle: st
         <div className="relative">
           <img src="/brand/logo.svg" alt="GOEX Fast Delivery" className="mx-auto w-80 rounded-3xl shadow-2xl ring-8 ring-white/10" />
         </div>
-        <p className="text-lg font-semibold italic text-white/80">
-          {t("Fast")} <span className="text-brand">•</span> {t("Safe")} <span className="text-brand">•</span> {t("On time")}
+        <p className="text-xl font-extrabold tracking-tight text-white">
+          {t("Your need,")} <span className="text-[#c084fc]">{t("our responsibility.")}</span>
         </p>
       </div>
-      <div className="relative flex items-center justify-center p-6">
+      <div className="relative flex items-center justify-center px-6 pb-10 pt-20">
+        <Link href="/" className="absolute left-5 top-5 inline-flex items-center gap-1.5 text-sm font-semibold text-ink-3 transition hover:text-brand">
+          <ArrowLeft className="size-4" /> {t("Back to website")}
+        </Link>
         <Prefs className="absolute right-5 top-5" />
         <div className="animate-rise w-full max-w-md">
           <Link href="/" className="mb-8 flex items-center gap-3 lg:hidden">
@@ -732,40 +736,7 @@ function SignIn({ door }: { door: "merchant" | "rider" | "admin" }) {
         </>
       )}
       {door === "rider" && (
-        <div className="mt-6 space-y-3">
-          <div className="rounded-2xl border border-brand/20 bg-gradient-to-br from-brand-50/70 via-surface to-brand-50/30 p-4 text-xs shadow-sm">
-            <div className="flex items-center justify-between gap-2">
-              <span className="font-bold text-brand">{t("GoEx টিম-এ যোগ দিন! ঢাকায় ডেলিভারি রাইডার নিয়োগ চলছে! 🛵💼")}</span>
-            </div>
-            <p className="mt-2 text-ink-2 leading-relaxed">
-              {t("আকর্ষণীয় ফিক্সড বেতন + প্রতি ডেলিভারিতে চমৎকার কমিশন ও ইনসেন্টিভ। সাভার ও ঢাকার বিভিন্ন জোনে কাজ করার সুবিধা। ফুল-টাইম বা পার্ট-টাইম ফ্লেক্সিবল সুযোগ।")}
-            </p>
-            <p className="mt-1 font-semibold text-ink-3">
-              {t("প্রয়োজনীয়তা: নিজস্ব বাইক বা সাইকেল, স্মার্টফোন এবং NID")}
-            </p>
-            <div className="mt-3 flex flex-wrap items-center gap-2">
-              <a
-                href={`tel:${CONTACT.phone}`}
-                className="inline-flex items-center gap-1.5 rounded-lg bg-surface px-2.5 py-1.5 font-bold text-brand ring-1 ring-line hover:bg-brand-50 transition"
-              >
-                <Phone className="size-3" /> {CONTACT.phoneDisplay}
-              </a>
-              <a
-                href={CONTACT.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-2.5 py-1.5 font-bold text-white hover:bg-emerald-700 transition"
-              >
-                <MessageCircle className="size-3" /> WhatsApp
-              </a>
-              <Link
-                href="/join"
-                className="inline-flex items-center gap-1 rounded-lg bg-brand px-3 py-1.5 font-bold text-white hover:bg-brand-600 transition ml-auto"
-              >
-                {t("Apply now")} <ArrowRight className="size-3" />
-              </Link>
-            </div>
-          </div>
+        <div className="mt-6">
           <p className="text-center text-sm text-ink-2">
             {t("Want to work with us?")}{" "}
             <Link href="/join" className="font-semibold text-brand hover:underline">
@@ -1062,41 +1033,18 @@ export function Join() {
   }
 
   return (
-    <AuthLayout
-      title={t("GoEx টিম-এ যোগ দিন! ঢাকায় ডেলিভারি রাইডার নিয়োগ চলছে! 🛵💼")}
-      subtitle={t("আকর্ষণীয় ফিক্সড বেতন + প্রতি ডেলিভারিতে চমৎকার কমিশন ও ইনসেন্টিভ। সাভার ও ঢাকার বিভিন্ন জোনে কাজ করার সুবিধা।")}
-    >
-      <div className="mb-6 rounded-2xl border border-brand/20 bg-gradient-to-br from-brand-50/70 via-surface to-amber-50/30 p-4 text-xs shadow-sm">
-        <p className="font-bold text-brand uppercase tracking-wider">{t("GoEx Rider Perks & Benefits")}</p>
-        <ul className="mt-2.5 space-y-1.5 text-ink-2">
-          <li className="flex items-start gap-2">
-            <span className="font-bold text-brand">•</span>
-            <span><strong>{t("ফিক্সড বেতন + কমিশন:")}</strong> {t("আকর্ষণীয় ফিক্সড বেতন + ডেলিভারি কমিশন ও ডেইলি ইনসেন্টিভ।")}</span>
+    <AuthLayout title={t("Apply as a rider")} subtitle={t("Join the GoEx team in Savar & Dhaka.")}>
+      <ul className="mb-6 space-y-2 rounded-2xl bg-brand-50/70 p-4 text-sm text-ink-2 ring-1 ring-brand/15">
+        {[
+          "Attractive fixed salary + commission and incentive on every delivery",
+          "Full-time or part-time — flexible hours",
+          "Work in different zones of Savar & Dhaka",
+        ].map((x) => (
+          <li key={x} className="flex items-start gap-2.5">
+            <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-brand" /> {t(x)}
           </li>
-          <li className="flex items-start gap-2">
-            <span className="font-bold text-brand">•</span>
-            <span><strong>{t("জোন সুবিধা:")}</strong> {t("ঢাকা ও সাভারের বিভিন্ন জোনে কাজ করার সুবিধা।")}</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="font-bold text-brand">•</span>
-            <span><strong>{t("কাজের ধরণ:")}</strong> {t("ফুল-টাইম বা পার্ট-টাইম কাজ করার ফ্লেক্সিবল সুযোগ।")}</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="font-bold text-brand">•</span>
-            <span><strong>{t("প্রয়োজনীয়তা:")}</strong> {t("নিজস্ব মোটরবাইক বা সাইকেল, স্মার্টফোন এবং NID।")}</span>
-          </li>
-        </ul>
-        <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-line/60 pt-2.5">
-          <span className="text-[11px] font-semibold text-ink-3">{t("তাত্ক্ষণিক হেল্পলাইন:")}</span>
-          <a href={`tel:${CONTACT.phone}`} className="inline-flex items-center gap-1 font-bold text-brand hover:underline">
-            <Phone className="size-3" /> {CONTACT.phoneDisplay}
-          </a>
-          <span className="text-ink-3">·</span>
-          <a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 font-bold text-emerald-600 hover:underline">
-            <MessageCircle className="size-3" /> WhatsApp
-          </a>
-        </div>
-      </div>
+        ))}
+      </ul>
 
       <form
         onSubmit={async (e) => {
@@ -1138,23 +1086,23 @@ export function Join() {
         <Field label={t("Email (optional)")} hint={t("Optional — notifications can also be sent via phone / WhatsApp.")}>
           {(id) => <Input id={id} type="email" value={f.email} onChange={set("email")} maxLength={120} />}
         </Field>
-        <Field label={t("Preferred Zone / Living Area")} hint={t("Dhaka (Mirpur, Uttara, Dhanmondi, etc.) or Savar")}>
+        <Field label={t("Preferred area")} hint={t("Dhaka (Mirpur, Uttara, Dhanmondi, etc.) or Savar")}>
           {(id) => <Input id={id} value={f.area} onChange={set("area")} required maxLength={80} placeholder={t("e.g. Dhaka or Savar")} />}
         </Field>
-        <Field label={t("Vehicle Type")}>
+        <Field label={t("Vehicle type")}>
           {(id) => (
             <Select id={id} value={f.vehicle} onChange={set("vehicle")}>
-              <option value="bike">{t("Motorcycle / বাইক")}</option>
-              <option value="bicycle">{t("Bicycle / সাইকেল")}</option>
-              <option value="none">{t("None / কোনোটি নয়")}</option>
+              <option value="bike">{t("Motorcycle")}</option>
+              <option value="bicycle">{t("Bicycle")}</option>
+              <option value="none">{t("None")}</option>
             </Select>
           )}
         </Field>
-        <Field label={t("Work Shift")}>
+        <Field label={t("Work shift")}>
           {(id) => (
             <Select id={id} value={f.shift} onChange={set("shift")}>
-              <option value="full_time">{t("Full-time / ফুল-টাইম")}</option>
-              <option value="part_time">{t("Part-time / পার্ট-টাইম")}</option>
+              <option value="full_time">{t("Full-time")}</option>
+              <option value="part_time">{t("Part-time")}</option>
             </Select>
           )}
         </Field>
@@ -1178,11 +1126,11 @@ export function Join() {
         <span>{t("Have questions about rider recruitment?")}</span>
         <div className="flex items-center gap-3">
           <a href={`tel:${CONTACT.phone}`} className="font-bold text-brand hover:underline">
-            📞 {CONTACT.phoneDisplay}
+            {CONTACT.phoneDisplay}
           </a>
           <span>·</span>
           <a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer" className="font-bold text-emerald-600 hover:underline">
-            💬 WhatsApp
+            WhatsApp
           </a>
         </div>
       </div>

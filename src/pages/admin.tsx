@@ -52,7 +52,7 @@ import { RangePills, rangeLabel, useDateRange } from "../components/RangePicker"
 /* -------------------------------------------------------------- dashboard */
 
 export function AdminDashboard() {
-  const { token, me } = useAuthed();
+  const { token } = useAuthed();
   const dayStart = useMemo(startOfToday, []);
   const [range, setRange] = useDateRange("dashboard", "today");
   const live = useQuery(api.dashboard.admin, { token, dayStart, from: range.from, to: range.to });
@@ -67,61 +67,17 @@ export function AdminDashboard() {
 
   return (
     <>
-      {/* Executive Welcome Card */}
-      <div className="relative mb-6 overflow-hidden rounded-3xl bg-gradient-to-r from-navy-950 via-navy-900 to-[#2c1650] p-6 text-white shadow-xl sm:p-8">
-        <div className="pointer-events-none absolute -right-12 -top-12 size-56 rounded-full bg-brand/15 blur-3xl" />
-        <div className="relative flex flex-wrap items-center justify-between gap-4">
-          <div>
-            <h1 className="text-2xl font-black italic tracking-tight sm:text-3xl">
-              {t(new Date().getHours() < 12 ? "Good morning" : new Date().getHours() < 17 ? "Good afternoon" : "Good evening")},{" "}
-              <span className="text-sun">{me.name.split(" ")[0]}</span>
-            </h1>
-            <p className="mt-1 text-sm text-white/70">
-              {t("Here's what's moving at GOEX today.")}
-            </p>
-          </div>
-          <div className="flex flex-wrap items-center gap-3">
-            <Button size="lg" icon={Plus} onClick={() => navigate("/app/parcels/new")} className="shadow-lg shadow-brand/30">
-              {t("New parcel")}
-            </Button>
-          </div>
-        </div>
-      </div>
+      <PageHeader
+        title={t("Dashboard")}
+        subtitle={t("Here's what's moving at GOEX today.")}
+        actions={
+          <Button icon={Plus} onClick={() => navigate("/app/parcels/new")}>
+            {t("New parcel")}
+          </Button>
+        }
+      />
 
       <DemoCard />
-
-      {/* Quick Actions Grid */}
-      <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-        {[
-          { label: t("New parcel"), href: "/app/parcels/new", icon: Plus, highlight: true },
-          { label: t("Merchants"), href: "/app/merchants", icon: Store },
-          { label: t("Riders"), href: "/app/riders", icon: Bike },
-          { label: t("Merchant payouts"), href: "/app/payouts", icon: Wallet },
-          { label: t("Rider cash"), href: "/app/cash", icon: Banknote },
-          { label: t("Delivery rates"), href: "/app/settings", icon: Settings },
-        ].map((q) => (
-          <button
-            key={q.href}
-            onClick={() => navigate(q.href)}
-            className={cx(
-              "group flex flex-col items-center justify-center gap-2.5 rounded-2xl p-4 text-center transition-all duration-200 hover:-translate-y-1 hover:shadow-md cursor-pointer border",
-              q.highlight
-                ? "bg-brand text-white border-brand shadow-sm shadow-brand/30 hover:bg-brand-600"
-                : "bg-surface text-ink border-line hover:border-brand/40",
-            )}
-          >
-            <div
-              className={cx(
-                "grid size-10 place-items-center rounded-xl transition-transform duration-200 group-hover:scale-110",
-                q.highlight ? "bg-white/20 text-white" : "bg-page text-ink-2 group-hover:text-brand",
-              )}
-            >
-              <q.icon className="size-5" />
-            </div>
-            <span className="text-xs font-bold leading-tight">{q.label}</span>
-          </button>
-        ))}
-      </div>
 
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <RangePills value={range} onChange={setRange} />
