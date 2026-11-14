@@ -284,7 +284,7 @@ export function Accounts() {
           {/* 6. Net Company Profit (highlighted green if positive, red if negative) */}
           <Card
             className={cx(
-              "animate-rise relative overflow-hidden p-5 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg cursor-default border-t-4",
+              "animate-rise relative overflow-hidden p-5 ",
               summary.netCompanyProfit >= 0
                 ? "border-t-emerald-500 bg-emerald-50/40 dark:bg-emerald-950/20"
                 : "border-t-red-500 bg-red-50/40 dark:bg-red-950/20",
