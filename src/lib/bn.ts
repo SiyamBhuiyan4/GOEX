@@ -1548,4 +1548,8 @@ export const BN: Record<string, string> = {
   "Day & Night Non-Stop Express Dispatch • Savar & Dhaka": "দিন-রাত নন-স্টপ এক্সপ্রেস ডেলিভারি • সাভার ও ঢাকা",
   "Savar & Dhaka, all zones": "সাভার ও ঢাকা, সব এলাকা",
   "Send parcels across Savar & Dhaka with GOEX.": "GOEX দিয়ে সাভার ও ঢাকা জুড়ে পার্সেল পাঠান।",
+  "Same-city express delivery": "একই শহরে এক্সপ্রেস ডেলিভারি",
+  "Inside Dhaka or inside Savar — your parcel is picked up and delivered fast, the same day.": "ঢাকার ভেতরে বা সাভারের ভেতরে — আপনার পার্সেল দ্রুত সংগ্রহ করে একই দিনে ডেলিভারি।",
+  "Fish, meat, frozen & cake — express": "মাছ, মাংস, ফ্রোজেন ও কেক — এক্সপ্রেস",
+  "Perishable items like fish, meat, frozen food, ice cream and cakes delivered extra fast within the same city, kept cold and safe.": "মাছ, মাংস, ফ্রোজেন খাবার, আইসক্রিম ও কেকের মতো পচনশীল পণ্য একই শহরের ভেতরে ঠান্ডা ও নিরাপদে অতি দ্রুত ডেলিভারি।",
 };

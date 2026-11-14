@@ -806,15 +806,15 @@ export function Home() {
           {
             icon: Zap,
             badge: t("Express"),
-            title: t("3-hour delivery in Uttara"),
-            text: t("Order between 6 AM and 12 noon and it reaches anywhere in Uttara within 3 hours."),
+            title: t("Same-city express delivery"),
+            text: t("Inside Dhaka or inside Savar — your parcel is picked up and delivered fast, the same day."),
             accent: "bg-brand text-white",
           },
           {
             icon: Snowflake,
             badge: t("Cold chain"),
-            title: t("Frozen items in 6 hours"),
-            text: t("Meat, fish, ice cream and ready food carried cold, across Savar & Dhaka."),
+            title: t("Fish, meat, frozen & cake — express"),
+            text: t("Perishable items like fish, meat, frozen food, ice cream and cakes delivered extra fast within the same city, kept cold and safe."),
             accent: "bg-sky-500 text-white",
           },
           {
