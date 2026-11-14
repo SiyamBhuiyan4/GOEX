@@ -36,7 +36,7 @@ import { useSession } from "../lib/session";
 import { errorText } from "../lib/toast";
 import { CATEGORY, PAYOUT_METHOD, STATUS, ZONE, dateTime, num, tk } from "../lib/format";
 import { CONTACT } from "../lib/contact";
-import { Button, Card, Field, Input, Logo, PasswordInput, Select, StatusBadge, Wordmark, cx } from "../components/ui";
+import { Button, Card, Field, Input, BrandLogo, PasswordInput, Select, StatusBadge, cx } from "../components/ui";
 import { IS_ADMIN_PORTAL } from "../lib/portal";
 import { Prefs } from "../components/Prefs";
 import { t, translateServer } from "../lib/prefs";
@@ -64,10 +64,7 @@ function PublicNav() {
   return (
     <header className="relative z-30 mx-auto flex max-w-6xl items-center justify-between gap-3 px-5 py-5">
       <Link href="/" className="flex shrink-0 items-center gap-3">
-        <Logo size={46} className="ring-2 ring-white/25 shadow-lg" />
-        <span className="hidden sm:block">
-          <Wordmark dark />
-        </span>
+        <BrandLogo height={46} />
       </Link>
 
       <nav className="hidden items-center gap-1 lg:flex">
@@ -277,8 +274,7 @@ export function PublicFooter() {
       <div className="mx-auto grid max-w-6xl gap-8 px-5 py-12 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <div className="flex items-center gap-3">
-            <Logo size={42} />
-            <Wordmark />
+            <BrandLogo height={52} className="ring-1 ring-line" />
           </div>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-2">
             {t("Your need, our responsibility. Trusted and fast delivery across Savar & Dhaka.")}
@@ -540,13 +536,10 @@ function AuthLayout({ title, subtitle, children }: { title: string; subtitle: st
   return (
     <div className="grid min-h-full lg:grid-cols-2">
       <div className="sunrise relative hidden flex-col justify-between overflow-hidden p-10 lg:flex">
-        <Link href="/" className="flex shrink-0 items-center gap-3">
-          <Logo size={46} className="ring-2 ring-white/25" />
-          <Wordmark dark />
+        <span />
+        <Link href="/" className="relative mx-auto block">
+          <BrandLogo height={130} className="rounded-3xl shadow-2xl ring-8 ring-white/10" />
         </Link>
-        <div className="relative">
-          <img src="/brand/logo.svg" alt="GOEX Fast Delivery" className="mx-auto w-80 rounded-3xl shadow-2xl ring-8 ring-white/10" />
-        </div>
         <p className="text-xl font-extrabold tracking-tight text-white">
           {t("Your need,")} <span className="text-[#c084fc]">{t("our responsibility.")}</span>
         </p>
@@ -558,8 +551,7 @@ function AuthLayout({ title, subtitle, children }: { title: string; subtitle: st
         <Prefs className="absolute right-5 top-5" />
         <div className="animate-rise w-full max-w-md">
           <Link href="/" className="mb-8 flex items-center gap-3 lg:hidden">
-            <Logo size={44} />
-            <Wordmark />
+            <BrandLogo height={48} className="ring-1 ring-line" />
           </Link>
           <h1 className="text-3xl font-extrabold tracking-tight">{title}</h1>
           <p className="mt-2 text-ink-2">{subtitle}</p>

@@ -334,6 +334,15 @@ export function Logo({ size = 40, className, alt = "GOEX Fast Delivery" }: { siz
   );
 }
 
+/** The full GoEx lockup (logo + "Fast Delivery"). Sits on a white plate so the black "Go" reads on any background. */
+export function BrandLogo({ height = 40, className }: { height?: number; className?: string }) {
+  return (
+    <span className={cx("inline-flex shrink-0 items-center rounded-xl bg-white shadow-sm", className)} style={{ padding: Math.round(height * 0.14) }}>
+      <img src="/brand/logo-full.svg" alt="GoEx Fast Delivery" height={height} style={{ height, width: "auto" }} />
+    </span>
+  );
+}
+
 export function Wordmark({ dark, className }: { dark?: boolean; className?: string }) {
   return (
     <div className={cx("leading-none select-none", className)}>

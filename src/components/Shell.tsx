@@ -30,7 +30,7 @@ import { api } from "../../convex/_generated/api";
 import { FloatingChatButton } from "./Chat";
 import { Link, useLocation } from "../lib/router";
 import { useAuthed, useSession } from "../lib/session";
-import { Logo, Wordmark, cx } from "./ui";
+import { BrandLogo, Logo, cx } from "./ui";
 import { Prefs } from "./Prefs";
 import { PageBoundary } from "./PageBoundary";
 import { t } from "../lib/prefs";
@@ -155,10 +155,9 @@ export function Shell({ children }: { children: ReactNode }) {
   const sidebar = (
     <div className="sunrise flex h-full flex-col">
       <Link href="/app" className="flex items-center gap-3 px-5 pb-5 pt-6 transition hover:opacity-90" onClick={() => setOpen(false)}>
-        <Logo size={42} className="ring-2 ring-white/20" />
-        <span>
-          <Wordmark dark />
-          <span className="mt-1 block text-[10px] font-bold tracking-[0.18em] text-sun/90 uppercase keep-tracking">{roleLabel}</span>
+        <span className="flex flex-col items-start gap-2">
+          <BrandLogo height={42} />
+          <span className="block text-[10px] font-bold tracking-[0.18em] text-sun/90 uppercase keep-tracking">{roleLabel}</span>
         </span>
       </Link>
 
