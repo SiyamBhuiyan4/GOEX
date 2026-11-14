@@ -36,7 +36,7 @@ import { useSession } from "../lib/session";
 import { errorText } from "../lib/toast";
 import { CATEGORY, PAYOUT_METHOD, STATUS, ZONE, dateTime, num, tk } from "../lib/format";
 import { CONTACT } from "../lib/contact";
-import { Button, Card, Field, Input, BrandLogo, PasswordInput, Select, StatusBadge, cx } from "../components/ui";
+import { Button, Card, Field, Input, BrandLogo, Logo, PasswordInput, Select, StatusBadge, cx } from "../components/ui";
 import { IS_ADMIN_PORTAL } from "../lib/portal";
 import { Prefs } from "../components/Prefs";
 import { t, translateServer } from "../lib/prefs";
@@ -64,7 +64,7 @@ function PublicNav() {
   return (
     <header className="relative z-30 mx-auto flex max-w-6xl items-center justify-between gap-3 px-5 py-5">
       <Link href="/" className="flex shrink-0 items-center gap-3">
-        <BrandLogo height={46} />
+        <BrandLogo height={50} className="ring-2 ring-white/25" />
       </Link>
 
       <nav className="hidden items-center gap-1 lg:flex">
@@ -538,7 +538,7 @@ function AuthLayout({ title, subtitle, children }: { title: string; subtitle: st
       <div className="sunrise relative hidden flex-col justify-between overflow-hidden p-10 lg:flex">
         <span />
         <Link href="/" className="relative mx-auto block">
-          <BrandLogo height={130} className="rounded-3xl shadow-2xl ring-8 ring-white/10" />
+          <Logo size={300} className="shadow-2xl ring-8 ring-white/10" />
         </Link>
         <p className="text-xl font-extrabold tracking-tight text-white">
           {t("Your need,")} <span className="text-[#c084fc]">{t("our responsibility.")}</span>

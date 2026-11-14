@@ -308,26 +308,42 @@ export function Spinner({ className }: { className?: string }) {
   );
 }
 
-/** Square GoEx logo (the full lockup centred on a white tile), drawn inline so it never shows as a broken image. */
-export function Logo({ size = 40, className }: { size?: number; className?: string }) {
-  return (
-    <span
-      style={{ width: size, height: size }}
-      className={cx("grid shrink-0 place-items-center overflow-hidden rounded-2xl bg-white shadow-sm", className)}
-    >
-      <span style={{ width: size * 0.88 }} className="block [&>svg]:!h-auto [&>svg]:!w-full">
-        <LogoArt height={size} />
+/*
+  The GoEx logo as a round badge: the picture /brand/logo-round.png (white
+  circle with the full lockup). If the picture ever fails to load, the same
+  logo is drawn inline so it never shows as a broken image.
+*/
+function RoundLogo({ size, className }: { size: number; className?: string }) {
+  const [failed, setFailed] = useState(false);
+  if (failed) {
+    return (
+      <span style={{ width: size, height: size }} className={cx("grid shrink-0 place-items-center rounded-full bg-white shadow-sm", className)}>
+        <span style={{ width: size * 0.82 }} className="block [&>svg]:!h-auto [&>svg]:!w-full">
+          <LogoArt height={size} />
+        </span>
       </span>
-    </span>
+    );
+  }
+  return (
+    <img
+      src="/brand/logo-round.png"
+      alt="GoEx Fast Delivery"
+      width={size}
+      height={size}
+      onError={() => setFailed(true)}
+      className={cx("shrink-0 rounded-full bg-white shadow-sm", className)}
+      style={{ width: size, height: size }}
+    />
   );
 }
 
-/** The full GoEx lockup (logo + "Fast Delivery"). Sits on a white plate so the black "Go" reads on any background. */
+/** Round GoEx logo at a given diameter. */
+export function Logo({ size = 40, className }: { size?: number; className?: string }) {
+  return <RoundLogo size={size} className={className} />;
+}
+
+/** Round GoEx logo sized for headers and sign-in pages (diameter = height × 1.6). */
 export function BrandLogo({ height = 40, className }: { height?: number; className?: string }) {
-  return (
-    <span className={cx("inline-flex shrink-0 items-center rounded-xl bg-white shadow-sm", className)} style={{ padding: Math.round(height * 0.14) }}>
-      <LogoArt height={height} />
-    </span>
-  );
+  return <RoundLogo size={Math.round(height * 1.6)} className={className} />;
 }
 
