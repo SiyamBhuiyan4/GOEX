@@ -1766,4 +1766,13 @@ export const BN: Record<string, string> = {
   "This section is not available yet": "এই সেকশনটি এখনো চালু হয়নি",
   "You are still signed in. Choose another section from the menu.": "আপনি এখনো সাইন-ইন আছেন। মেনু থেকে অন্য সেকশন বেছে নিন।",
   "Try again": "আবার চেষ্টা করুন",
+  "Simple, clear delivery charges": "সহজ ও পরিষ্কার ডেলিভারি চার্জ",
+  "One price per area for parcels up to 1 kg. Opening a merchant account is free.": "১ কেজি পর্যন্ত পার্সেলে প্রতিটি এলাকার একটি নির্দিষ্ট দাম। মার্চেন্ট অ্যাকাউন্ট খোলা ফ্রি।",
+  "up to 1 kg": "১ কেজি পর্যন্ত",
+  "per extra kg": "প্রতি অতিরিক্ত কেজি",
+  "No COD charge": "কোনো COD চার্জ নেই",
+  "Returned parcel:": "ফেরত পার্সেল:",
+  "of the delivery charge.": "ডেলিভারি চার্জের।",
+  "Exact charges are shown before you confirm each parcel.": "প্রতিটি পার্সেল কনফার্ম করার আগে সঠিক চার্জ দেখানো হয়।",
+  "Start sending": "পাঠানো শুরু করুন",
 };

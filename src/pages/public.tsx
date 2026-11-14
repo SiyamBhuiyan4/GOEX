@@ -43,6 +43,7 @@ import { t, translateServer } from "../lib/prefs";
 import { MilkOrderModal } from "../components/MilkOrderModal";
 import { ApplicationSent, RiderApplicationForm, RiderApplyModal } from "../components/RiderApplicationForm";
 import { CoverageMap } from "../components/CoverageMap";
+import { PricingSection } from "../components/PricingSection";
 
 /** Only same-site paths may be used as a post-login destination. */
 export function safeNext(raw: string | null) {
@@ -54,6 +55,7 @@ const nextParam = () => new URLSearchParams(location.search).get("next");
 
 const NAV = [
   { href: "/#services", label: "Services" },
+  { href: "/#pricing", label: "Pricing" },
   { href: "/#coverage", label: "Coverage" },
   { href: "/#join", label: "Careers" },
   { href: "/#faq", label: "FAQ" },
@@ -439,6 +441,8 @@ export function Home() {
           </ul>
         </div>
       </section>
+
+      <PricingSection />
 
       {/* ---------------- our own product: milk */}
       <section id="milk" className="scroll-mt-6 bg-[#1f0f36] py-20 text-white">
