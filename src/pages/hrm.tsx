@@ -465,7 +465,7 @@ function AddStaffModal({ open, onClose }: { open: boolean; onClose: () => void }
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder={t("tanvir@morningrider.com")}
+                placeholder={t("name@goex.com")}
               />
             )}
           </Field>

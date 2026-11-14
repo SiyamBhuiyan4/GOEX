@@ -3,7 +3,7 @@
 Courier & lifestyle daily delivery management system (Pure Farm Milk, Home-to-Office Lunch, Bachelor Mess Meals, Groceries, and Express Parcels across Dhaka & Savar) with public tracking, merchant dashboard, rider portal, and an administrative control panel.
 
 - **Main site** (Public, Merchants, Riders): [https://goex-delivery.vercel.app](https://goex-delivery.vercel.app)
-- **Admin site**: [https://morning-rider-admin.vercel.app](https://morning-rider-admin.vercel.app)
+- **Admin site**: [https://goex-admin.vercel.app](https://goex-admin.vercel.app)
 
 **Tech Stack**:
 - **Backend / Database**: [Convex](https://www.convex.dev/) (reactive real-time database, functions, server actions)

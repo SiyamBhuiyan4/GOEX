@@ -44,5 +44,18 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "goex-admin.vercel.app"
+        }
+      ],
+      "destination": "/login-admin",
+      "permanent": false
+    }
   ]
 }
