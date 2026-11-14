@@ -194,9 +194,10 @@ export function ParcelForm({
     }
   }
 
+  const net = quote ? cod - quote.deliveryCharge - quote.codCharge : 0;
   return (
     <>
-      <form onSubmit={submit} className="grid gap-6 lg:grid-cols-[1fr_340px]">
+      <form onSubmit={submit} className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_minmax(280px,340px)]">
         <div className="space-y-6">
           {/* AI Quick Paste Header Banner */}
           <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-brand/20 bg-gradient-to-r from-brand-50/70 via-surface to-brand-50/30 p-4 shadow-xs dark:border-brand-500/20 dark:from-brand-950/20 dark:via-surface dark:to-surface">
@@ -332,7 +333,7 @@ export function ParcelForm({
           </Card>
         </div>
 
-        <div className="lg:sticky lg:top-6 lg:self-start">
+        <div className="xl:sticky xl:top-6 xl:self-start">
           <Card className="overflow-hidden">
             <div className="sunrise flex items-center gap-2 px-5 py-4 text-white">
               <Calculator className="size-5 text-sun" />
@@ -343,7 +344,7 @@ export function ParcelForm({
               <Row label={t("Delivery charge")} value={quote ? `− ${tk(quote.deliveryCharge)}` : "…"} />
               <Row label={t("COD charge")} value={quote ? `− ${tk(quote.codCharge)}` : "…"} />
               <div className="border-t border-dashed border-line pt-3">
-                <Row label={<span className="font-bold text-ink">{t("You will receive")}</span>} value={<span className="text-lg font-extrabold text-brand">{quote ? tk(cod - quote.deliveryCharge - quote.codCharge) : "…"}</span>} />
+                <Row label={<span className="font-bold text-ink">{t("You will receive")}</span>} value={<span className={`text-lg font-extrabold ${net < 0 ? "text-red-500" : "text-brand"}`}>{quote ? (net < 0 ? `− ${tk(-net)}` : tk(net)) : "…"}</span>} />
               </div>
             </dl>
             <div className="px-5 pb-5">
