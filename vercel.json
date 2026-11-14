@@ -51,6 +51,28 @@
       "has": [
         {
           "type": "host",
+          "value": "morning-rider-admin.vercel.app"
+        }
+      ],
+      "destination": "https://goex-admin.vercel.app/",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "morning-rider.vercel.app"
+        }
+      ],
+      "destination": "https://goex-delivery.vercel.app/",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
           "value": "goex-admin.vercel.app"
         }
       ],
