@@ -33,14 +33,15 @@ import {
 import { api } from "../../convex/_generated/api";
 import { Link, navigate } from "../lib/router";
 import { useSession } from "../lib/session";
-import { errorText, useToast } from "../lib/toast";
+import { errorText } from "../lib/toast";
 import { CATEGORY, PAYOUT_METHOD, STATUS, ZONE, dateTime, num, tk } from "../lib/format";
 import { CONTACT } from "../lib/contact";
-import { Button, Card, Field, Input, Logo, PasswordInput, Select, StatusBadge, Textarea, Wordmark, cx } from "../components/ui";
+import { Button, Card, Field, Input, Logo, PasswordInput, Select, StatusBadge, Wordmark, cx } from "../components/ui";
 import { IS_ADMIN_PORTAL } from "../lib/portal";
 import { Prefs } from "../components/Prefs";
 import { t, translateServer } from "../lib/prefs";
 import { MilkOrderModal } from "../components/MilkOrderModal";
+import { ApplicationSent, RiderApplicationForm, RiderApplyModal } from "../components/RiderApplicationForm";
 import { CoverageMap } from "../components/CoverageMap";
 
 /** Only same-site paths may be used as a post-login destination. */
@@ -328,8 +329,11 @@ export function PublicFooter() {
           </ul>
         </div>
       </div>
-      <div className="border-t border-line py-5 text-center text-xs text-ink-3">
-        © {new Date().getFullYear()} GOEX Fast Delivery. {t("All rights reserved.")}
+      <div className="space-y-1 border-t border-line px-5 py-5 text-center text-xs text-ink-3">
+        <p>
+          © {new Date().getFullYear()} GOEX Fast Delivery. {t("All rights reserved.")}
+        </p>
+        <p>{t("Map data © OpenStreetMap contributors · Boundaries © geoBoundaries")}</p>
       </div>
     </footer>
   );
@@ -339,6 +343,7 @@ export function PublicFooter() {
 
 export function Home() {
   const [orderOpen, setOrderOpen] = useState(false);
+  const [applyOpen, setApplyOpen] = useState(false);
 
   return (
     <div className="min-h-full bg-page">
@@ -511,15 +516,9 @@ export function Home() {
               </ul>
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button size="lg" onClick={() => navigate("/join")}>
+              <Button size="lg" onClick={() => setApplyOpen(true)}>
                 {t("Apply now")} <ArrowRight className="size-4" />
               </Button>
-              <a
-                href={`tel:${CONTACT.phone}`}
-                className="inline-flex min-h-12 items-center gap-2 rounded-xl px-4 font-bold text-ink ring-1 ring-line transition hover:bg-page"
-              >
-                <Phone className="size-4 text-brand" /> {CONTACT.phoneDisplay}
-              </a>
             </div>
           </div>
         </div>
@@ -530,6 +529,7 @@ export function Home() {
       <PublicFooter />
 
       <MilkOrderModal open={orderOpen} onClose={() => setOrderOpen(false)} />
+      <RiderApplyModal open={applyOpen} onClose={() => setApplyOpen(false)} />
     </div>
   );
 }
@@ -983,51 +983,12 @@ export function Register() {
  * account after hiring them.
  */
 export function Join() {
-  const apply = useMutation(api.riderApplications.apply);
-  const toast = useToast();
   const [done, setDone] = useState(false);
-  const [busy, setBusy] = useState(false);
-  const [f, setF] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    area: "",
-    vehicle: "bike",
-    shift: "full_time",
-    hasLicense: "yes",
-    note: "",
-  });
-  const set = (k: keyof typeof f) => (e: { target: { value: string } }) => setF({ ...f, [k]: e.target.value });
 
   if (done) {
     return (
       <AuthLayout title={t("Application sent")} subtitle={t("Thank you for applying to GoEx Fast Delivery.")}>
-        <Card className="p-6">
-          <CheckCircle2 className="size-10 text-emerald-500" />
-          <p className="mt-4 font-semibold">{t("Our team will review your application.")}</p>
-          <p className="mt-1 text-sm text-ink-2">
-            {t("If you are selected, we will invite you for an interview by phone or WhatsApp ({phone}). Your rider account is created after you are hired.", { phone: CONTACT.phoneDisplay })}
-          </p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Button onClick={() => navigate("/")}>
-              {t("Back to home")}
-            </Button>
-            <a
-              href={`tel:${CONTACT.phone}`}
-              className="inline-flex items-center gap-1.5 rounded-xl border border-line bg-surface px-4 py-2 text-sm font-bold text-ink hover:bg-page transition"
-            >
-              <Phone className="size-4 text-brand" /> {CONTACT.phoneDisplay}
-            </a>
-            <a
-              href={CONTACT.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-600 px-4 py-2 text-sm font-bold text-white hover:bg-emerald-700 transition"
-            >
-              <MessageCircle className="size-4" /> WhatsApp
-            </a>
-          </div>
-        </Card>
+        <ApplicationSent action={<Button onClick={() => navigate("/")}>{t("Back to home")}</Button>} />
       </AuthLayout>
     );
   }
@@ -1045,95 +1006,7 @@ export function Join() {
           </li>
         ))}
       </ul>
-
-      <form
-        onSubmit={async (e) => {
-          e.preventDefault();
-          setBusy(true);
-          try {
-            const vehicleLabel = f.vehicle === "bike" ? "Motorcycle" : f.vehicle === "bicycle" ? "Bicycle" : "No vehicle";
-            const shiftLabel = f.shift === "full_time" ? "Full-time" : "Part-time";
-            const combinedNote = [
-              f.note ? f.note.trim() : null,
-              `Vehicle: ${vehicleLabel}`,
-              `Shift: ${shiftLabel}`,
-            ]
-              .filter(Boolean)
-              .join(" | ");
-
-            await apply({
-              name: f.name,
-              phone: f.phone,
-              email: f.email.trim() ? f.email.trim() : undefined,
-              area: f.area,
-              hasBike: f.vehicle === "bike" || f.vehicle === "bicycle",
-              hasLicense: f.hasLicense === "yes",
-              note: combinedNote.slice(0, 300),
-            });
-            setDone(true);
-          } catch (err) {
-            toast.error(err);
-          } finally {
-            setBusy(false);
-          }
-        }}
-        className="grid gap-4 sm:grid-cols-2"
-      >
-        <Field label={t("Full name")}>{(id) => <Input id={id} value={f.name} onChange={set("name")} required maxLength={80} />}</Field>
-        <Field label={t("Phone number")}>
-          {(id) => <Input id={id} type="tel" placeholder="01XXXXXXXXX" value={f.phone} onChange={set("phone")} required />}
-        </Field>
-        <Field label={t("Email (optional)")} hint={t("Optional — notifications can also be sent via phone / WhatsApp.")}>
-          {(id) => <Input id={id} type="email" value={f.email} onChange={set("email")} maxLength={120} />}
-        </Field>
-        <Field label={t("Preferred area")} hint={t("Dhaka (Mirpur, Uttara, Dhanmondi, etc.) or Savar")}>
-          {(id) => <Input id={id} value={f.area} onChange={set("area")} required maxLength={80} placeholder={t("e.g. Dhaka or Savar")} />}
-        </Field>
-        <Field label={t("Vehicle type")}>
-          {(id) => (
-            <Select id={id} value={f.vehicle} onChange={set("vehicle")}>
-              <option value="bike">{t("Motorcycle")}</option>
-              <option value="bicycle">{t("Bicycle")}</option>
-              <option value="none">{t("None")}</option>
-            </Select>
-          )}
-        </Field>
-        <Field label={t("Work shift")}>
-          {(id) => (
-            <Select id={id} value={f.shift} onChange={set("shift")}>
-              <option value="full_time">{t("Full-time")}</option>
-              <option value="part_time">{t("Part-time")}</option>
-            </Select>
-          )}
-        </Field>
-        <Field label={t("Driving licence?")} className="sm:col-span-2">
-          {(id) => (
-            <Select id={id} value={f.hasLicense} onChange={set("hasLicense")}>
-              <option value="yes">{t("Yes (for motorcycle)")}</option>
-              <option value="no">{t("No / Bicycle Rider")}</option>
-            </Select>
-          )}
-        </Field>
-        <Field label={t("Anything else? (optional)")} className="sm:col-span-2">
-          {(id) => <Textarea id={id} value={f.note} onChange={set("note")} maxLength={200} placeholder={t("NID status, previous delivery experience, etc.")} />}
-        </Field>
-        <Button type="submit" size="lg" loading={busy} className="sm:col-span-2">
-          {t("Send application")}
-        </Button>
-      </form>
-
-      <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-4 text-xs text-ink-3">
-        <span>{t("Have questions about rider recruitment?")}</span>
-        <div className="flex items-center gap-3">
-          <a href={`tel:${CONTACT.phone}`} className="font-bold text-brand hover:underline">
-            {CONTACT.phoneDisplay}
-          </a>
-          <span>·</span>
-          <a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer" className="font-bold text-emerald-600 hover:underline">
-            WhatsApp
-          </a>
-        </div>
-      </div>
+      <RiderApplicationForm onSubmitted={() => setDone(true)} />
     </AuthLayout>
   );
 }

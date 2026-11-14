@@ -499,7 +499,7 @@ function HubsTab({ token }: { token: string }) {
                 required
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
-                placeholder="Savar / Dhaka / Gazipur"
+                placeholder={t("Savar / Dhaka")}
               />
             )}
           </Field>

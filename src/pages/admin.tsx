@@ -751,7 +751,7 @@ function CreateUserModal({ role, open, onClose }: { role: "merchant" | "rider"; 
           </>
         )}
         {role === "rider" && (
-          <Field label={t("Working area (optional)")}>{(id) => <Input id={id} value={f.riderArea} onChange={set("riderArea")} placeholder={t("e.g. Mirpur, Uttara")} />}</Field>
+          <Field label={t("Working area (optional)")}>{(id) => <Input id={id} value={f.riderArea} onChange={set("riderArea")} placeholder={t("e.g. Mirpur, Savar")} />}</Field>
         )}
         <Field label={t("Password")} hint={t("At least 8 characters with a letter and a number. Share it privately.")}>
           {(id) => (

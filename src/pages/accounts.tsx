@@ -576,7 +576,7 @@ export function Accounts() {
               <Input
                 id={id}
                 required
-                placeholder={t("e.g. Uttara Hub generator fuel and October office rent")}
+                placeholder={t("e.g. Savar hub generator fuel and November office rent")}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />

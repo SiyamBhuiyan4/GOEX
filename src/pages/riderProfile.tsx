@@ -492,7 +492,7 @@ function ProfileForm({
     <form onSubmit={submit} className="space-y-6">
       <FormSection title={t("Basic")}>
         {text("name", t("Full name"), { required: true })}
-        {text("riderArea", t("Working area"), { placeholder: t("e.g. Mirpur, Uttara") })}
+        {text("riderArea", t("Working area"), { placeholder: t("e.g. Mirpur, Savar") })}
         {adding && (
           <>
             <Field label={t("Phone number (login)")}>

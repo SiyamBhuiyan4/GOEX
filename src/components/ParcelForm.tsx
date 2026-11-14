@@ -205,7 +205,7 @@ export function ParcelForm({
                 <Sparkles className="size-5" />
               </div>
               <div>
-                <p className="text-sm font-bold text-ink">{t("AI Order Parser")}</p>
+                <p className="text-sm font-bold text-ink">{t("Paste an order")}</p>
                 <p className="text-xs text-ink-3">
                   {t("Paste order text from chat or SMS to auto-complete customer details instantly")}
                 </p>
@@ -218,25 +218,14 @@ export function ParcelForm({
               onClick={() => setQuickPasteOpen(true)}
               className="gap-1.5 shadow-xs"
             >
-              <span>✨</span> AI Quick Paste
+              {t("Paste order text")}
             </Button>
           </div>
 
           {merchantPicker && <Card className="p-6">{merchantPicker}</Card>}
 
           <Card className="p-6">
-            <div className="flex items-center justify-between">
-              <h2 className="font-bold">{t("Customer")}</h2>
-              <Button
-                type="button"
-                variant="outline"
-                size="sm"
-                onClick={() => setQuickPasteOpen(true)}
-                className="gap-1.5 text-xs text-brand hover:border-brand/40 hover:bg-brand-50/50"
-              >
-                <span>✨</span> AI Quick Paste
-              </Button>
-            </div>
+            <h2 className="font-bold">{t("Customer")}</h2>
             <div className="mt-4 grid gap-4 sm:grid-cols-2">
               <Field label={t("Customer name")}>
                 {(id) => <Input id={id} value={f.recipientName} onChange={set("recipientName")} required maxLength={80} />}
@@ -254,7 +243,7 @@ export function ParcelForm({
               <Field label={t("Full address")} className="sm:col-span-2">
                 {(id) => <Textarea id={id} value={f.recipientAddress} onChange={set("recipientAddress")} required maxLength={300} placeholder={t("House, road, area, thana")} />}
               </Field>
-              <Field label={t("Area")} hint={t("Type or pick (in English or Bangla), e.g. Uttara Sector 7, Mirpur 10")}>
+              <Field label={t("Area")} hint={t("Type or pick (in English or Bangla), e.g. Savar Bazar, Mirpur 10")}>
                 {(id) => (
                   <>
                     <Input
@@ -372,7 +361,7 @@ export function ParcelForm({
       <Modal
         open={quickPasteOpen}
         onClose={() => setQuickPasteOpen(false)}
-        title="✨ AI Quick Paste"
+        title={t("Paste order text")}
         footer={
           <div className="flex w-full items-center justify-between gap-3">
             <span className="text-xs text-ink-3">

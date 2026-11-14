@@ -11,7 +11,7 @@ import { cx } from "./ui";
   districts are drawn from our own boundary data (lazy-loaded), so no other
   country appears. Covered districts are filled purple; zooming into one fades
   in street detail from OpenStreetMap.
-  Boundaries: geoBoundaries (CC BY 3.0 IGO) — credited on the map.
+  Credits (OpenStreetMap, geoBoundaries CC BY 3.0 IGO) are in the site footer.
 */
 
 type Geom = { type: "Polygon"; coordinates: number[][][] } | { type: "MultiPolygon"; coordinates: number[][][][] };
@@ -84,9 +84,9 @@ export function CoverageMap() {
         scrollWheelZoom: false, // don't hijack page scrolling
         dragging: !L.Browser.mobile, // one-finger page scroll keeps working on phones
         maxBoundsViscosity: 1,
+        attributionControl: false, // the credit is in the site footer instead
       });
       map = m;
-      m.attributionControl.addAttribution("Boundaries &copy; geoBoundaries");
       for (const [name, z] of [["districts", 410], ["divisions", 415], ["mask", 420], ["border", 430]] as const) m.createPane(name).style.zIndex = String(z);
 
       // Street detail: only appears once you zoom into a district (opaque grey districts hide it elsewhere).
