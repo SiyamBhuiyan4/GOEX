@@ -27,20 +27,45 @@ function readStored(): string {
   }
 }
 
-class SessionErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean }> {
-  state = { hasError: false };
-  static getDerivedStateFromError() {
-    try {
-      localStorage.removeItem(KEY);
-    } catch {}
-    return { hasError: true };
+/*
+  Last-resort catch for the whole app. Only a broken stored session (bad token)
+  signs the user out; any other error shows a reload screen instead, so one
+  failing page can never log anyone out.
+*/
+class SessionErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean; signedOut: boolean }> {
+  state = { hasError: false, signedOut: false };
+  static getDerivedStateFromError(error: unknown) {
+    const msg = error instanceof Error ? error.message : String(error);
+    const badSession = /token|session|ArgumentValidationError/i.test(msg) && /auth:me|auth\.me/i.test(msg);
+    if (badSession) {
+      try {
+        localStorage.removeItem(KEY);
+      } catch {}
+    }
+    return { hasError: true, signedOut: badSession };
   }
   render() {
-    if (this.state.hasError) {
+    if (this.state.hasError && this.state.signedOut) {
       return (
         <Ctx.Provider value={{ token: "", me: null, signIn: () => {}, signOut: async () => {} }}>
           {this.props.children}
         </Ctx.Provider>
+      );
+    }
+    if (this.state.hasError) {
+      return (
+        <div style={{ minHeight: "100vh", display: "grid", placeItems: "center", padding: 24, textAlign: "center", fontFamily: "inherit" }}>
+          <div>
+            <p style={{ fontWeight: 700, fontSize: 18 }}>Something went wrong.</p>
+            <p style={{ opacity: 0.7, marginTop: 6 }}>You are still signed in.</p>
+            <button
+              onClick={() => location.reload()}
+              style={{ marginTop: 16, padding: "10px 20px", borderRadius: 12, background: "#6b21a8", color: "#fff", fontWeight: 600, cursor: "pointer" }}
+            >
+              Reload
+            </button>
+          </div>
+        </div>
       );
     }
     return this.props.children;
