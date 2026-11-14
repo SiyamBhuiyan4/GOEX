@@ -330,7 +330,7 @@ export function Logo({ size = 40, className, alt = "GOEX Fast Delivery" }: { siz
       alt={alt}
       width={size}
       height={size}
-      className={cx("shrink-0 rounded-2xl object-cover shadow-sm", className)}
+      className={cx("shrink-0 rounded-2xl bg-white object-contain shadow-sm", className)}
     />
   );
 }
