@@ -212,7 +212,7 @@ export function Accounts() {
     <>
       {/* Page Header */}
       <PageHeader
-        title={t("Smart Accounts Management")}
+        title={t("Accounts")}
         subtitle={t("Financial health, double-entry expense vouchers, and operational ledgers.")}
         actions={
           <div className="flex flex-wrap items-center gap-3">

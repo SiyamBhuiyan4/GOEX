@@ -103,7 +103,7 @@ export function RiderCommissions() {
   return (
     <>
       <PageHeader
-        title={t("My Delivery Commissions")}
+        title={t("My commissions")}
         subtitle={t("Delivery commission earnings per completed order and settlement balances.")}
         actions={
           <Button
@@ -461,7 +461,7 @@ export function AdminCommissions() {
   return (
     <>
       <PageHeader
-        title={t("Delivery Commissions")}
+        title={t("Commissions")}
         subtitle={t("Manage rider and agent delivery commissions, uncollected balances, and settlements.")}
         actions={
           <div className="flex flex-wrap items-center gap-2">

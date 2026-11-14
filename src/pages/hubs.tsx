@@ -60,7 +60,7 @@ export function HubsPage() {
   return (
     <>
       <PageHeader
-        title={t("Hub & Warehouse Logistics")}
+        title={t("Hubs & warehouses")}
         subtitle={t("Manage central & regional sorting hubs, transport fleet vehicles, and inter-hub dispatch manifests.")}
       />
 

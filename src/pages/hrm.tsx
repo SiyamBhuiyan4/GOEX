@@ -98,7 +98,7 @@ export function HRM() {
   return (
     <div className="space-y-6">
       <PageHeader
-        title={t("HRM & Payroll")}
+        title={t("HR & payroll")}
         subtitle={t("Manage staff directory, monitor daily attendance, and process monthly payroll.")}
       />
 
