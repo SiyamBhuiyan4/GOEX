@@ -458,3 +458,41 @@ select {
 .goex-tiles-dark {
   filter: grayscale(1) invert(1) brightness(0.8) contrast(0.9);
 }
+
+/* Coverage map labels: divisions when zoomed out, districts when zoomed in */
+.goex-map .goex-lbl {
+  pointer-events: none;
+  overflow: visible;
+}
+.goex-map .goex-lbl span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  font: 700 9.5px/1 var(--font-sans);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--map-label);
+  text-shadow: 0 0 3px var(--map-bg), 0 0 3px var(--map-bg), 0 0 6px var(--map-bg);
+}
+.goex-map .goex-lbl-v span {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  opacity: 0.8;
+}
+.goex-map .goex-lbl-d {
+  display: none;
+}
+.goex-map.goex-show-d .goex-lbl-d {
+  display: block;
+}
+.goex-map.goex-show-d .goex-lbl-v {
+  display: none;
+}
+.goex-map .goex-lbl-c span {
+  color: var(--map-cov);
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  margin-top: 16px;
+}

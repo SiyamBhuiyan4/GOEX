@@ -1,20 +1,22 @@
-import type { Feature, Polygon, MultiPolygon } from "geojson";
-import dhaka from "./districts/dhaka.json";
-
 /*
-  Districts (zila) GOEX delivers in. Each one is drawn on the coverage map with
-  its real boundary from OpenStreetMap.
+  Where GOEX delivers. The map highlights these districts (zila) and the rest
+  of Bangladesh stays grey.
 
-  To add a district: save its boundary GeoJSON in ./districts/ (Nominatim lookup
-  of the district's OSM relation with polygon_geojson=1), import it here and add
-  an entry below.
+  To add a district: add one entry below. `name` must match the district's name
+  in geo-bangladesh.json (see place-names.ts for the spellings); `areas` are the
+  places shown beside the map.
 */
 
 export interface CoverageDistrict {
   name: string;
-  shape: Feature<Polygon | MultiPolygon>;
+  division: string;
+  areas: string[];
 }
 
 export const COVERAGE_DISTRICTS: CoverageDistrict[] = [
-  { name: "Dhaka", shape: dhaka as Feature<Polygon> },
+  {
+    name: "Dhaka",
+    division: "Dhaka",
+    areas: ["Dhaka city", "Savar", "Dhamrai", "Keraniganj", "Nawabganj", "Dohar"],
+  },
 ];

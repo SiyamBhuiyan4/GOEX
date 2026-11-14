@@ -1748,4 +1748,12 @@ export const BN: Record<string, string> = {
   "Preferred area": "পছন্দের এলাকা",
   "Vehicle type": "যানবাহনের ধরন",
   "Work shift": "কাজের ধরন",
+  "All Bangladesh": "সারা বাংলাদেশ",
+  "We deliver here": "এখানে আমরা ডেলিভারি করি",
+  "Not covered yet": "এখনো সেবা নেই",
+  "Division": "বিভাগ",
+  "Dhaka city": "ঢাকা শহর",
+  "Keraniganj": "কেরানীগঞ্জ",
+  "Nawabganj": "নবাবগঞ্জ",
+  "Dohar": "দোহার",
 };
