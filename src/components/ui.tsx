@@ -342,8 +342,15 @@ export function Logo({ size = 40, className }: { size?: number; className?: stri
   return <RoundLogo size={size} className={className} />;
 }
 
-/** Round GoEx logo sized for headers and sign-in pages (diameter = height × 1.6). */
+/** Wide GoEx logo on a white pill, for headers, sidebars and footers where a circle would make the text too small. */
 export function BrandLogo({ height = 40, className }: { height?: number; className?: string }) {
-  return <RoundLogo size={Math.round(height * 1.6)} className={className} />;
+  return (
+    <span
+      className={cx("inline-flex shrink-0 items-center rounded-full bg-white shadow-sm", className)}
+      style={{ paddingBlock: Math.round(height * 0.16), paddingInline: Math.round(height * 0.45) }}
+    >
+      <LogoArt height={height} />
+    </span>
+  );
 }
 

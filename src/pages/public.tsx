@@ -64,7 +64,7 @@ function PublicNav() {
   return (
     <header className="relative z-30 mx-auto flex max-w-6xl items-center justify-between gap-3 px-5 py-5">
       <Link href="/" className="flex shrink-0 items-center gap-3">
-        <BrandLogo height={50} className="ring-2 ring-white/25" />
+        <BrandLogo height={42} className="ring-2 ring-white/20" />
       </Link>
 
       <nav className="hidden items-center gap-1 lg:flex">
