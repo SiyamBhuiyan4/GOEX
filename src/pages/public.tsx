@@ -388,7 +388,8 @@ export function Home() {
       {/* ---------------- delivery services (booked by merchants after login) */}
       <section id="services" className="mx-auto max-w-6xl scroll-mt-6 px-5 py-20">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.15fr] lg:items-start">
-          <div>
+          {/* Stays in view while the service list scrolls past (desktop) */}
+          <div className="lg:sticky lg:top-24">
             <p className="text-xs font-bold tracking-[0.18em] text-brand uppercase">{t("Delivery services")}</p>
             <h2 className="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">{t("Fast delivery for everything you send")}</h2>
             <p className="mt-4 leading-relaxed text-ink-2">
