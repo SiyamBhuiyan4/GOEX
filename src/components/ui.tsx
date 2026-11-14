@@ -342,13 +342,14 @@ export function Logo({ size = 40, className }: { size?: number; className?: stri
   return <RoundLogo size={size} className={className} />;
 }
 
-/** Wide GoEx logo on a white pill, for headers, sidebars and footers where a circle would make the text too small. */
-export function BrandLogo({ height = 40, className }: { height?: number; className?: string }) {
+/**
+  The GoEx logo, drawn inline. tone "light" is for dark backgrounds (white "Go",
+  light purple "Ex"); "auto" uses the original colours and switches to the
+  light version in dark mode.
+*/
+export function BrandLogo({ height = 40, tone = "auto", className }: { height?: number; tone?: "auto" | "light"; className?: string }) {
   return (
-    <span
-      className={cx("inline-flex shrink-0 items-center rounded-full bg-white shadow-sm", className)}
-      style={{ paddingBlock: Math.round(height * 0.16), paddingInline: Math.round(height * 0.45) }}
-    >
+    <span className={cx("inline-block shrink-0", tone === "light" ? "logo-light" : "logo-auto", className)}>
       <LogoArt height={height} />
     </span>
   );

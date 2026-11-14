@@ -156,7 +156,7 @@ export function Shell({ children }: { children: ReactNode }) {
     <div className="sunrise flex h-full flex-col">
       <Link href="/app" className="flex items-center gap-3 px-5 pb-5 pt-6 transition hover:opacity-90" onClick={() => setOpen(false)}>
         <span className="flex flex-col items-start gap-2">
-          <BrandLogo height={42} />
+          <BrandLogo height={40} tone="light" />
           <span className="block text-[10px] font-bold tracking-[0.18em] text-sun/90 uppercase keep-tracking">{roleLabel}</span>
         </span>
       </Link>
@@ -228,7 +228,7 @@ export function Shell({ children }: { children: ReactNode }) {
           <Menu className="size-6" />
         </button>
         <Link href="/app" className="flex items-center gap-2 lg:hidden">
-          <BrandLogo height={26} className="ring-1 ring-line" />
+          <BrandLogo height={28} />
         </Link>
         <div className="hidden min-w-0 items-center gap-2 text-sm lg:flex">
           <span className="rounded-full bg-brand-50 px-2.5 py-0.5 text-xs font-bold text-brand-700">{roleLabel}</span>

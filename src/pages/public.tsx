@@ -36,7 +36,7 @@ import { useSession } from "../lib/session";
 import { errorText } from "../lib/toast";
 import { CATEGORY, PAYOUT_METHOD, STATUS, ZONE, dateTime, num, tk } from "../lib/format";
 import { CONTACT } from "../lib/contact";
-import { Button, Card, Field, Input, BrandLogo, Logo, PasswordInput, Select, StatusBadge, cx } from "../components/ui";
+import { Button, Card, Field, Input, BrandLogo, PasswordInput, Select, StatusBadge, cx } from "../components/ui";
 import { IS_ADMIN_PORTAL } from "../lib/portal";
 import { Prefs } from "../components/Prefs";
 import { t, translateServer } from "../lib/prefs";
@@ -66,7 +66,7 @@ function PublicNav() {
   return (
     <header className="relative z-30 mx-auto flex max-w-6xl items-center justify-between gap-3 px-5 py-5">
       <Link href="/" className="flex shrink-0 items-center gap-3">
-        <BrandLogo height={42} className="ring-2 ring-white/20" />
+        <BrandLogo height={50} tone="light" />
       </Link>
 
       <nav className="hidden items-center gap-1 lg:flex">
@@ -276,7 +276,7 @@ export function PublicFooter() {
       <div className="mx-auto grid max-w-6xl gap-8 px-5 py-12 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <div className="flex items-center gap-3">
-            <BrandLogo height={52} className="ring-1 ring-line" />
+            <BrandLogo height={48} />
           </div>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-2">
             {t("Your need, our responsibility. Trusted and fast delivery across Savar & Dhaka.")}
@@ -542,7 +542,7 @@ function AuthLayout({ title, subtitle, children }: { title: string; subtitle: st
       <div className="sunrise relative hidden flex-col justify-between overflow-hidden p-10 lg:flex">
         <span />
         <Link href="/" className="relative mx-auto block">
-          <Logo size={300} className="shadow-2xl ring-8 ring-white/10" />
+          <BrandLogo height={130} tone="light" />
         </Link>
         <p className="text-xl font-extrabold tracking-tight text-white">
           {t("Your need,")} <span className="text-[#c084fc]">{t("our responsibility.")}</span>
@@ -555,7 +555,7 @@ function AuthLayout({ title, subtitle, children }: { title: string; subtitle: st
         <Prefs className="absolute right-5 top-5" />
         <div className="animate-rise w-full max-w-md">
           <Link href="/" className="mb-8 flex items-center gap-3 lg:hidden">
-            <BrandLogo height={48} className="ring-1 ring-line" />
+            <BrandLogo height={44} />
           </Link>
           <h1 className="text-3xl font-extrabold tracking-tight">{title}</h1>
           <p className="mt-2 text-ink-2">{subtitle}</p>

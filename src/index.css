@@ -496,3 +496,14 @@ select {
   letter-spacing: 0.04em;
   margin-top: 16px;
 }
+
+/* GoEx logo colours. Default = original (black "Go", purple "Ex"); .logo-light
+   is the version for dark backgrounds; .logo-auto follows the theme. */
+.lg-go { fill: var(--logo-go, #0a0a0a); }
+.lg-ex { fill: var(--logo-ex, #4b0f6e); }
+.lg-exs { stroke: var(--logo-ex, #4b0f6e); }
+.logo-light { --logo-go: #ffffff; --logo-ex: #c084fc; }
+:root[data-theme="dark"] .logo-auto { --logo-go: #ffffff; --logo-ex: #c084fc; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .logo-auto { --logo-go: #ffffff; --logo-ex: #c084fc; }
+}
