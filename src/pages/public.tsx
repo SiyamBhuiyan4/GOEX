@@ -26,7 +26,6 @@ import {
   ThumbsUp,
   Truck,
   Utensils,
-  Wallet,
   X,
   Zap,
 } from "lucide-react";
@@ -41,6 +40,7 @@ import { IS_ADMIN_PORTAL } from "../lib/portal";
 import { Prefs } from "../components/Prefs";
 import { t, translateServer } from "../lib/prefs";
 import { QuickServiceModal } from "../components/QuickServiceModal";
+import { CoverageMap } from "../components/CoverageMap";
 
 /** Only same-site paths may be used as a post-login destination. */
 export function safeNext(raw: string | null) {
@@ -52,7 +52,7 @@ const nextParam = () => new URLSearchParams(location.search).get("next");
 
 const NAV = [
   { href: "/#services", label: "Services" },
-  { href: "/#express", label: "Express parcel" },
+  { href: "/#milk", label: "Cow milk" },
   { href: "/#coverage", label: "Coverage" },
   { href: "/#join", label: "Careers" },
   { href: "/#faq", label: "FAQ" },
@@ -157,35 +157,7 @@ const HIGHLIGHTS = [
   { icon: Headphones, label: "24/7 customer support" },
 ];
 
-const HOME_SERVICES = [
-  {
-    id: "lunch",
-    icon: Utensils,
-    title: "Home-to-office lunch",
-    text: "Your home-cooked lunch, collected from your home and delivered hot to your office desk — every day.",
-    points: ["Collected on your schedule", "Hot & fresh, straight to your desk", "Daily or monthly plans"],
-  },
-  {
-    id: "meal",
-    icon: Soup,
-    title: "Bachelor & mess meals",
-    text: "Fresh food from the best local rice hotels at affordable prices, delivered right to your room.",
-    points: ["Full meals at low cost", "Best local hotel menu", "Free, on-time home delivery"],
-  },
-  {
-    id: "milk",
-    icon: Milk,
-    title: "Pure farm cow milk",
-    text: "100% pure, fresh cow milk collected directly from trusted farms and delivered to your home.",
-    points: ["Straight from the farm", "Hygienic packaging", "Daily, on-time delivery"],
-  },
-  {
-    id: "grocery",
-    icon: ShoppingBasket,
-    title: "Grocery from your shop",
-    text: "Name your favourite local shop or superstore — we buy rice, dal, oil and all daily essentials there and bring them home.",
-    points: ["From the shop you choose", "100% accurate & fresh items", "Fast, safe home delivery"],
-  },
+const DELIVERY_SERVICES = [
   {
     id: "parcel",
     icon: Package,
@@ -200,24 +172,46 @@ const HOME_SERVICES = [
     text: "Perishable items delivered extra fast within the same city, kept cold, flat and safe.",
     points: ["Same-city express", "Kept cold & fresh", "Careful handling for cakes"],
   },
+  {
+    id: "grocery",
+    icon: ShoppingBasket,
+    title: "Grocery from your shop",
+    text: "Name your favourite local shop or superstore — we buy rice, dal, oil and all daily essentials there and bring them home.",
+    points: ["From the shop you choose", "100% accurate & fresh items", "Fast, safe home delivery"],
+  },
+  {
+    id: "lunch",
+    icon: Utensils,
+    title: "Home-to-office lunch",
+    text: "Your home-cooked lunch, collected from your home and delivered hot to your office desk — every day.",
+    points: ["Collected on your schedule", "Hot & fresh, straight to your desk", "Daily or monthly plans"],
+  },
+  {
+    id: "meal",
+    icon: Soup,
+    title: "Bachelor & mess meals",
+    text: "Fresh food from the best local rice hotels at affordable prices, delivered right to your room.",
+    points: ["Full meals at low cost", "Best local hotel menu", "Free, on-time home delivery"],
+  },
 ];
 
 const STEPS = [
-  { icon: PackageCheck, title: "Book", text: "Book in your merchant panel, or call / WhatsApp us." },
-  { icon: Bike, title: "Pickup", text: "Our rider collects the parcel from your shop or home." },
-  { icon: Truck, title: "Delivery", text: "Fast delivery with live status at every step." },
-  { icon: Wallet, title: "Payment", text: "Collected cash is paid to your bKash, Nagad or bank." },
+  { icon: PackageCheck, title: "Book", text: "Call, WhatsApp or use the booking form." },
+  { icon: Bike, title: "Pickup", text: "Our rider collects from the shop, hotel, home or office you name." },
+  { icon: Truck, title: "Delivery", text: "Delivered fast and safe to your address." },
 ];
 
-const COVERAGE = {
-  Savar: ["Savar Sadar", "Hemayetpur", "Ashulia", "Dhamrai", "Aminbazar", "Baipayl", "Nabinagar", "DEPZ", "Jahangirnagar"],
-  Dhaka: ["Mirpur", "Uttara", "Gulshan", "Banani", "Dhanmondi", "Mohammadpur", "Badda", "Tejgaon", "Motijheel"],
-};
+const MILK_POINTS = [
+  { icon: Milk, text: "Straight from the farm" },
+  { icon: ShieldCheck, text: "100% pure & fresh" },
+  { icon: PackageCheck, text: "Hygienic packaging" },
+  { icon: Truck, text: "Daily, on-time delivery" },
+];
 
 const FAQS = [
   {
     q: "How do I place an order?",
-    a: "Call or WhatsApp us at 01348-756651, or use the Order button on any service. Businesses can also book parcels from the merchant panel.",
+    a: "Call or WhatsApp us at 01348-756651, or press Book delivery on any service and fill in the form. Businesses can also book parcels from the merchant panel.",
   },
   {
     q: "Which areas do you cover?",
@@ -396,88 +390,92 @@ export function Home() {
         </div>
       </section>
 
-      {/* ---------------- services */}
+      {/* ---------------- delivery services */}
       <section id="services" className="mx-auto max-w-6xl scroll-mt-6 px-5 py-20">
         <SectionTitle
-          kicker={t("Our services")}
+          kicker={t("Delivery services")}
           title={t("All your daily needs, under one roof")}
-          text={t("Order any service by call, WhatsApp or the order form — we take care of the rest.")}
+          text={t("We pick up from wherever you say — shop, hotel, home or office — and deliver it fast across Savar & Dhaka.")}
         />
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {HOME_SERVICES.map((s) => (
-            <Card key={s.id} className="flex flex-col p-6 transition hover:-translate-y-0.5 hover:shadow-md">
+        <div className="mt-12 grid gap-5 md:grid-cols-6">
+          {DELIVERY_SERVICES.map((s, i) => (
+            <Card
+              key={s.id}
+              className={cx(
+                "flex flex-col p-6 transition hover:-translate-y-0.5 hover:shadow-md",
+                i < 2 ? "md:col-span-3" : "md:col-span-2",
+              )}
+            >
               <span className="grid size-12 place-items-center rounded-2xl bg-brand-50 text-brand">
                 <s.icon className="size-6" />
               </span>
               <h3 className="mt-5 text-lg font-extrabold tracking-tight">{t(s.title)}</h3>
               <p className="mt-2 text-sm leading-relaxed text-ink-2">{t(s.text)}</p>
               <ul className="mt-4 space-y-2 text-sm">
-                {s.points.map((p) => (
-                  <li key={p} className="flex items-center gap-2">
-                    <CheckCircle2 className="size-4 shrink-0 text-brand" /> {t(p)}
+                {s.points.map((pt) => (
+                  <li key={pt} className="flex items-center gap-2">
+                    <CheckCircle2 className="size-4 shrink-0 text-brand" /> {t(pt)}
                   </li>
                 ))}
               </ul>
               <div className="mt-auto pt-6">
                 <Button variant="outline" className="w-full" onClick={() => order(s.id)}>
-                  {t("Order")} <ArrowRight className="size-4" />
+                  {t("Book delivery")} <ArrowRight className="size-4" />
                 </Button>
               </div>
             </Card>
           ))}
         </div>
+
+        {/* how a delivery works */}
+        <ol className="mt-10 grid gap-4 rounded-3xl bg-surface p-6 ring-1 ring-line sm:grid-cols-3">
+          {STEPS.map((st, i) => (
+            <li key={st.title} className="flex items-start gap-3">
+              <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-brand text-white">
+                <st.icon className="size-5" />
+              </span>
+              <span>
+                <span className="block font-bold">
+                  {num(i + 1)}. {t(st.title)}
+                </span>
+                <span className="mt-0.5 block text-sm text-ink-2">{t(st.text)}</span>
+              </span>
+            </li>
+          ))}
+        </ol>
       </section>
 
-      {/* ---------------- express parcel for business */}
-      <section id="express" className="scroll-mt-6 bg-[#1f0f36] py-20 text-white">
-        <div className="mx-auto max-w-6xl px-5">
-          <SectionTitle
-            light
-            kicker={t("Express courier & logistics")}
-            title={t("Fast parcel delivery for your business")}
-            text={t("Free merchant account, same-day delivery across Savar & Dhaka, cash on delivery and live tracking.")}
-          />
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {STEPS.map((s, i) => (
-              <div key={s.title} className="relative rounded-2xl bg-white/[0.06] p-6 ring-1 ring-white/10">
-                <span className="absolute right-5 top-4 text-3xl font-extrabold text-white/10">{num(i + 1)}</span>
-                <span className="grid size-11 place-items-center rounded-xl bg-brand text-white">
-                  <s.icon className="size-5" />
+      {/* ---------------- our own product: milk */}
+      <section id="milk" className="scroll-mt-6 bg-[#1f0f36] py-20 text-white">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 lg:grid-cols-[1.2fr_1fr]">
+          <div>
+            <p className="text-xs font-bold tracking-[0.18em] text-sun uppercase">{t("Our own product")}</p>
+            <h2 className="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">{t("Pure farm cow milk")}</h2>
+            <p className="mt-4 max-w-xl leading-relaxed text-white/75">
+              {t("100% pure, fresh cow milk collected directly from trusted farms and delivered to your home.")}
+            </p>
+            <Button size="lg" className="mt-8" onClick={() => order("milk")}>
+              {t("Order milk")} <ArrowRight className="size-4" />
+            </Button>
+          </div>
+          <ul className="grid gap-3 sm:grid-cols-2">
+            {MILK_POINTS.map((m) => (
+              <li key={m.text} className="flex items-center gap-3 rounded-2xl bg-white/[0.06] p-4 ring-1 ring-white/10">
+                <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-brand text-white">
+                  <m.icon className="size-5" />
                 </span>
-                <p className="mt-4 font-bold">{t(s.title)}</p>
-                <p className="mt-1 text-sm leading-relaxed text-white/70">{t(s.text)}</p>
-              </div>
+                <span className="text-sm font-semibold">{t(m.text)}</span>
+              </li>
             ))}
-          </div>
-          <div className="mt-10 flex flex-wrap justify-center gap-3">
-            <Button size="lg" onClick={() => navigate("/register")}>
-              {t("Become a merchant")} <ArrowRight className="size-4" />
-            </Button>
-            <Button size="lg" variant="outline" className="border-white/25 bg-transparent text-white hover:bg-white/10" onClick={() => navigate("/login")}>
-              {t("Merchant login")}
-            </Button>
-          </div>
+          </ul>
         </div>
       </section>
 
       {/* ---------------- coverage */}
       <section id="coverage" className="mx-auto max-w-6xl scroll-mt-6 px-5 py-20">
-        <SectionTitle kicker={t("Coverage")} title={t("Serving Savar & Dhaka")} />
-        <div className="mt-10 grid gap-5 md:grid-cols-2">
-          {(Object.keys(COVERAGE) as (keyof typeof COVERAGE)[]).map((city) => (
-            <Card key={city} className="p-6">
-              <p className="flex items-center gap-2 text-lg font-extrabold">
-                <MapPin className="size-5 text-brand" /> {t(city)}
-              </p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {COVERAGE[city].map((a) => (
-                  <span key={a} className="rounded-full bg-page px-3 py-1.5 text-sm font-medium ring-1 ring-line">
-                    {t(a)}
-                  </span>
-                ))}
-              </div>
-            </Card>
-          ))}
+        <SectionTitle kicker={t("Coverage")} title={t("Where we deliver")} />
+        <div className="mt-10">
+          <CoverageMap />
         </div>
       </section>
 
@@ -534,28 +532,6 @@ export function Home() {
       </section>
 
       <FaqSection />
-
-      {/* ---------------- call band */}
-      <section className="bg-brand">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 py-8 text-center text-white md:flex-row md:text-left">
-          <p className="text-xl font-extrabold sm:text-2xl">
-            {t("To order or book, call:")} <a href={`tel:${CONTACT.phone}`} className="whitespace-nowrap underline-offset-4 hover:underline">{CONTACT.phoneDisplay}</a>
-          </p>
-          <div className="flex gap-3">
-            <a href={`tel:${CONTACT.phone}`} className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-white px-5 font-bold text-brand-700 transition hover:bg-white/90">
-              <Phone className="size-4" /> {t("Call now")}
-            </a>
-            <a
-              href={CONTACT.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-white/15 px-5 font-bold text-white ring-1 ring-white/30 transition hover:bg-white/25"
-            >
-              <MessageCircle className="size-4" /> WhatsApp
-            </a>
-          </div>
-        </div>
-      </section>
 
       <PublicFooter />
 

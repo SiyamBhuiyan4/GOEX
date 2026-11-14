@@ -434,3 +434,27 @@ select {
     animation: none !important;
   }
 }
+
+/* Coverage map labels */
+.goex-tip {
+  border: 0;
+  border-radius: 10px;
+  background: #1f0f36;
+  color: #fff;
+  padding: 6px 10px;
+  font: 600 12px/1.35 var(--font-sans);
+  box-shadow: 0 8px 24px -8px rgb(31 15 54 / 0.5);
+}
+.goex-tip::before {
+  border-top-color: #1f0f36 !important;
+}
+.leaflet-container {
+  font-family: var(--font-sans);
+}
+/* Muted street map so the purple coverage areas stand out */
+.goex-tiles {
+  filter: grayscale(1) brightness(1.04) contrast(0.92);
+}
+.goex-tiles-dark {
+  filter: grayscale(1) invert(1) brightness(0.8) contrast(0.9);
+}
