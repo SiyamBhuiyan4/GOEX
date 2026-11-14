@@ -1,3 +1,4 @@
+import { LogoArt } from "./LogoArt";
 import {
   useEffect,
   useId,
@@ -338,7 +339,7 @@ export function Logo({ size = 40, className, alt = "GOEX Fast Delivery" }: { siz
 export function BrandLogo({ height = 40, className }: { height?: number; className?: string }) {
   return (
     <span className={cx("inline-flex shrink-0 items-center rounded-xl bg-white shadow-sm", className)} style={{ padding: Math.round(height * 0.14) }}>
-      <img src="/brand/logo-full.svg" alt="GoEx Fast Delivery" height={height} style={{ height, width: "auto" }} />
+      <LogoArt height={height} />
     </span>
   );
 }
