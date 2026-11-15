@@ -124,7 +124,7 @@ export function RiderApplyModal({ open, onClose }: { open: boolean; onClose: () 
         <ApplicationSent action={<Button onClick={onClose}>{t("Close")}</Button>} />
       ) : (
         <div className="space-y-5">
-          <p className="text-sm text-ink-2">{t("Join the GoEx team in Savar & Dhaka.")}</p>
+          <p className="text-sm text-ink-2">{t("Join the GiEx team in Savar & Dhaka.")}</p>
           <RiderApplicationForm onSubmitted={() => setDone(true)} />
         </div>
       )}

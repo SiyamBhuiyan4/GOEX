@@ -352,7 +352,7 @@ export function ParcelForm({
                 {submitLabel}
               </Button>
               <p className="mt-3 flex items-center justify-center gap-1.5 text-xs text-ink-3">
-                <ShieldCheck className="size-3.5" /> {t("Charges are calculated by GOEX")}
+                <ShieldCheck className="size-3.5" /> {t("Charges are calculated by GIEX")}
               </p>
             </div>
           </Card>

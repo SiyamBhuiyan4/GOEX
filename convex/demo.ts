@@ -732,7 +732,7 @@ async function seed(ctx: MutationCtx, adminId: Id<"users"> | undefined, files: D
     });
   }
 
-  /* ---- GoEx hubs (Savar & Dhaka Central) ---- */
+  /* ---- GiEx hubs (Savar & Dhaka Central) ---- */
   const existingHubs = await ctx.db.query("hubs").take(1);
   if (existingHubs.length === 0) {
     await ctx.db.insert("hubs", {

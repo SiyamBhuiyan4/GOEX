@@ -329,7 +329,7 @@ export function PublicFooter() {
       </div>
       <div className="space-y-1 border-t border-line px-5 py-5 text-center text-xs text-ink-3">
         <p>
-          © {new Date().getFullYear()} GOEX Fast Delivery. {t("All rights reserved.")}
+          © {new Date().getFullYear()} GIEX Fast Delivery. {t("All rights reserved.")}
         </p>
         <p>{t("Map data © OpenStreetMap contributors · Boundaries © geoBoundaries")}</p>
       </div>
@@ -358,7 +358,7 @@ export function Home() {
             </h1>
             <p className="mt-5 max-w-xl text-[16px] leading-relaxed text-white/80 sm:text-[17px]">
               {t(
-                "GoEx Fast Delivery — your trusted and fast delivery partner. Office lunch, mess meals, pure cow milk, groceries and express parcels, all under one roof.",
+                "GiEx Fast Delivery — your trusted and fast delivery partner. Office lunch, mess meals, pure cow milk, groceries and express parcels, all under one roof.",
               )}
             </p>
             <div className="mt-7">
@@ -483,9 +483,9 @@ export function Home() {
         <div className="grid overflow-hidden rounded-3xl shadow-[var(--shadow-card)] lg:grid-cols-2">
           <div className="sunrise p-8 text-white sm:p-10">
             <p className="text-xs font-bold tracking-[0.18em] text-sun uppercase">{t("Careers")}</p>
-            <h3 className="mt-2 text-3xl font-extrabold tracking-tight">{t("Join the GoEx team — riders wanted")}</h3>
+            <h3 className="mt-2 text-3xl font-extrabold tracking-tight">{t("Join the GiEx team — riders wanted")}</h3>
             <p className="mt-3 leading-relaxed text-white/80">
-              {t("Have your own bike or cycle? Earn every day delivering across Savar & Dhaka with GoEx Fast Delivery.")}
+              {t("Have your own bike or cycle? Earn every day delivering across Savar & Dhaka with GiEx Fast Delivery.")}
             </p>
             <ul className="mt-6 space-y-2.5 text-sm">
               {[
@@ -636,17 +636,17 @@ function SignIn({ door }: { door: "merchant" | "rider" | "admin" }) {
 
   const copy = {
     merchant: { title: t("Merchant login"), subtitle: t("Sign in to send and track your parcels.") },
-    rider: { title: t("Rider login"), subtitle: t("For GoEx Fast Delivery staff only.") },
+    rider: { title: t("Rider login"), subtitle: t("For GiEx Fast Delivery staff only.") },
     admin: showSetup
       ? { title: t("Initial Admin Setup"), subtitle: t("Set up your master admin passcode to initialize the panel.") }
-      : { title: t("Admin panel"), subtitle: t("Restricted area. Authorized GOEX staff only.") },
+      : { title: t("Admin panel"), subtitle: t("Restricted area. Authorized GIEX staff only.") },
   }[door];
 
   return (
     <AuthLayout title={copy.title} subtitle={copy.subtitle}>
       {door === "rider" && (
         <div className="-mt-2 mb-6 flex items-center gap-3 rounded-2xl bg-brand-50 p-3.5 text-sm font-semibold text-brand-700">
-          <Bike className="size-5 shrink-0" /> {t("Riders get their account from the GoEx office.")}
+          <Bike className="size-5 shrink-0" /> {t("Riders get their account from the GiEx office.")}
         </div>
       )}
 
@@ -804,7 +804,7 @@ export function ForgotPassword() {
   }
 
   return (
-    <AuthLayout title={t("Forgot password")} subtitle={t("Find your merchant account and ask GOEX for a new password.")}>
+    <AuthLayout title={t("Forgot password")} subtitle={t("Find your merchant account and ask GIEX for a new password.")}>
       <form onSubmit={search} className="space-y-4">
         <Field label={t("Phone number or email")} hint={t("The one you signed up with.")}>
           {(id) => (
@@ -844,21 +844,21 @@ export function ForgotPassword() {
 
           {sent === "sent" ? (
             <p className="mt-4 rounded-xl bg-emerald-50 px-3.5 py-3 text-sm font-semibold text-emerald-700">
-              {t("Request sent! GOEX will set a new password and email it to you.")}
+              {t("Request sent! GIEX will set a new password and email it to you.")}
             </p>
           ) : sent === "already" || found.alreadyRequested ? (
             <p className="mt-4 rounded-xl bg-amber-50 px-3.5 py-3 text-sm font-semibold text-amber-800">
-              {t("You've already asked. GOEX will email your new password soon. You can ask again after the office handles it.")}
+              {t("You've already asked. GIEX will email your new password soon. You can ask again after the office handles it.")}
             </p>
           ) : (
             <>
               <p className="mt-3 text-sm text-ink-2">
                 {found.email
-                  ? t("GOEX will set a new password and email it to this address.")
-                  : t("This account has no email. GOEX will call you with the new password.")}
+                  ? t("GIEX will set a new password and email it to this address.")
+                  : t("This account has no email. GIEX will call you with the new password.")}
               </p>
               <Button size="lg" className="mt-4 w-full" loading={busy} onClick={send}>
-                {t("Send request to GOEX")}
+                {t("Send request to GIEX")}
               </Button>
             </>
           )}
@@ -912,7 +912,7 @@ export function Register() {
 
   const mismatch = f.confirm.length > 0 && f.password !== f.confirm;
   return (
-    <AuthLayout title={t("Become a merchant")} subtitle={t("Send parcels across Savar & Dhaka with GOEX.")}>
+    <AuthLayout title={t("Become a merchant")} subtitle={t("Send parcels across Savar & Dhaka with GIEX.")}>
       <form onSubmit={submit} className="grid gap-4 sm:grid-cols-2">
         <Field label={t("Your name")}>{(id) => <Input id={id} value={f.name} onChange={set("name")} required maxLength={80} />}</Field>
         <Field label={t("Business / page name")}>
@@ -983,14 +983,14 @@ export function Join() {
 
   if (done) {
     return (
-      <AuthLayout title={t("Application sent")} subtitle={t("Thank you for applying to GoEx Fast Delivery.")}>
+      <AuthLayout title={t("Application sent")} subtitle={t("Thank you for applying to GiEx Fast Delivery.")}>
         <ApplicationSent action={<Button onClick={() => navigate("/")}>{t("Back to home")}</Button>} />
       </AuthLayout>
     );
   }
 
   return (
-    <AuthLayout title={t("Apply as a rider")} subtitle={t("Join the GoEx team in Savar & Dhaka.")}>
+    <AuthLayout title={t("Apply as a rider")} subtitle={t("Join the GiEx team in Savar & Dhaka.")}>
       <ul className="mb-6 space-y-2 rounded-2xl bg-brand-50/70 p-4 text-sm text-ink-2 ring-1 ring-brand/15">
         {[
           "Attractive fixed salary + commission and incentive on every delivery",

@@ -298,7 +298,7 @@ export function Spinner({ className }: { className?: string }) {
 }
 
 /*
-  The GoEx logo as a round badge: the picture /brand/logo-round.png (white
+  The GiEx logo as a round badge: the picture /brand/logo-round.png (white
   circle with the full lockup). If the picture ever fails to load, the same
   logo is drawn inline so it never shows as a broken image.
 */
@@ -316,7 +316,7 @@ function RoundLogo({ size, className }: { size: number; className?: string }) {
   return (
     <img
       src="/brand/logo-round.png"
-      alt="GoEx Fast Delivery"
+      alt="GiEx Fast Delivery"
       width={size}
       height={size}
       onError={() => setFailed(true)}
@@ -326,13 +326,13 @@ function RoundLogo({ size, className }: { size: number; className?: string }) {
   );
 }
 
-/** Round GoEx logo at a given diameter. */
+/** Round GiEx logo at a given diameter. */
 export function Logo({ size = 40, className }: { size?: number; className?: string }) {
   return <RoundLogo size={size} className={className} />;
 }
 
 /**
-  The GoEx logo, drawn inline. tone "light" is for dark backgrounds (white "Go",
+  The GiEx logo, drawn inline. tone "light" is for dark backgrounds (white "Gi",
   light purple "Ex"); "auto" uses the original colours and switches to the
   light version in dark mode.
 */

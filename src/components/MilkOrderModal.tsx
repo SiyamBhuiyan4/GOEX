@@ -5,8 +5,8 @@ import { t } from "../lib/prefs";
 import { Button, Field, Input, Modal, Select, Textarea } from "./ui";
 
 /*
-  Milk is GOEX's own product, so it is ordered directly: the order goes to the
-  GOEX WhatsApp. Every other delivery is booked by merchants after logging in.
+  Milk is GIEX's own product, so it is ordered directly: the order goes to the
+  GIEX WhatsApp. Every other delivery is booked by merchants after logging in.
 */
 
 const QUANTITIES = ["½ litre", "1 litre", "2 litres", "3 litres", "5 litres"];
@@ -40,7 +40,7 @@ export function MilkOrderModal({ open, onClose }: { open: boolean; onClose: () =
   const message = useMemo(
     () =>
       [
-        "*GOEX Order — Pure farm cow milk*",
+        "*GIEX Order — Pure farm cow milk*",
         `Name: ${name.trim()}`,
         `Phone: ${phone.trim()}`,
         `Quantity: ${qty}`,

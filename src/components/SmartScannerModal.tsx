@@ -1000,7 +1000,7 @@ export function SmartScannerModal({
         {/* Modal Footer */}
         <div className="border-t border-line bg-page px-5 py-3 flex items-center justify-between text-xs text-ink-3">
           <span className="hidden sm:inline">
-            {t("GOEX Barcode Dispatch Engine")}
+            {t("GIEX Barcode Dispatch Engine")}
           </span>
           <Button size="sm" variant="ghost" onClick={onClose} className="ml-auto">
             {t("Done / Close")}

@@ -153,10 +153,10 @@ export function PrintPayout({ id }: { id: Id<"payouts"> }) {
           </table>
           <div className="mt-5 ml-auto w-72 space-y-1">
             <div className="flex justify-between"><span>{t("Total collected")}</span><span>{tk(data.payout.collected)}</span></div>
-            <div className="flex justify-between"><span>{t("GOEX charges")}</span><span>− {tk(data.payout.charges)}</span></div>
+            <div className="flex justify-between"><span>{t("GIEX charges")}</span><span>− {tk(data.payout.charges)}</span></div>
             <div className="flex justify-between border-t-2 border-black pt-1 text-lg font-extrabold"><span>{t("Paid")}</span><span>{tk(data.payout.amount)}</span></div>
           </div>
-          <p className="mt-12 text-center text-xs text-black/60">{t("Thank you for shipping with GOEX Fast Delivery.")}</p>
+          <p className="mt-12 text-center text-xs text-black/60">{t("Thank you for shipping with GIEX Fast Delivery.")}</p>
         </div>
       )}
     </div>

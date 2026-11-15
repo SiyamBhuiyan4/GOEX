@@ -239,7 +239,7 @@ export function Shell({ children }: { children: ReactNode }) {
             </>
           )}
         </div>
-        <span className="min-w-0 truncate text-sm font-bold text-ink lg:hidden">{current ? t(current.label) : "GOEX"}</span>
+        <span className="min-w-0 truncate text-sm font-bold text-ink lg:hidden">{current ? t(current.label) : "GIEX"}</span>
         <div className="ml-auto flex items-center gap-3">
           <Prefs />
           <span className="hidden items-center gap-2.5 border-l border-line pl-3 sm:flex">

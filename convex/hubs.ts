@@ -133,7 +133,7 @@ export const createHub = mutation({
 });
 
 /**
- * Admin: seed default GoEx hubs (Savar Hub & Dhaka Central Hub) if none exist.
+ * Admin: seed default GiEx hubs (Savar Hub & Dhaka Central Hub) if none exist.
  */
 export const seedDefaultHubs = mutation({
   args: { token: v.string() },

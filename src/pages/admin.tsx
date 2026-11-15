@@ -69,7 +69,7 @@ export function AdminDashboard() {
     <>
       <PageHeader
         title={t("Dashboard")}
-        subtitle={t("Here's what's moving at GOEX today.")}
+        subtitle={t("Here's what's moving at GIEX today.")}
         actions={
           <Button icon={Plus} onClick={() => navigate("/app/parcels/new")}>
             {t("New parcel")}
@@ -448,7 +448,7 @@ export function Merchants() {
 
   return (
     <>
-      <PageHeader title={t("Merchants")} subtitle={t("Businesses that send parcels with GOEX.")} actions={<Button icon={Plus} onClick={() => setCreating(true)}>{t("Add merchant")}</Button>} />
+      <PageHeader title={t("Merchants")} subtitle={t("Businesses that send parcels with GIEX.")} actions={<Button icon={Plus} onClick={() => setCreating(true)}>{t("Add merchant")}</Button>} />
       <PasswordRequests />
       <VerificationQueue />
       <SearchBox value={search} onChange={setSearch} placeholder={t("Search merchants: business, owner, phone or email…")} />
@@ -1057,9 +1057,9 @@ function InviteModal({ app, onClose }: { app: Doc<"riderApplications"> | null; o
   const at = when ? new Date(when) : null;
   // The invitation goes out in whichever language the admin is using.
   const whenText = at ? longDateTime(at.getTime()) : "";
-  const subject = t("GoEx Fast Delivery — rider interview invitation");
+  const subject = t("GiEx Fast Delivery — rider interview invitation");
   const message = t(
-    "Dear {name},\n\nThank you for applying to be a GoEx delivery rider. We would like to invite you for an interview.\n\nWhen: {when}\nWhere: {place}\n\nPlease bring your NID, driving licence/bicycle, and relevant papers.\nIf you cannot come at this time, call or WhatsApp us at {phone}.\n\nGoEx Fast Delivery — Fast • Safe • On Time",
+    "Dear {name},\n\nThank you for applying to be a GiEx delivery rider. We would like to invite you for an interview.\n\nWhen: {when}\nWhere: {place}\n\nPlease bring your NID, driving licence/bicycle, and relevant papers.\nIf you cannot come at this time, call or WhatsApp us at {phone}.\n\nGiEx Fast Delivery — Fast • Safe • On Time",
     { name: app.name, when: whenText, place: place === CONTACT.address ? t(CONTACT.address) : place, phone: CONTACT.phoneDisplay },
   );
   const waNumber = "88" + app.phone;
@@ -1191,7 +1191,7 @@ export function Payouts() {
 
   return (
     <>
-      <PageHeader title={t("Merchant payouts")} subtitle={t("Pay merchants their collected COD minus GOEX charges.")} />
+      <PageHeader title={t("Merchant payouts")} subtitle={t("Pay merchants their collected COD minus GIEX charges.")} />
       <PayoutRequests onPay={setPaying} />
       <Card className="overflow-hidden">
         <div className="border-b border-line px-5 py-4 font-bold">{t("Unpaid balances")}</div>

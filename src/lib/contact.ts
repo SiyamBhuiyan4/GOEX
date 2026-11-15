@@ -1,4 +1,4 @@
-/* GOEX public contact details, aligned with official Facebook page. */
+/* GIEX public contact details, aligned with official Facebook page. */
 export const CONTACT = {
   phone: "01348756651",
   phoneDisplay: "01348-756651",

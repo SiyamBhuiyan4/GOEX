@@ -11,7 +11,7 @@
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 /*
-  GOEX palette, taken from the logo:
+  GIEX palette, taken from the logo:
     navy  — the rider, ring and wordmark
     orange — "RIDER" and the speed lines
     sun   — the rising sun behind the city
@@ -460,7 +460,7 @@ select {
   margin-top: 16px;
 }
 
-/* GoEx logo colours. Default = original (black "Go", purple "Ex"); .logo-light
+/* GiEx logo colours. Default = original (black "Gi", purple "Ex"); .logo-light
    is the version for dark backgrounds; .logo-auto follows the theme. */
 .lg-go { fill: var(--logo-go, #0a0a0a); }
 .lg-ex { fill: var(--logo-ex, #4b0f6e); }

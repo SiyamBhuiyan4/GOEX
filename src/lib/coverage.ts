@@ -1,5 +1,5 @@
 /*
-  Where GOEX delivers. The map highlights these districts (zila) and the rest
+  Where GIEX delivers. The map highlights these districts (zila) and the rest
   of Bangladesh stays grey.
 
   To add a district: add one entry below. `name` must match the district's name
