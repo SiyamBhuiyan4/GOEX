@@ -51,6 +51,17 @@
       "has": [
         {
           "type": "host",
+          "value": "goex-admin.vercel.app"
+        }
+      ],
+      "destination": "/login-admin",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
           "value": "giex-admin.vercel.app"
         }
       ],
@@ -62,76 +73,10 @@
       "has": [
         {
           "type": "host",
-          "value": "goex-delivery.vercel.app"
-        }
-      ],
-      "destination": "https://giex-delivery.vercel.app/",
-      "permanent": true
-    },
-    {
-      "source": "/:path+",
-      "has": [
-        {
-          "type": "host",
-          "value": "goex-delivery.vercel.app"
-        }
-      ],
-      "destination": "https://giex-delivery.vercel.app/:path+",
-      "permanent": true
-    },
-    {
-      "source": "/",
-      "has": [
-        {
-          "type": "host",
-          "value": "goex-three.vercel.app"
-        }
-      ],
-      "destination": "https://giex-delivery.vercel.app/",
-      "permanent": true
-    },
-    {
-      "source": "/:path+",
-      "has": [
-        {
-          "type": "host",
-          "value": "goex-three.vercel.app"
-        }
-      ],
-      "destination": "https://giex-delivery.vercel.app/:path+",
-      "permanent": true
-    },
-    {
-      "source": "/",
-      "has": [
-        {
-          "type": "host",
-          "value": "goex-admin.vercel.app"
-        }
-      ],
-      "destination": "https://giex-admin.vercel.app/",
-      "permanent": true
-    },
-    {
-      "source": "/:path+",
-      "has": [
-        {
-          "type": "host",
-          "value": "goex-admin.vercel.app"
-        }
-      ],
-      "destination": "https://giex-admin.vercel.app/:path+",
-      "permanent": true
-    },
-    {
-      "source": "/",
-      "has": [
-        {
-          "type": "host",
           "value": "morning-rider.vercel.app"
         }
       ],
-      "destination": "https://giex-delivery.vercel.app/",
+      "destination": "https://goex-delivery.vercel.app/",
       "permanent": true
     },
     {
@@ -142,7 +87,7 @@
           "value": "morning-rider.vercel.app"
         }
       ],
-      "destination": "https://giex-delivery.vercel.app/:path+",
+      "destination": "https://goex-delivery.vercel.app/:path+",
       "permanent": true
     },
     {
@@ -153,7 +98,7 @@
           "value": "morning-rider-admin.vercel.app"
         }
       ],
-      "destination": "https://giex-admin.vercel.app/",
+      "destination": "https://goex-admin.vercel.app/",
       "permanent": true
     },
     {
@@ -164,7 +109,7 @@
           "value": "morning-rider-admin.vercel.app"
         }
       ],
-      "destination": "https://giex-admin.vercel.app/:path+",
+      "destination": "https://goex-admin.vercel.app/:path+",
       "permanent": true
     }
   ]
